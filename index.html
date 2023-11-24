@@ -7,20 +7,38 @@
     <link rel="stylesheet" href="style.css">
     <script src="script/clock.js"></script>
     <script src="script/settings.js"></script>
-    <script src="script/settings.js"></script>>
+    <script src="script/templates.js"></script>
     <title>Simple Fit</title>
     <link rel="icon" href="img/dumbell.png">
 </head>
 
 <body onload="init()">
     <div class="content column gap15">
-        <img src="img/settings.png" class="symbol32 settingsImg" onclick="showSettings()">
-        <img src="img/dumbell.png" class="dumbell">
+        <img src="img/settings.png" class="symbol32" id="settingsImgId" onclick="showSettings()">
+        <img src="img/dumbell.png" id="dumbellId">
+        <h2 class="dNone alignCenter whiteFont" id="settingstitleId">Settings</h2>
+        <div class="dNone" id="settingsDescriptionId">
+
+            <ul>
+                <li>
+                    set standard buttons
+                </li>
+                <li>
+                    change time intervals
+                </li>
+                <li>
+                    change gym diary names
+                </li>
+                <li>
+                    add/delete gym diary
+                </li>
+            </ul>
+        </div>
         <div id="timeId">
             00:00:00
         </div>
-        <section class="column gap15">
-            <div>
+        <section class="column gap15 w100" id="btnAreaId">
+            <div class="spaceBetween" id="SPRBtnAreaId">
                 <button onclick="start()" id="startBtnId">
                     Start
                 </button>
@@ -31,7 +49,7 @@
                     Reset
                 </button>
             </div>
-            <div class="column alignCenter">
+            <div class="column alignCenter spaceBetween">
                 <h3 class="whiteFont">Alert every</h3>
                 <div>
                     <button onclick="setGoFirst()" id="firstIntervalBtnId">
@@ -45,7 +63,7 @@
                     </button>
                 </div>
             </div>
-            <div class="column alignCenter">
+            <div class="column alignCenter spaceBetween">
                 <h3 class="whiteFont">Pre alert</h3>
                 <div>
                     <button onclick="setPreIntervalOff()" id="preOffIntervalBtnId">

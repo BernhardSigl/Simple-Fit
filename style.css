@@ -13,7 +13,7 @@ body {
     font-family: monospace;
     width: 100%;
     height: 100%;
-    padding-top: 60px;
+    padding: 60px 30px 20px;
     box-sizing: border-box;
 }
 
@@ -34,6 +34,10 @@ h5 {
     flex-direction: column;
 }
 
+.dNone {
+    display: none !important;
+}
+
 .alignCenter {
     display: flex;
     align-items: center;
@@ -42,6 +46,11 @@ h5 {
 .justifyCenter {
     display: flex;
     justify-content: center;
+}
+
+.spaceBetween {
+    display: flex;
+    justify-content: space-between;
 }
 
 .w100 {
@@ -56,7 +65,7 @@ h5 {
     color: white;
 }
 
-.dumbell {
+#dumbellId {
     width: 100px;
     height: auto;
 }
@@ -66,10 +75,11 @@ h5 {
     height: 32px;
 }
 
-.settingsImg {
+#settingsImgId {
     position: absolute;
     top: 60px;
-    right: 24px;
+    right: 30px;
+    cursor: pointer;
 }
 
 button.activePreIntervalBtn:hover,
@@ -101,4 +111,25 @@ button:hover {
 
 #timeId {
     color: white;
+    width: 132px;
+    height: 36px;
+}
+
+.btnArea {
+    /* height dumbel img + gap + height timer + gap + height SPR Btns + gap*/
+    /* margin-top: calc(80px + 15px + 36px + 15px + 45px + 15px); */
+}
+
+#settingstitleId {
+    height: 32px;
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+#settingsDescriptionId {
+    width: 100%;
+    height: auto;
+    background-color: #202124;
+    color: white;
+    border-radius: 5px;
 }
