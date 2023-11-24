@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="clock.js"></script>
+    <title>Simple Fit</title>
+    <link rel="icon" href="img/dumbell.png">
+</head>
+
+<body onload="init()">
+    <div class="content column gap15">
+        <img src="img/dumbell.png" class="dumbell">
+        <div id="timeId">
+            00:00:00
+        </div>
+        <section class="column gap15">
+            <div>
+                <button onclick="start()" id="startBtnId">
+                    Start
+                </button>
+                <button onclick="pause()" id="pauseBtnId">
+                    Pause
+                </button>
+                <button onclick="reset()" id="resetBtnId">
+                    Reset
+                </button>
+            </div>
+            <div class="column alignCenter">
+                <h3 class="whiteFont">Alert every</h3>
+                <div>
+                    <button onclick="setGo(3)" id="3minBtnId">
+                        3min
+                    </button>
+                    <button onclick="setGo(4)" id="4minBtnId">
+                        4min
+                    </button>
+                    <button onclick="setGo(5)" id="5minBtnId">
+                        5min
+                    </button>
+                </div>
+            </div>
+            <div class="column alignCenter">
+                <h3 class="whiteFont">Pre alert</h3>
+                <div>
+                    <button onclick="setPreGo(0)" id="preOffBtnId">
+                        Off
+                    </button>
+                    <button onclick="setPreGo(45)" id="pre45secBtnId">
+                        45sec
+                    </button>
+                    <button onclick="setPreGo(50)" id="pre50secBtnId">
+                        50sec
+                    </button>
+                </div>
+            </div>
+        </section>
+        <section class="alignCenter column">
+            <h3 class="whiteFont">Gym diary</h3>
+            <div class="">
+                <button>
+                    Chest
+                </button>
+                <button>
+                    Back
+                </button>
+                <button>
+                    Calves
+                </button>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>

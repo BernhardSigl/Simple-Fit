@@ -1,0 +1,94 @@
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #343541;
+    box-shadow: inset 0px 0px 6px 2px rgba(0, 0, 0, 0.2)
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-family: monospace;
+    width: 100%;
+    height: 100%;
+    padding-top: 60px;
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    margin: 0;
+}
+
+.dFlex {
+    display: flex;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.alignCenter {
+    display: flex;
+    align-items: center;
+}
+
+.justifyCenter {
+    display: flex;
+    justify-content: center;
+}
+
+.w100 {
+    width: 100%;
+}
+
+.gap15 {
+    gap: 15px;
+}
+
+.whiteFont {
+    color: white;
+}
+
+.dumbell {
+    width: 100px;
+    height: auto;
+}
+
+button.activePreIntervalBtn:hover,
+.activePreIntervalBtn,
+button.activeIntervalBtn:hover,
+.activeIntervalBtn,
+button.activeSPRBtn:hover,
+.activeSPRBtn {
+    background-color: #1c5e1e;
+}
+
+#timeId {
+    font-size: 30px;
+}
+
+button {
+    padding: 12px;
+    margin: 0;
+    width: 100px;
+    height: 45px;
+    background-color: #202124;
+    color: white;
+    cursor: pointer;
+    /* border: none; */
+}
+
+button:hover {
+    background-color: #3b3d42;
+}
+
+#timeId {
+    color: white;
+}
