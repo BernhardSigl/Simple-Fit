@@ -7,9 +7,9 @@ let AUDIO_GO = new Audio('audio/go.wav');
 let audioReadyPlayed = false;
 let audioGoPlayed = false;
 
-let intervalTime = 3;
+let intervalTime = 0;
 
-let preAlertTime = 50;
+let preIntervalTime = 0;
 let preIntervall = false;
 
 let activeSPRBtn = null;
@@ -18,9 +18,18 @@ let activePreIntervalBtn = null;
 
 function init() {
     setActiveSPRBtn('pauseBtnId');
-    setActiveIntervalBtn('3minBtnId');
-    setActivePreIntervalBtn('pre50secBtnId');
-    preIntervall = true;
+    setStandardIntervalTime();
+    setStandardPreIntervalTime();
+}
+
+function setStandardIntervalTime() {
+    setActiveIntervalBtn('firstIntervalBtnId');
+    setGoFirst();
+}
+
+function setStandardPreIntervalTime() {
+    setActivePreIntervalBtn('preSecondIntervalBtnId');
+    setPreIntervalSecond();
 }
 
 function start() {
@@ -61,34 +70,39 @@ function updateDisplay() {
     s = s < 10 ? "0" + s : s;
     document.getElementById('timeId').innerHTML = h + ":" + m + ":" + s;
     playSounds(m, s);
+    console.log((((m % intervalTime === 0) && (m / intervalTime) % 2 === 0)));
 }
 
-function setGo(inputGoTime) {
-    if (inputGoTime === 3) {
-        setActiveIntervalBtn('3minBtnId');
-        intervalTime = 3;
-    } else if (inputGoTime === 4) {
-        setActiveIntervalBtn('4minBtnId');
-        intervalTime = 4;
-    } else if (inputGoTime === 5) {
-        setActiveIntervalBtn('5minBtnId');
-        intervalTime = 5;
-    }
+function setGoFirst() {
+    setActiveIntervalBtn('firstIntervalBtnId');
+    intervalTime = 3;
 }
 
-function setPreGo(inputPreGoTime) {
-    if (inputPreGoTime === 0) {
-        setActivePreIntervalBtn('preOffBtnId');
-        preIntervall = false;
-    } else if (inputPreGoTime === 45) {
-        setActivePreIntervalBtn('pre45secBtnId');
-        preAlertTime = 45;
-        preIntervall = true;
-    } else if (inputPreGoTime === 50) {
-        setActivePreIntervalBtn('pre50secBtnId');
-        preAlertTime = 50;
-        preIntervall = true;
-    }
+function setGoSecond() {
+    setActiveIntervalBtn('firstIntervalBtnId');
+    intervalTime = 4;
+}
+
+function setGoThird() {
+    setActiveIntervalBtn('firstIntervalBtnId');
+    intervalTime = 6;
+}
+
+function setPreIntervalOff() {
+    setActivePreIntervalBtn('preOffIntervalBtnId');
+    preIntervall = false;
+}
+
+function setPreIntervalFirst() {
+    setActivePreIntervalBtn('preFirstPreIntervalBtnId');
+    preIntervalTime = 45;
+    preIntervall = true;
+}
+
+function setPreIntervalSecond() {
+    setActivePreIntervalBtn('preSecondIntervalBtnId');
+    preIntervalTime = 50;
+    preIntervall = true;
 }
 
 function playSounds(m, s) {
@@ -98,8 +112,7 @@ function playSounds(m, s) {
     } else {
         audioGoPlayed = false;
     }
-    if ((m % intervalTime === 0) - (m = 1) && s == preAlertTime && !audioReadyPlayed && preIntervall === true) {
-        console.log((m % intervalTime === 0) - (m = 1));
+    if ((m % intervalTime === intervalTime - 1) && !audioReadyPlayed && s === preIntervalTime && preIntervall === true && (intervalTime !== 1 ? m > 0 : true)) {
         AUDIO_READY.play();
         audioReadyPlayed = true;
     } else {

@@ -5,13 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="clock.js"></script>
+    <script src="script/clock.js"></script>
+    <script src="script/settings.js"></script>
+    <script src="script/settings.js"></script>>
     <title>Simple Fit</title>
     <link rel="icon" href="img/dumbell.png">
 </head>
 
 <body onload="init()">
     <div class="content column gap15">
+        <img src="img/settings.png" class="symbol32 settingsImg" onclick="showSettings()">
         <img src="img/dumbell.png" class="dumbell">
         <div id="timeId">
             00:00:00
@@ -31,13 +34,13 @@
             <div class="column alignCenter">
                 <h3 class="whiteFont">Alert every</h3>
                 <div>
-                    <button onclick="setGo(3)" id="3minBtnId">
+                    <button onclick="setGoFirst()" id="firstIntervalBtnId">
                         3min
                     </button>
-                    <button onclick="setGo(4)" id="4minBtnId">
+                    <button onclick="setGoSecond()" id="secondIntervalBtnId">
                         4min
                     </button>
-                    <button onclick="setGo(5)" id="5minBtnId">
+                    <button onclick="setGoThird()" id="thirdIntervalBtnId">
                         5min
                     </button>
                 </div>
@@ -45,13 +48,13 @@
             <div class="column alignCenter">
                 <h3 class="whiteFont">Pre alert</h3>
                 <div>
-                    <button onclick="setPreGo(0)" id="preOffBtnId">
+                    <button onclick="setPreIntervalOff()" id="preOffIntervalBtnId">
                         Off
                     </button>
-                    <button onclick="setPreGo(45)" id="pre45secBtnId">
+                    <button onclick="setPreIntervalFirst()" id="preFirstPreIntervalBtnId">
                         45sec
                     </button>
-                    <button onclick="setPreGo(50)" id="pre50secBtnId">
+                    <button onclick="setPreIntervalSecond()" id="preSecondIntervalBtnId">
                         50sec
                     </button>
                 </div>
