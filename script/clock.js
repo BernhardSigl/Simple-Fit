@@ -1,3 +1,7 @@
+let intervalsArray = [];
+let intervalsStandardArray = [];
+let preIntervalsStandardArray = [];
+
 var resetTime = 0;
 var pauseRun = true;
 var lastRun = new Date();
@@ -8,6 +12,11 @@ let audioReadyPlayed = false;
 let audioGoPlayed = false;
 
 let intervalTime = 0;
+let firstIntervalTime = 0;
+let secondIntervalTime = 0;
+let thirdIntervalTime = 0;
+let firstPreIntervalTime = 0;
+let secondPreIntervalTime = 0;
 
 let preIntervalTime = 0;
 let preIntervall = false;
@@ -16,31 +25,154 @@ let activeSPRBtn = null;
 let activeIntervalBtn = null;
 let activePreIntervalBtn = null;
 
+// standard
+let firstIntervalStandard = false;
+let secondIntervalStandard = false;
+let thirdIntervalStandard = false;
+let firstPreIntervalStandard = false;
+let secondPreIntervalStandard = false;
+let thirdPreIntervalStandard = false;
+
 let settings = false;
 
 async function init() {
     await loadUsersArray();
     await loadLoggedInUser();
     await welcomeMessage();
+    await createIndividuallyIntervalsArray();
+    await loadIndividuallyIntervals();
+
+    await createIndividuallyIntervalsStandardArray();
+    await loadIndividuallyIntervalsStandard();
+    await loadIntervals();
+
+    await createIndividuallyPreIntervalsStandardArray();
+    await loadIndividuallyPreIntervalsStandard();
+    // await loadPreIntervals();
+
+    checkIntervalsStandard();
+    checkPreIntervalsStandard();
+
     setActiveSPRBtn('pauseBtnId');
-    setStandardIntervalTime();
-    setStandardPreIntervalTime();
+
+    // setStandardIntervalTime();
+    // setStandardPreIntervalTime();
+
     settings = false;
     toggleVisibilityById('contentStartPageId', true);
 }
 
+async function createIndividuallyIntervalsArray() {
+    for (let i = 0; i < usersArray.length; i++) {
+        const user = usersArray[i];
+        id = user.id;
+        if (loggedInUser[0].name === user.username) {
+            intervalsArray = user[`individuallyIntervals_${id}`] = [];
+            return id, intervalsArray;
+        }
+    }
+}
+
+async function createIndividuallyIntervalsStandardArray() {
+    for (let i = 0; i < usersArray.length; i++) {
+        const user = usersArray[i];
+        id = user.id;
+        if (loggedInUser[0].name === user.username) {
+            intervalsStandardArray = user[`individuallyIntervalsStandardArray_${id}`] = [];
+            return id, intervalsStandardArray;
+        }
+    }
+}
+
+async function createIndividuallyPreIntervalsStandardArray() {
+    for (let i = 0; i < usersArray.length; i++) {
+        const user = usersArray[i];
+        id = user.id;
+        if (loggedInUser[0].name === user.username) {
+            preIntervalsStandardArray = user[`individuallyPreIntervalsStandardArray_${id}`] = [];
+            return id, preIntervalsStandardArray;
+        }
+    }
+}
+
+async function loadIntervals() {
+    firstIntervalTime = intervalsArray[0].firstIntervalTime;
+    secondIntervalTime = intervalsArray[0].secondIntervalTime;
+    thirdIntervalTime = intervalsArray[0].thirdIntervalTime;
+    firstPreIntervalTime = intervalsArray[0].firstPreIntervalTime
+    secondPreIntervalTime = intervalsArray[0].secondPreIntervalTime
+    document.getElementById('firstIntervalBtnId').innerHTML = firstIntervalTime;
+    document.getElementById('secondIntervalBtnId').innerHTML = secondIntervalTime;
+    document.getElementById('thirdIntervalBtnId').innerHTML = thirdIntervalTime;
+    document.getElementById('preFirstPreIntervalBtnId').innerHTML = firstPreIntervalTime;
+    document.getElementById('preSecondIntervalBtnId').innerHTML = secondPreIntervalTime;
+}
+
+// async function loadIntervalsStandard() {
+//     firstIntervalStandard = intervalsStandardArray[0].firstIntervalStandard;
+//     secondIntervalStandard = intervalsStandardArray[0].secondIntervalStandard;
+//     thirdIntervalStandard = intervalsStandardArray[0].thirdIntervalStandard;
+// }
+
+async function saveIntervals() {
+    intervalsArray = [];
+    firstIntervalTime = Number(document.getElementById('firstIntervalBtnId').innerHTML);
+    secondIntervalTime = Number(document.getElementById('secondIntervalBtnId').innerHTML);
+    thirdIntervalTime = Number(document.getElementById('thirdIntervalBtnId').innerHTML);
+    firstPreIntervalTime = Number(document.getElementById('preFirstPreIntervalBtnId').innerHTML);
+    secondPreIntervalTime = Number(document.getElementById('preSecondIntervalBtnId').innerHTML);
+    intervalsArray.push({
+        'firstIntervalTime': firstIntervalTime,
+        'secondIntervalTime': secondIntervalTime,
+        'thirdIntervalTime': thirdIntervalTime,
+        'firstPreIntervalTime': firstPreIntervalTime,
+        'secondPreIntervalTime': secondPreIntervalTime,
+    });
+    await setItem(`individuallyIntervals_${id}`, JSON.stringify(intervalsArray));
+}
+
+async function saveIntervalsStandard() {
+    intervalsStandardArray = [];
+    intervalsStandardArray.push({
+        'firstIntervalStandard': firstIntervalStandard,
+        'secondIntervalStandard': secondIntervalStandard,
+        'thirdIntervalStandard': thirdIntervalStandard,
+    })
+    await setItem(`individuallyIntervalsStandardArray_${id}`, JSON.stringify(intervalsStandardArray));
+}
+
+async function savePreIntervalsStandard() {
+    preIntervalsStandardArray = [];
+    preIntervalsStandardArray.push({
+        'firstPreIntervalStandard': firstPreIntervalStandard,
+        'secondPreIntervalStandard': secondPreIntervalStandard,
+        'thirdPreIntervalStandard': thirdPreIntervalStandard,
+    })
+    await setItem(`individuallyPreIntervalsStandardArray_${id}`, JSON.stringify(preIntervalsStandardArray));
+}
+
+function checkIntervalsStandard() {
+    if (intervalsStandardArray[0].firstIntervalStandard === true) {
+        setGoFirst();
+    } else if (intervalsStandardArray[0].secondIntervalStandard === true) {
+        setGoSecond();
+    } else if (intervalsStandardArray[0].thirdIntervalStandard === true) {
+        setGoThird();
+    }
+}
+
+function checkPreIntervalsStandard() {
+    if (preIntervalsStandardArray[0].firstPreIntervalStandard === true) {
+        setPreIntervalOff();
+    } else if (preIntervalsStandardArray[0].secondPreIntervalStandard === true) {
+        setPreIntervalFirst();
+    } else if (preIntervalsStandardArray[0].thirdPreIntervalStandard === true) {
+        setPreIntervalSecond();
+    }
+}
+
 async function welcomeMessage() {
     document.getElementById('welcomeMessageId').innerHTML = `Welcome ${loggedInUser[0].name}`;
-}
-
-function setStandardIntervalTime() {
-    setActiveIntervalBtn('firstIntervalBtnId');
-    setGoFirst();
-}
-
-function setStandardPreIntervalTime() {
-    setActivePreIntervalBtn('preSecondIntervalBtnId');
-    setPreIntervalSecond();
 }
 
 function start() {
@@ -161,6 +293,8 @@ function confirmFirstInterval(inputId, buttonId) {
     if (newIntervalTime.length !== 0) {
         intervalTime = parseInt(newIntervalTime);
         document.getElementById(buttonId).innerText = newIntervalTime;
+        saveIntervals();
+        document.getElementById(inputId).value = '';
     }
 }
 
@@ -169,6 +303,8 @@ function confirmSecondInterval(inputId, buttonId) {
     if (newIntervalTime.length !== 0) {
         intervalTime = parseInt(newIntervalTime);
         document.getElementById(buttonId).innerText = newIntervalTime;
+        saveIntervals();
+        document.getElementById(inputId).value = '';
     }
 }
 
@@ -177,6 +313,8 @@ function confirmThirdInterval(inputId, buttonId) {
     if (newIntervalTime.length !== 0) {
         intervalTime = parseInt(newIntervalTime);
         document.getElementById(buttonId).innerText = newIntervalTime;
+        saveIntervals();
+        document.getElementById(inputId).value = '';
     }
 }
 
@@ -185,6 +323,8 @@ function confirmFirstPreInterval(inputId, buttonId) {
     if (newIntervalTime.length !== 0) {
         preIntervalTime = 60 - parseInt(newIntervalTime);
         document.getElementById(buttonId).innerText = newIntervalTime;
+        saveIntervals();
+        document.getElementById(inputId).value = '';
     }
 }
 
@@ -193,31 +333,57 @@ function confirmSecondPreInterval(inputId, buttonId) {
     if (newIntervalTime.length !== 0) {
         preIntervalTime = 60 - parseInt(newIntervalTime);
         document.getElementById(buttonId).innerText = newIntervalTime;
+        saveIntervals();
+        document.getElementById(inputId).value = '';
     }
 }
 
 function confirmFirstIntervalAsStandard() {
+    firstIntervalStandard = true;
+    secondIntervalStandard = false;
+    thirdIntervalStandard = false;
     setGoFirst();
+    saveIntervalsStandard();
 }
 
 function confirmSecondIntervalAsStandard() {
+    firstIntervalStandard = false;
+    secondIntervalStandard = true;
+    thirdIntervalStandard = false;
     setGoSecond();
+    saveIntervalsStandard();
 }
 
 function confirmThirdIntervalAsStandard() {
+    firstIntervalStandard = false;
+    secondIntervalStandard = false;
+    thirdIntervalStandard = true;
     setGoThird();
+    saveIntervalsStandard();
 }
 
 function confirmOffPreIntervalAsStandard() {
+    firstPreIntervalStandard = true;
+    secondPreIntervalStandard = false;
+    thirdPreIntervalStandard = false;
     setPreIntervalOff();
+    savePreIntervalsStandard()
 }
 
 function confirmFirstPreIntervalAsStandard() {
+    firstPreIntervalStandard = false;
+    secondPreIntervalStandard = true;
+    thirdPreIntervalStandard = false;
     setPreIntervalFirst();
+    savePreIntervalsStandard()
 }
 
 function confirmSecondPreIntervalAsStandard() {
+    firstPreIntervalStandard = false;
+    secondPreIntervalStandard = false;
+    thirdPreIntervalStandard = true;
     setPreIntervalSecond();
+    savePreIntervalsStandard()
 }
 
 

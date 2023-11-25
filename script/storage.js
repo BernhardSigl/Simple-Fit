@@ -24,6 +24,33 @@ async function loadUsersArray() {
     }
 }
 
+async function loadIndividuallyIntervals() {
+    try {
+        intervalsArray = JSON.parse(await getItem(`individuallyIntervals_${id}`));
+        console.log(id);
+    } catch {
+        console.warn('Token invalid becauce no intervals has been created yet');
+    }
+}
+
+async function loadIndividuallyIntervalsStandard() {
+    try {
+        intervalsStandardArray = JSON.parse(await getItem(`individuallyIntervalsStandardArray_${id}`));
+        console.log(id);
+    } catch {
+        console.warn('Token invalid becauce no standards has been created yet');
+    }
+}
+
+async function loadIndividuallyPreIntervalsStandard() {
+    try {
+        preIntervalsStandardArray = JSON.parse(await getItem(`individuallyPreIntervalsStandardArray_${id}`));
+        console.log(id);
+    } catch {
+        console.warn('Token invalid becauce no pre standards has been created yet');
+    }
+}
+
 // save locally
 async function saveRememberMe() {
     let rememberMeAsText = JSON.stringify(rememberMe);
