@@ -3,7 +3,9 @@ body {
     width: 100vw;
     height: 100vh;
     background: #343541;
-    box-shadow: inset 0px 0px 6px 4px rgba(0, 0, 0, 0.2)
+    box-shadow: inset 0px 0px 6px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
 }
 
 .content {
@@ -15,6 +17,7 @@ body {
     height: 100%;
     padding: 60px 30px 20px;
     box-sizing: border-box;
+    max-width: 786px;
 }
 
 h1,
@@ -48,9 +51,19 @@ h5 {
     justify-content: center;
 }
 
+.horicontalAndVertical {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .spaceBetween {
     display: flex;
     justify-content: space-between;
+}
+
+.spaceEvenly {
+    justify-content: space-evenly;
 }
 
 .w100 {
@@ -61,11 +74,15 @@ h5 {
     gap: 15px;
 }
 
+.gap8 {
+    gap: 6px;
+}
+
 .whiteFont {
     color: white;
 }
 
-#dumbellId {
+.dumbell {
     width: 100px;
     height: auto;
 }
@@ -75,10 +92,17 @@ h5 {
     height: 32px;
 }
 
-#settingsImgId {
+.btnTopRight {
     position: absolute;
     top: 60px;
     right: 30px;
+    cursor: pointer;
+}
+
+.btnTopRightSecond {
+    position: absolute;
+    top: 60px;
+    right: 80px;
     cursor: pointer;
 }
 
@@ -103,6 +127,9 @@ button {
     background-color: #202124;
     color: white;
     cursor: pointer;
+    border-radius: 3px !important;
+    border: none;
+    box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.2) !important;
 }
 
 button:hover {
@@ -132,4 +159,89 @@ button:hover {
     background-color: #202124;
     color: white;
     border-radius: 5px;
+}
+
+.customBtn {
+    background-color: white;
+    color: black;
+    width: 75px;
+    height: 40px;
+}
+
+input {
+    width: 260px;
+    height: 30px;
+    padding: 0 12px;
+    box-sizing: border-box;
+}
+
+.relative {
+    position: relative;
+}
+
+.imgBoxInInput {
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    top: 0;
+    right: 6px;
+    cursor: pointer;
+}
+
+.inputWithImg {
+    width: 260px;
+    height: 30px;
+}
+
+.symbolInput {
+    width: auto;
+    height: 16px;
+    top: 0;
+    right: 0;
+}
+
+.checkbox {
+    width: 20px;
+    height: 20px;
+}
+
+.rememberMeArea {
+    color: white;
+    gap: 8px;
+}
+
+#wrongCredentialId {
+    color: red;
+    text-align: center;
+}
+
+#userCreatedTextId {
+    color: green;
+    text-align: center;
+}
+
+.changeIntervalArea {
+    width: 100px;
+    height: 45px;
+}
+
+.inputInterval {
+    width: 75%;
+    height: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.standardConfirmBtnArea {
+    width: 25%;
+    height: 100%;
+    align-items: flex-end;
+}
+
+.standardConfirmBtn {
+    width: 19px;
+    height: 20px;
+    padding: 0;
+    cursor: pointer;
 }

@@ -3,3 +3,10 @@ function toggleVisibilityById(id, show) {
     showHide.classList.toggle('dNone', !show);
 }
 
+function logOut() {
+    rememberMe = [];
+    loggedInUser = [];
+    saveRememberMe();
+    saveLoggedInUser();
+    window.location.href = 'authentication.html';
+}

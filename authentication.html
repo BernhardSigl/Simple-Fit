@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script/templates.js"></script>
+    <script src="script/authentication.js"></script>
+    <script src="script/storage.js"></script>
+    <title>Simple Fit</title>
+    <link rel="icon" href="img/dumbell.png">
+</head>
+
+<body onload="initAuthentication()">
+    <div class="content column gap15 dNone" id="logInContentId">
+        <img src="img/dumbell.png" class="dumbell" id="dumbellId">
+        <h1 class="whiteFont">SIMPLE FIT</h1>
+        <h2 class="whiteFont">Log in</h2>
+        <div class="justifyCenter inputWithImg relative">
+            <input type="text" placeholder="Username" id="usernameId">
+            <div class="imgBoxInInput horicontalAndVertical">
+                <img src="img/user.png" class="symbolInput">
+            </div>
+        </div>
+        <div class="justifyCenter inputWithImg relative">
+            <input type="password" placeholder="Password" id="passwordId">
+            <div class="imgBoxInInput horicontalAndVertical" onclick="showPassword()">
+                <img src="img/eyeClosed.png" class="symbolInput" id="showPasswordId">
+            </div>
+        </div>
+        <div class="alignCenter rememberMeArea dFlex">
+            <input class="checkbox" type="checkbox" id="checkboxId">
+            Auto log in
+        </div>
+        <div>
+            <button class="customBtn" onclick="logIn()" id="logInBtnId">Log in</button>
+            <button class="customBtn" onclick="register()" id="regBtnId">Register</button>
+        </div>
+        <div id="wrongCredentialId" class="dNone">Wrong username/password or user already exists</div>
+        <div id="userCreatedTextId" class="dNone">User account successfully created</div>
+    </div>
+</body>
+
+</html>

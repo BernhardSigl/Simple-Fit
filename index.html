@@ -8,17 +8,18 @@
     <script src="script/clock.js"></script>
     <script src="script/settings.js"></script>
     <script src="script/templates.js"></script>
+    <script src="script/storage.js"></script>
     <title>Simple Fit</title>
     <link rel="icon" href="img/dumbell.png">
 </head>
 
 <body onload="init()">
-    <div class="content column gap15">
-        <img src="img/settings.png" class="symbol32" id="settingsImgId" onclick="showSettings()">
-        <img src="img/dumbell.png" id="dumbellId">
+    <div class="content column gap15 dNone" id="contentStartPageId">
+        <img src="img/logOut.png" class="symbol32 btnTopRightSecond" id="logOutBtnId" onclick="logOut()">
+        <img src="img/settings.png" class="symbol32 btnTopRight" id="settingsImgId" onclick="showSettings()">
+        <img src="img/dumbell.png" class="dumbell" id="dumbellId">
         <h2 class="dNone alignCenter whiteFont" id="settingstitleId">Settings</h2>
         <div class="dNone" id="settingsDescriptionId">
-
             <ul>
                 <li>
                     set standard buttons
@@ -34,11 +35,12 @@
                 </li>
             </ul>
         </div>
+        <span id="welcomeMessageId" class="whiteFont"></span>
         <div id="timeId">
             00:00:00
         </div>
         <section class="column gap15 w100" id="btnAreaId">
-            <div class="spaceBetween" id="SPRBtnAreaId">
+            <div class="spaceEvenly alignCenter" id="SPRBtnAreaId">
                 <button onclick="start()" id="startBtnId">
                     Start
                 </button>
@@ -49,38 +51,103 @@
                     Reset
                 </button>
             </div>
-            <div class="column alignCenter spaceBetween">
-                <h3 class="whiteFont">Alert every</h3>
-                <div>
-                    <button onclick="setGoFirst()" id="firstIntervalBtnId">
-                        3min
-                    </button>
-                    <button onclick="setGoSecond()" id="secondIntervalBtnId">
-                        4min
-                    </button>
-                    <button onclick="setGoThird()" id="thirdIntervalBtnId">
-                        5min
-                    </button>
+
+            <section class="column alignCenter">
+                <h3 class="whiteFont">Alert every [min]</h3>
+                <div class="alignCenter spaceEvenly w100">
+                    <div class="column gap8">
+                        <button onclick="setGoFirst()" id="firstIntervalBtnId">
+                            3
+                        </button>
+                        <div class="dFlex changeIntervalArea spaceBetween">
+                            <input type="number" id="intervalFirstNumberFieldId" class="inputInterval">
+                            <div class="standardConfirmBtnArea column spaceBetween">
+                                <img src="img/exclamation.png" class="standardConfirmBtn"
+                                    onclick="confirmFirstIntervalAsStandard()">
+                                <img src="img/confirm.png" class="standardConfirmBtn"
+                                    onclick="confirmFirstInterval('intervalFirstNumberFieldId', 'firstIntervalBtnId')">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column gap8">
+                        <button onclick="setGoSecond()" id="secondIntervalBtnId">
+                            4
+                        </button>
+                        <div class="dFlex changeIntervalArea spaceBetween">
+                            <input type="number" id="intervalSecondNumberFieldId" class="inputInterval">
+                            <div class="standardConfirmBtnArea column spaceBetween">
+                                <img src="img/exclamation.png" class="standardConfirmBtn"
+                                    onclick="confirmSecondIntervalAsStandard()">
+                                <img src="img/confirm.png" class="standardConfirmBtn"
+                                    onclick="confirmSecondInterval('intervalSecondNumberFieldId', 'secondIntervalBtnId')">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column gap8">
+                        <button onclick="setGoThird()" id="thirdIntervalBtnId">
+                            5
+                        </button>
+                        <div class="dFlex changeIntervalArea spaceBetween">
+                            <input type="number" id="intervalThirdNumberFieldId" class="inputInterval">
+                            <div class="standardConfirmBtnArea column spaceBetween">
+                                <img src="img/exclamation.png" class="standardConfirmBtn"
+                                    onclick="confirmThirdIntervalAsStandard()">
+                                <img src="img/confirm.png" class="standardConfirmBtn"
+                                    onclick="confirmThirdInterval('intervalThirdNumberFieldId', 'thirdIntervalBtnId')">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="column alignCenter spaceBetween">
-                <h3 class="whiteFont">Pre alert</h3>
-                <div>
-                    <button onclick="setPreIntervalOff()" id="preOffIntervalBtnId">
-                        Off
-                    </button>
-                    <button onclick="setPreIntervalFirst()" id="preFirstPreIntervalBtnId">
-                        45sec
-                    </button>
-                    <button onclick="setPreIntervalSecond()" id="preSecondIntervalBtnId">
-                        50sec
-                    </button>
+            </section>
+
+            <section class="column alignCenter">
+                <h3 class="whiteFont">Pre alert [sec]</h3>
+                <div class="alignCenter spaceEvenly w100">
+                    <div class="column gap8">
+                        <button onclick="setPreIntervalOff()" id="preOffIntervalBtnId">
+                            Off
+                        </button>
+                        <div class="changeIntervalArea" style="display: flex;
+                        justify-content: flex-end;">
+                            <img src="img/exclamation.png" class="standardConfirmBtn"
+                                onclick="confirmOffPreIntervalAsStandard()">
+                        </div>
+                    </div>
+                    <div class="column gap8">
+                        <button onclick="setPreIntervalFirst()" id="preFirstPreIntervalBtnId">
+                            15
+                        </button>
+                        <div class="dFlex changeIntervalArea spaceBetween">
+                            <input type="number" id="preIntervalFirstNumberFieldId" class="inputInterval">
+                            <div class="standardConfirmBtnArea column spaceBetween">
+                                <img src="img/exclamation.png" class="standardConfirmBtn"
+                                    onclick="confirmFirstPreIntervalAsStandard()">
+                                <img src="img/confirm.png" class="standardConfirmBtn"
+                                    onclick="confirmFirstPreInterval('preIntervalFirstNumberFieldId', 'preFirstPreIntervalBtnId')">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column gap8">
+                        <button onclick="setPreIntervalSecond()" id="preSecondIntervalBtnId">
+                            10
+                        </button>
+                        <div class="dFlex changeIntervalArea spaceBetween">
+                            <input type="number" id="preIntervalSecondNumberFieldId" class="inputInterval">
+                            <div class="standardConfirmBtnArea column spaceBetween">
+                                <img src="img/exclamation.png" class="standardConfirmBtn"
+                                    onclick="confirmSecondPreIntervalAsStandard()">
+                                <img src="img/confirm.png" class="standardConfirmBtn"
+                                    onclick="confirmSecondPreInterval('preIntervalSecondNumberFieldId', 'preSecondIntervalBtnId')">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </section>
+
         </section>
-        <section class="alignCenter column">
+        <section class="column alignCenter w100">
             <h3 class="whiteFont">Gym diary</h3>
-            <div class="">
+            <div class="alignCenter spaceEvenly w100">
                 <button>
                     Chest
                 </button>

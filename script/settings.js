@@ -7,16 +7,22 @@ function showSettings() {
     toggleVisibilityById('timeId', false);
     toggleVisibilityById('SPRBtnAreaId', false);
     toggleVisibilityById('settingsDescriptionId', true);
+    toggleVisibilityById('logOutBtnId', false);
+    toggleVisibilityById('logOutBtnId', false);
+    toggleVisibilityById('welcomeMessageId', false);
 }
 
 function backToMenu() {
     originalShowSettingsFunction();
     document.getElementById('settingsImgId').src = 'img/settings.png';
     document.getElementById('btnAreaId').classList.remove('btnArea');
+    toggleVisibilityById('settingstitleId', false);
     toggleVisibilityById('dumbellId', true);
     toggleVisibilityById('timeId', true);
     toggleVisibilityById('SPRBtnAreaId', true);
     toggleVisibilityById('settingsDescriptionId', false);
+    toggleVisibilityById('logOutBtnId', true);
+    toggleVisibilityById('welcomeMessageId', true);
 }
 
 function changeShowSettingsFunction() {

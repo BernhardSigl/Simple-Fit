@@ -16,10 +16,21 @@ let activeSPRBtn = null;
 let activeIntervalBtn = null;
 let activePreIntervalBtn = null;
 
-function init() {
+let settings = false;
+
+async function init() {
+    await loadUsersArray();
+    await loadLoggedInUser();
+    await welcomeMessage();
     setActiveSPRBtn('pauseBtnId');
     setStandardIntervalTime();
     setStandardPreIntervalTime();
+    settings = false;
+    toggleVisibilityById('contentStartPageId', true);
+}
+
+async function welcomeMessage() {
+    document.getElementById('welcomeMessageId').innerHTML = `Welcome ${loggedInUser[0].name}`;
 }
 
 function setStandardIntervalTime() {
@@ -79,13 +90,13 @@ function setGoFirst() {
 }
 
 function setGoSecond() {
-    setActiveIntervalBtn('firstIntervalBtnId');
+    setActiveIntervalBtn('secondIntervalBtnId');
     intervalTime = 4;
 }
 
 function setGoThird() {
-    setActiveIntervalBtn('firstIntervalBtnId');
-    intervalTime = 6;
+    setActiveIntervalBtn('thirdIntervalBtnId');
+    intervalTime = 5;
 }
 
 function setPreIntervalOff() {
@@ -143,5 +154,71 @@ function setActivePreIntervalBtn(buttonId) {
     activePreIntervalBtn = buttonId;
     document.getElementById(buttonId).classList.add('activePreIntervalBtn');
 }
+
+// edit
+function confirmFirstInterval(inputId, buttonId) {
+    const newIntervalTime = document.getElementById(inputId).value;
+    if (newIntervalTime.length !== 0) {
+        intervalTime = parseInt(newIntervalTime);
+        document.getElementById(buttonId).innerText = newIntervalTime;
+    }
+}
+
+function confirmSecondInterval(inputId, buttonId) {
+    const newIntervalTime = document.getElementById(inputId).value;
+    if (newIntervalTime.length !== 0) {
+        intervalTime = parseInt(newIntervalTime);
+        document.getElementById(buttonId).innerText = newIntervalTime;
+    }
+}
+
+function confirmThirdInterval(inputId, buttonId) {
+    const newIntervalTime = document.getElementById(inputId).value;
+    if (newIntervalTime.length !== 0) {
+        intervalTime = parseInt(newIntervalTime);
+        document.getElementById(buttonId).innerText = newIntervalTime;
+    }
+}
+
+function confirmFirstPreInterval(inputId, buttonId) {
+    const newIntervalTime = document.getElementById(inputId).value;
+    if (newIntervalTime.length !== 0) {
+        preIntervalTime = 60 - parseInt(newIntervalTime);
+        document.getElementById(buttonId).innerText = newIntervalTime;
+    }
+}
+
+function confirmSecondPreInterval(inputId, buttonId) {
+    const newIntervalTime = document.getElementById(inputId).value;
+    if (newIntervalTime.length !== 0) {
+        preIntervalTime = 60 - parseInt(newIntervalTime);
+        document.getElementById(buttonId).innerText = newIntervalTime;
+    }
+}
+
+function confirmFirstIntervalAsStandard() {
+    setGoFirst();
+}
+
+function confirmSecondIntervalAsStandard() {
+    setGoSecond();
+}
+
+function confirmThirdIntervalAsStandard() {
+    setGoThird();
+}
+
+function confirmOffPreIntervalAsStandard() {
+    setPreIntervalOff();
+}
+
+function confirmFirstPreIntervalAsStandard() {
+    setPreIntervalFirst();
+}
+
+function confirmSecondPreIntervalAsStandard() {
+    setPreIntervalSecond();
+}
+
 
 updateTime();
