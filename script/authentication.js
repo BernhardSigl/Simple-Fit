@@ -1,4 +1,3 @@
-let usersArray = [];
 let loggedInUser = [];
 let rememberMe = [];
 let autoLogin = false;
@@ -6,6 +5,7 @@ let autoLogin = false;
 async function initAuthentication() {
     rememberMe = [];
     loggedInUser = [];
+    usersArray = [];
     await loadUsersArray();
     await loadRememberMe();
     await loadLoggedInUser();
@@ -29,21 +29,19 @@ async function register() {
 
 async function registerUser(usernameInput, passwordInput) {
     const userExists = usersArray.some(user => user.username === usernameInput.value);
-    if (userExists || usernameInput.value.length === 0 || passwordInput.value.length === 0) {
-        wrongCredential();
+    if (userExists) {
+        userAlreadyExists();
+    } else if (usernameInput.value.length === 0 || passwordInput.value.length === 0) {
+        emptyFields()
     } else {
         usersArray.push({
             username: usernameInput.value.toLowerCase(),
             password: passwordInput.value,
             id: new Date().getTime(),
         });
-        document.getElementById('regBtnId').disabled = true;
-        document.getElementById('logInBtnId').disabled = true;
         toggleVisibilityById('userCreatedTextId', true);
         await setItem('usersArray', JSON.stringify(usersArray));
         setTimeout(() => {
-            document.getElementById('regBtnId').disabled = false;
-            document.getElementById('logInBtnId').disabled = false;
             toggleVisibilityById('userCreatedTextId', false);
         }, 4000);
     }
@@ -54,8 +52,8 @@ function logIn() {
     document.getElementById('logInBtnId').disabled = true;
     let usernameInput = document.getElementById('usernameId');
     let passwordInput = document.getElementById('passwordId');
-    if (usersArray.length === 0) {
-        wrongCredential();
+    if (usernameInput.value.length === 0 || passwordInput.value.length === 0) {
+        emptyFields();
     } else {
         usersArray.forEach(user => {
             if (checkCredential(user, usernameInput, passwordInput)) {
@@ -68,8 +66,16 @@ function logIn() {
 }
 
 function checkCredential(user, usernameInput, passwordInput) {
-    console.log(user.username, usernameInput.value);
     return user.username === usernameInput.value.toLowerCase() && user.password === passwordInput.value;
+}
+
+function emptyFields() {
+    document.getElementById('regBtnId').disabled = false;
+    document.getElementById('logInBtnId').disabled = false;
+    toggleVisibilityById('emptyInputId', true);
+    setTimeout(() => {
+        toggleVisibilityById('emptyInputId', false);
+    }, 4000);
 }
 
 function wrongCredential() {
@@ -78,6 +84,15 @@ function wrongCredential() {
     toggleVisibilityById('wrongCredentialId', true);
     setTimeout(() => {
         toggleVisibilityById('wrongCredentialId', false);
+    }, 4000);
+}
+
+function userAlreadyExists() {
+    document.getElementById('regBtnId').disabled = false;
+    document.getElementById('logInBtnId').disabled = false;
+    toggleVisibilityById('userAlreadyExistsTextId', true);
+    setTimeout(() => {
+        toggleVisibilityById('userAlreadyExistsTextId', false);
     }, 4000);
 }
 

@@ -10,6 +10,7 @@ function showSettings() {
     toggleVisibilityById('logOutBtnId', false);
     toggleVisibilityById('logOutBtnId', false);
     toggleVisibilityById('welcomeMessageId', false);
+    toggleVisibilityByClass('changeIntervalArea', true);
 }
 
 function backToMenu() {
@@ -23,6 +24,7 @@ function backToMenu() {
     toggleVisibilityById('settingsDescriptionId', false);
     toggleVisibilityById('logOutBtnId', true);
     toggleVisibilityById('welcomeMessageId', true);
+    toggleVisibilityByClass('changeIntervalArea', false);
 }
 
 function changeShowSettingsFunction() {

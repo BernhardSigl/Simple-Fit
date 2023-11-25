@@ -142,11 +142,6 @@ button:hover {
     height: 36px;
 }
 
-.btnArea {
-    /* height dumbel img + gap + height timer + gap + height SPR Btns + gap*/
-    /* margin-top: calc(80px + 15px + 36px + 15px + 45px + 15px); */
-}
-
 #settingstitleId {
     height: 32px;
     width: 100%;
@@ -210,6 +205,8 @@ input {
     gap: 8px;
 }
 
+#emptyInputId,
+#userAlreadyExistsTextId,
 #wrongCredentialId {
     color: red;
     text-align: center;

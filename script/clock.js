@@ -59,6 +59,7 @@ async function init() {
     // setStandardPreIntervalTime();
 
     settings = false;
+    toggleVisibilityByClass('changeIntervalArea', false);
     toggleVisibilityById('contentStartPageId', true);
 }
 
@@ -96,16 +97,18 @@ async function createIndividuallyPreIntervalsStandardArray() {
 }
 
 async function loadIntervals() {
-    firstIntervalTime = intervalsArray[0].firstIntervalTime;
-    secondIntervalTime = intervalsArray[0].secondIntervalTime;
-    thirdIntervalTime = intervalsArray[0].thirdIntervalTime;
-    firstPreIntervalTime = intervalsArray[0].firstPreIntervalTime
-    secondPreIntervalTime = intervalsArray[0].secondPreIntervalTime
-    document.getElementById('firstIntervalBtnId').innerHTML = firstIntervalTime;
-    document.getElementById('secondIntervalBtnId').innerHTML = secondIntervalTime;
-    document.getElementById('thirdIntervalBtnId').innerHTML = thirdIntervalTime;
-    document.getElementById('preFirstPreIntervalBtnId').innerHTML = firstPreIntervalTime;
-    document.getElementById('preSecondIntervalBtnId').innerHTML = secondPreIntervalTime;
+    if (intervalsArray.length !== 0) {
+        firstIntervalTime = intervalsArray[0].firstIntervalTime;
+        secondIntervalTime = intervalsArray[0].secondIntervalTime;
+        thirdIntervalTime = intervalsArray[0].thirdIntervalTime;
+        firstPreIntervalTime = intervalsArray[0].firstPreIntervalTime
+        secondPreIntervalTime = intervalsArray[0].secondPreIntervalTime
+        document.getElementById('firstIntervalBtnId').innerHTML = firstIntervalTime;
+        document.getElementById('secondIntervalBtnId').innerHTML = secondIntervalTime;
+        document.getElementById('thirdIntervalBtnId').innerHTML = thirdIntervalTime;
+        document.getElementById('preFirstPreIntervalBtnId').innerHTML = firstPreIntervalTime;
+        document.getElementById('preSecondIntervalBtnId').innerHTML = secondPreIntervalTime;
+    }
 }
 
 // async function loadIntervalsStandard() {
@@ -152,7 +155,11 @@ async function savePreIntervalsStandard() {
 }
 
 function checkIntervalsStandard() {
-    if (intervalsStandardArray[0].firstIntervalStandard === true) {
+    if (intervalsStandardArray.length === 0) {
+        firstIntervalStandard = false;
+        secondIntervalStandard = false;
+        thirdIntervalStandard = false;
+    } else if (intervalsStandardArray[0].firstIntervalStandard === true) {
         setGoFirst();
     } else if (intervalsStandardArray[0].secondIntervalStandard === true) {
         setGoSecond();
@@ -162,7 +169,11 @@ function checkIntervalsStandard() {
 }
 
 function checkPreIntervalsStandard() {
-    if (preIntervalsStandardArray[0].firstPreIntervalStandard === true) {
+    if (preIntervalsStandardArray.length === 0) {
+        firstPreIntervalStandard = false;
+        secondPreIntervalStandard = false;
+        thirdPreIntervalStandard = false;
+    } else if (preIntervalsStandardArray[0].firstPreIntervalStandard === true) {
         setPreIntervalOff();
     } else if (preIntervalsStandardArray[0].secondPreIntervalStandard === true) {
         setPreIntervalFirst();
