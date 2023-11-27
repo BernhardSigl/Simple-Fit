@@ -14,33 +14,34 @@
 </head>
 
 <body onload="init()">
-    <div class="content column gap15 dNone" id="contentStartPageId">
+    <div class="content column gap10 dNone" id="contentStartPageId">
         <img src="img/logOut.png" class="symbol32 btnTopRightSecond" id="logOutBtnId" onclick="logOut()">
         <img src="img/settings.png" class="symbol32 btnTopRight" id="settingsImgId" onclick="showSettings()">
         <img src="img/dumbell.png" class="dumbell" id="dumbellId">
-        <h2 class="dNone alignCenter whiteFont" id="settingstitleId">Settings</h2>
-        <div class="dNone" id="settingsDescriptionId">
-            <ul>
-                <li>
-                    set standard buttons
-                </li>
-                <li>
-                    change time intervals
-                </li>
-                <li>
-                    change gym diary names
-                </li>
-                <li>
-                    add/delete gym diary
-                </li>
-            </ul>
-        </div>
         <span id="welcomeMessageId" class="whiteFont"></span>
         <div id="timeId">
             00:00:00
         </div>
-        <section class="column gap15 w100" id="btnAreaId">
-            <div class="spaceEvenly alignCenter" id="SPRBtnAreaId">
+        <h2 class="dNone alignCenter whiteFont" id="settingstitleId">Settings</h2>
+        <div class="dNone" id="settingsDescriptionId">
+            <span class="alignCenter settingsTitleMessage">
+                Set startup settings:
+            </span>
+            <div class="alignCenter">
+                <img src="img/exclamation.png" class="symbol15">
+                <span>
+                    Set standard buttons
+                </span>
+            </div>
+            <div class="alignCenter">
+                <img src="img/confirm.png" class="symbol15">
+                <span>
+                    Confirm input
+                </span>
+            </div>
+        </div>
+        <section class="column gap10 w100" id="btnAreaId">
+            <div class="justifyCenter gap10 alignCenter" id="SPRBtnAreaId">
                 <button onclick="start()" id="startBtnId">
                     Start
                 </button>
@@ -52,15 +53,16 @@
                 </button>
             </div>
 
-            <section class="column alignCenter">
+            <section class="column gap6 alignCenter">
                 <h3 class="whiteFont">Alert every [min]</h3>
-                <div class="alignCenter spaceEvenly w100">
-                    <div class="column gap8">
+                <div class="alignCenter justifyCenter gap10 w100">
+                    <div class="column gap6">
                         <button onclick="setGoFirst()" id="firstIntervalBtnId">
-                            ...
+                            3
                         </button>
                         <div class="dFlex changeIntervalArea spaceBetween">
-                            <input type="number" id="intervalFirstNumberFieldId" class="inputInterval">
+                            <input type="text" id="intervalFirstNumberFieldId" class="inputInterval"
+                                oninput="this.value = this.value.replace(/[^\d]/g, '');">
                             <div class="standardConfirmBtnArea column spaceBetween">
                                 <img src="img/exclamation.png" class="standardConfirmBtn"
                                     onclick="confirmFirstIntervalAsStandard()">
@@ -69,12 +71,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="column gap8">
+                    <div class="column gap6">
                         <button onclick="setGoSecond()" id="secondIntervalBtnId">
-                            ...
+                            4
                         </button>
                         <div class="dFlex changeIntervalArea spaceBetween">
-                            <input type="number" id="intervalSecondNumberFieldId" class="inputInterval">
+                            <input type="text" id="intervalSecondNumberFieldId" class="inputInterval"
+                                oninput="this.value = this.value.replace(/[^\d]/g, '');">
                             <div class="standardConfirmBtnArea column spaceBetween">
                                 <img src="img/exclamation.png" class="standardConfirmBtn"
                                     onclick="confirmSecondIntervalAsStandard()">
@@ -83,12 +86,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="column gap8">
+                    <div class="column gap6">
                         <button onclick="setGoThird()" id="thirdIntervalBtnId">
-                            ...
+                            5
                         </button>
                         <div class="dFlex changeIntervalArea spaceBetween">
-                            <input type="number" id="intervalThirdNumberFieldId" class="inputInterval">
+                            <input type="text" id="intervalThirdNumberFieldId" class="inputInterval"
+                                oninput="this.value = this.value.replace(/[^\d]/g, '');">
                             <div class="standardConfirmBtnArea column spaceBetween">
                                 <img src="img/exclamation.png" class="standardConfirmBtn"
                                     onclick="confirmThirdIntervalAsStandard()">
@@ -100,10 +104,10 @@
                 </div>
             </section>
 
-            <section class="column alignCenter">
+            <section class="column gap6 alignCenter">
                 <h3 class="whiteFont">Pre alert [sec]</h3>
-                <div class="alignCenter spaceEvenly w100">
-                    <div class="column gap8">
+                <div class="alignCenter justifyCenter gap10 w100">
+                    <div class="column gap6">
                         <button onclick="setPreIntervalOff()" id="preOffIntervalBtnId">
                             Off
                         </button>
@@ -113,12 +117,13 @@
                                 onclick="confirmOffPreIntervalAsStandard()">
                         </div>
                     </div>
-                    <div class="column gap8">
+                    <div class="column gap6">
                         <button onclick="setPreIntervalFirst()" id="preFirstPreIntervalBtnId">
-                            ...
+                            15
                         </button>
                         <div class="dFlex changeIntervalArea spaceBetween">
-                            <input type="number" id="preIntervalFirstNumberFieldId" class="inputInterval">
+                            <input type="text" id="preIntervalFirstNumberFieldId" class="inputInterval"
+                                oninput="this.value = this.value.replace(/[^\d]/g, '');">
                             <div class="standardConfirmBtnArea column spaceBetween">
                                 <img src="img/exclamation.png" class="standardConfirmBtn"
                                     onclick="confirmFirstPreIntervalAsStandard()">
@@ -127,12 +132,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="column gap8">
+                    <div class="column gap6">
                         <button onclick="setPreIntervalSecond()" id="preSecondIntervalBtnId">
-                            ...
+                            10
                         </button>
                         <div class="dFlex changeIntervalArea spaceBetween">
-                            <input type="number" id="preIntervalSecondNumberFieldId" class="inputInterval">
+                            <input type="text" id="preIntervalSecondNumberFieldId" class="inputInterval"
+                                oninput="this.value = this.value.replace(/[^\d]/g, '');">
                             <div class="standardConfirmBtnArea column spaceBetween">
                                 <img src="img/exclamation.png" class="standardConfirmBtn"
                                     onclick="confirmSecondPreIntervalAsStandard()">
@@ -145,18 +151,14 @@
             </section>
 
         </section>
-        <section class="column alignCenter w100">
+        <section class="column gap6 alignCenter w100" id="gymDiaryAreaId">
             <h3 class="whiteFont">Gym diary</h3>
-            <div class="alignCenter spaceEvenly w100">
-                <button>
-                    Chest
-                </button>
-                <button>
-                    Back
-                </button>
-                <button>
-                    Calves
-                </button>
+            <div class="scrollbox scrollboxStartPage" id="scrollboxId">
+                <div class="alignCenter gap10 w100 gymDiaryArea" id="gymDiaryBtns">
+                </div>
+            </div>
+            <div class="w100">
+                <img src="img/plus.png" class="dNone" id="addDiaryBtnImgId" onclick="addNewBodypart()">
             </div>
         </section>
     </div>

@@ -75,3 +75,15 @@ async function loadLoggedInUser() {
         loggedInUser = JSON.parse(loggedInUserAsText);
     }
 }
+
+async function savegGymDiaryArray() {
+    let gymDiaryArrayAsText = JSON.stringify(gymDiaryArray);
+    localStorage.setItem('gymDiaryArray', gymDiaryArrayAsText);
+}
+
+async function loadGymDiaryArray() {
+    let gymDiaryArrayAsText = localStorage.getItem('gymDiaryArray');
+    if (gymDiaryArrayAsText) {
+        gymDiaryArray = JSON.parse(gymDiaryArrayAsText);
+    }
+}

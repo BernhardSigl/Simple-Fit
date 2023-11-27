@@ -1,6 +1,7 @@
 let intervalsArray = [];
 let intervalsStandardArray = [];
 let preIntervalsStandardArray = [];
+let gymDiaryArray = [];
 
 var resetTime = 0;
 var pauseRun = true;
@@ -12,11 +13,11 @@ let audioReadyPlayed = false;
 let audioGoPlayed = false;
 
 let intervalTime = 0;
-let firstIntervalTime = 0;
-let secondIntervalTime = 0;
-let thirdIntervalTime = 0;
-let firstPreIntervalTime = 0;
-let secondPreIntervalTime = 0;
+let firstIntervalTime = null;
+let secondIntervalTime = null;
+let thirdIntervalTime = null;
+let firstPreIntervalTime = null;
+let secondPreIntervalTime = null;
 
 let preIntervalTime = 0;
 let preIntervall = false;
@@ -38,7 +39,6 @@ let settings = false;
 async function init() {
     await loadUsersArray();
     await loadLoggedInUser();
-    await welcomeMessage();
     await createIndividuallyIntervalsArray();
     await loadIndividuallyIntervals();
 
@@ -48,19 +48,33 @@ async function init() {
 
     await createIndividuallyPreIntervalsStandardArray();
     await loadIndividuallyPreIntervalsStandard();
-    // await loadPreIntervals();
 
     checkIntervalsStandard();
     checkPreIntervalsStandard();
 
     setActiveSPRBtn('pauseBtnId');
-
-    // setStandardIntervalTime();
-    // setStandardPreIntervalTime();
-
     settings = false;
+    await loadGymDiaryArray();
+    renderDiaries();
+    let diaryRightBtnArea = document.getElementsByClassName('diaryRightBtnArea');
+    for (let i = 0; i < diaryRightBtnArea.length; i++) {
+        diaryRightBtnArea[i].style.display = 'none';
+    }
+    let inputDiaryBtns = document.getElementsByClassName('inputDiaryBtn');
+    for (let i = 0; i < inputDiaryBtns.length; i++) {
+        inputDiaryBtns[i].classList.add('inputDiaryBtnEdit');
+        inputDiaryBtns[i].setAttribute('disabled', '');
+    }
+    let clickOnDiaryBtn = document.getElementsByClassName('clickOnDiaryBtn');
+    for (let i = 0; i < clickOnDiaryBtn.length; i++) {
+        clickOnDiaryBtn[i].classList.remove('dNone');
+    }
+    document.getElementById('scrollboxId').classList.add('scrollboxStartPage');
+
+    await welcomeMessage();
     toggleVisibilityByClass('changeIntervalArea', false);
     toggleVisibilityById('contentStartPageId', true);
+    // addDiary();
 }
 
 async function createIndividuallyIntervalsArray() {
@@ -183,7 +197,11 @@ function checkPreIntervalsStandard() {
 }
 
 async function welcomeMessage() {
-    document.getElementById('welcomeMessageId').innerHTML = `Welcome ${loggedInUser[0].name}`;
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+    const capitalizedUserName = capitalizeFirstLetter(loggedInUser[0].name);
+    document.getElementById('welcomeMessageId').innerHTML = `Welcome ${capitalizedUserName}`;
 }
 
 function start() {
@@ -229,17 +247,17 @@ function updateDisplay() {
 
 function setGoFirst() {
     setActiveIntervalBtn('firstIntervalBtnId');
-    intervalTime = 3;
+    intervalTime = intervalsArray[0].firstIntervalTime;
 }
 
 function setGoSecond() {
     setActiveIntervalBtn('secondIntervalBtnId');
-    intervalTime = 4;
+    intervalTime = intervalsArray[0].secondIntervalTime;
 }
 
 function setGoThird() {
     setActiveIntervalBtn('thirdIntervalBtnId');
-    intervalTime = 5;
+    intervalTime = intervalsArray[0].thirdIntervalTime;
 }
 
 function setPreIntervalOff() {
@@ -397,5 +415,87 @@ function confirmSecondPreIntervalAsStandard() {
     savePreIntervalsStandard()
 }
 
+function addDiary(bodypartIndex) {
+    document.getElementById('gymDiaryBtns').innerHTML += /*html*/ `
+    <div class="inputDiaryBtnArea dFlex" id="bodypartField_${bodypartIndex}" onclick="saveAfterInput()">
+        <input type="text" class="inputDiaryBtn inputDiaryBtnEdit" id="bodypartTextId_${bodypartIndex}" disabled>
+        <div class="column spaceBetween diaryRightBtnArea">
+            <img src="img/cross.png" class="standardConfirmBtn" id="diaryDeleteId_${bodypartIndex}" onclick="saveAfterInput(), deleteDiaryElement(${bodypartIndex})">
+            <img src="img/confirm.png" class="standardConfirmBtn" id="addDiaryElementId_${bodypartIndex}" onclick="addDiaryElement(${bodypartIndex})">
+        </div>
+    <div>
+    `;
+}
+
+function renderDiaries() {
+    let gymDiaryElement = document.getElementById('gymDiaryBtns');
+    gymDiaryElement.innerHTML = "";
+    for (let bodypartIndex = 0; bodypartIndex < gymDiaryArray.length; bodypartIndex++) {
+        const bodypart = gymDiaryArray[bodypartIndex];
+        const newBodypartElement = document.createElement('div');
+        newBodypartElement.className = 'inputDiaryBtnArea dFlex';
+        newBodypartElement.id = `bodypartField_${bodypartIndex}`;
+        newBodypartElement.innerHTML = /*html*/ `
+        <div class="relative">
+            <div class="clickOnDiaryBtn" onclick="openDiary(${bodypartIndex})">
+            </div>
+              <input type="text" class="inputDiaryBtn inputDiaryBtnEdit" id="bodypartTextId_${bodypartIndex}" onclick="saveAfterInput()">
+        </div>
+            <div class="column spaceBetween diaryRightBtnArea">
+                <img src="img/cross.png" class="standardConfirmBtn" onclick="saveAfterInput(), deleteDiaryElement(${bodypartIndex})">
+            </div>
+        `;
+        gymDiaryElement.appendChild(newBodypartElement);
+        document.getElementById(`bodypartTextId_${bodypartIndex}`).value = bodypart;
+    }
+}
+
+function addNewBodypart() {
+    saveDiaryInputs();
+    const gymDiaryElement = document.getElementById('gymDiaryBtns');
+    const newBodypartIndex = gymDiaryArray.length;
+    const newBodypartElement = document.createElement('div');
+    newBodypartElement.className = 'inputDiaryBtnArea dFlex';
+    newBodypartElement.id = `bodypartField_${newBodypartIndex}`;
+    newBodypartElement.innerHTML = /*html*/ `
+    <div class="relative">
+        <div class="clickOnDiaryBtn" onclick="openDiary(${newBodypartIndex})">
+        </div>
+        <input type="text" class="inputDiaryBtn" id="bodypartTextId_${newBodypartIndex}" onclick="saveAfterInput()">
+    </div>
+        <div class="column spaceBetween diaryRightBtnArea">
+            <img src="img/cross.png" class="standardConfirmBtn" onclick="deleteDiaryElement(${newBodypartIndex})">
+        </div>
+    `;
+    gymDiaryElement.appendChild(newBodypartElement);
+    gymDiaryArray.push('');
+}
+
+function saveDiaryInputs() {
+    for (let bodypartIndex = 0; bodypartIndex < gymDiaryArray.length; bodypartIndex++) {
+        const bodypartValue = document.getElementById(`bodypartTextId_${bodypartIndex}`).value;
+        gymDiaryArray[bodypartIndex] = bodypartValue;
+    }
+    savegGymDiaryArray();
+}
+
+function deleteDiaryElement(bodypartIndex) {
+    gymDiaryArray.splice(bodypartIndex, 1);
+    renderDiaries();
+    savegGymDiaryArray();
+}
+
+function saveAfterInput() {
+    saveDiaryInputs();
+}
+
+function deleteGymDiaryArray() {
+    gymDiaryArray = [];
+    savegGymDiaryArray();
+}
+
+function openDiary(bodypartIndex) {
+    // console.log(bodypartIndex);
+}
 
 updateTime();

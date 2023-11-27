@@ -3,21 +3,17 @@ body {
     width: 100vw;
     height: 100vh;
     background: #343541;
-    box-shadow: inset 0px 0px 6px 4px rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: center;
 }
 
 .content {
-    display: flex;
     align-items: center;
-    flex-direction: column;
     font-family: monospace;
-    width: 100%;
+    width: 380px;
     height: 100%;
     padding: 60px 30px 20px;
     box-sizing: border-box;
-    max-width: 786px;
 }
 
 h1,
@@ -74,7 +70,11 @@ h5 {
     gap: 15px;
 }
 
-.gap8 {
+.gap10 {
+    gap: 10px;
+}
+
+.gap6 {
     gap: 6px;
 }
 
@@ -83,7 +83,7 @@ h5 {
 }
 
 .dumbell {
-    width: 100px;
+    width: 60px;
     height: auto;
 }
 
@@ -122,8 +122,8 @@ button.activeSPRBtn:hover,
 button {
     padding: 12px;
     margin: 0;
-    width: 100px;
-    height: 45px;
+    width: 93px;
+    height: 34px;
     background-color: #202124;
     color: white;
     cursor: pointer;
@@ -133,7 +133,11 @@ button {
 }
 
 button:hover {
-    background-color: #3b3d42;
+    border: solid 1px green;
+}
+
+button:focus {
+    border: none !important;
 }
 
 #timeId {
@@ -145,7 +149,6 @@ button:hover {
 #settingstitleId {
     height: 32px;
     width: 100%;
-    margin-bottom: 16px;
 }
 
 #settingsDescriptionId {
@@ -154,6 +157,8 @@ button:hover {
     background-color: #202124;
     color: white;
     border-radius: 5px;
+    padding: 8px;
+    box-sizing: border-box;
 }
 
 .customBtn {
@@ -218,12 +223,12 @@ input {
 }
 
 .changeIntervalArea {
-    width: 100px;
-    height: 45px;
+    width: 93px;
+    height: 34px;
 }
 
 .inputInterval {
-    width: 75%;
+    width: 100%;
     height: 100%;
     padding: 12px;
     box-sizing: border-box;
@@ -237,8 +242,118 @@ input {
 }
 
 .standardConfirmBtn {
+    width: 14px;
+    height: 15px;
+    padding: 0;
+    margin-left: 6px;
+    cursor: pointer;
+}
+
+.symbol15 {
+    width: 13px;
+    height: 15px;
+    margin-right: 8px;
+}
+
+.settingsTitleMessage {
+    margin-bottom: 6px;
+}
+
+.gymDiaryArea {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    padding-bottom: 6px;
+}
+
+.inputDiaryBtnArea {
+    width: 93px;
+}
+
+.inputDiaryBtn {
+    padding: 12px;
+    margin: 0;
+    width: 100%;
+    height: 35px;
+    background-color: #202124;
+    color: white;
+    cursor: pointer;
+    border-radius: 3px !important;
+    border: none;
+    box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.2) !important;
+    cursor: pointer;
+    text-align: center;
+}
+
+.inputDiaryBtnEdit {
+    caret-color: transparent;
+}
+
+.inputDiaryBtn:hover {
+    border: solid 1px green;
+}
+
+.inputDiaryBtn:focus {
+    border: none;
+}
+
+.inputDiaryBtn:focus {
+    outline: none;
+}
+
+.diaryRightBtnArea {
+    display: flex;
+    align-items: flex-end;
+}
+
+#addDiaryBtnImgId {
+    display: flex;
     width: 19px;
     height: 20px;
-    padding: 0;
     cursor: pointer;
+    margin-left: 8px;
+}
+
+.clickOnDiaryBtn {
+    width: 93px;
+    height: 35px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.clickOnDiaryBtn:hover {
+    border: solid 1px green;
+}
+
+.clickOnDiaryBtn:focus {
+    border: none;
+}
+
+/* scroll */
+.scrollbox {
+    height: auto;
+    max-height: 86px;
+    overflow-y: scroll;
+    padding-left: 8px;
+}
+
+.scrollboxStartPage {
+    max-height: 218px !important;
+}
+
+.scrollbox::-webkit-scrollbar {
+    display: block;
+    width: 8px;
+}
+
+.scrollbox::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.scrollbox::-webkit-scrollbar-thumb {
+    background-color: grey;
+    border-radius: 10px;
 }
