@@ -72,6 +72,13 @@ async function init() {
     document.getElementById('scrollboxId').classList.add('scrollboxStartPage');
 
     await welcomeMessage();
+
+    if (intervalsStandardArray.length === 0) {
+        setGoFirst();
+    }
+    if (preIntervalsStandardArray.length === 0) {
+        setPreIntervalOff();
+    }
     toggleVisibilityByClass('changeIntervalArea', false);
     toggleVisibilityById('contentStartPageId', true);
     // addDiary();
@@ -207,6 +214,7 @@ async function welcomeMessage() {
 function start() {
     setActiveSPRBtn('startBtnId');
     pauseRun = false;
+
 }
 
 function pause() {
@@ -242,22 +250,29 @@ function updateDisplay() {
     s = s < 10 ? "0" + s : s;
     document.getElementById('timeId').innerHTML = h + ":" + m + ":" + s;
     playSounds(m, s);
-    console.log((((m % intervalTime === 0) && (m / intervalTime) % 2 === 0)));
 }
 
 function setGoFirst() {
     setActiveIntervalBtn('firstIntervalBtnId');
-    intervalTime = intervalsArray[0].firstIntervalTime;
+    intervalTime = false;
 }
 
 function setGoSecond() {
     setActiveIntervalBtn('secondIntervalBtnId');
-    intervalTime = intervalsArray[0].secondIntervalTime;
+    if (intervalsArray.length === 0) {
+        intervalTime = 4;
+    } else {
+        intervalTime = intervalsArray[0].secondIntervalTime;
+    }
 }
 
 function setGoThird() {
     setActiveIntervalBtn('thirdIntervalBtnId');
-    intervalTime = intervalsArray[0].thirdIntervalTime;
+    if (intervalsArray.length === 0) {
+        intervalTime = 5;
+    } else {
+        intervalTime = intervalsArray[0].thirdIntervalTime;
+    }
 }
 
 function setPreIntervalOff() {

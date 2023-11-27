@@ -24,6 +24,11 @@ h5 {
     margin: 0;
 }
 
+h5 {
+    font-weight: lighter;
+    padding-top: 1px;
+}
+
 .dFlex {
     display: flex;
 }

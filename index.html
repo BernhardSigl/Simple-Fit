@@ -42,14 +42,14 @@
         </div>
         <section class="column gap10 w100" id="btnAreaId">
             <div class="justifyCenter gap10 alignCenter" id="SPRBtnAreaId">
-                <button onclick="start()" id="startBtnId">
-                    Start
+                <button onclick="start()" id="startBtnId" class="horicontalAndVertical">
+                    <h5>Start</h5>
                 </button>
-                <button onclick="pause()" id="pauseBtnId">
-                    Pause
+                <button onclick="pause()" id="pauseBtnId" class="horicontalAndVertical">
+                    <h5>Pause</h5>
                 </button>
-                <button onclick="reset()" id="resetBtnId">
-                    Reset
+                <button onclick="reset()" id="resetBtnId" class="horicontalAndVertical">
+                    <h5>Reset</h5>
                 </button>
             </div>
 
@@ -57,23 +57,20 @@
                 <h3 class="whiteFont">Alert every [min]</h3>
                 <div class="alignCenter justifyCenter gap10 w100">
                     <div class="column gap6">
-                        <button onclick="setGoFirst()" id="firstIntervalBtnId">
-                            3
+                        <button onclick="setGoFirst()" id="firstIntervalBtnId" class="horicontalAndVertical">
+                            <h5>Off</h5>
                         </button>
-                        <div class="dFlex changeIntervalArea spaceBetween">
-                            <input type="text" id="intervalFirstNumberFieldId" class="inputInterval"
-                                oninput="this.value = this.value.replace(/[^\d]/g, '');">
+                        <div class="dFlex changeIntervalArea spaceBetween"
+                            style="display: flex; justify-content: flex-end;">
                             <div class="standardConfirmBtnArea column spaceBetween">
                                 <img src="img/exclamation.png" class="standardConfirmBtn"
                                     onclick="confirmFirstIntervalAsStandard()">
-                                <img src="img/confirm.png" class="standardConfirmBtn"
-                                    onclick="confirmFirstInterval('intervalFirstNumberFieldId', 'firstIntervalBtnId')">
                             </div>
                         </div>
                     </div>
                     <div class="column gap6">
-                        <button onclick="setGoSecond()" id="secondIntervalBtnId">
-                            4
+                        <button onclick="setGoSecond()" id="secondIntervalBtnId" class="horicontalAndVertical">
+                            <h5>4</h5>
                         </button>
                         <div class="dFlex changeIntervalArea spaceBetween">
                             <input type="text" id="intervalSecondNumberFieldId" class="inputInterval"
@@ -87,8 +84,8 @@
                         </div>
                     </div>
                     <div class="column gap6">
-                        <button onclick="setGoThird()" id="thirdIntervalBtnId">
-                            5
+                        <button onclick="setGoThird()" id="thirdIntervalBtnId" class="horicontalAndVertical">
+                            <h5>5</h5>
                         </button>
                         <div class="dFlex changeIntervalArea spaceBetween">
                             <input type="text" id="intervalThirdNumberFieldId" class="inputInterval"
@@ -108,8 +105,8 @@
                 <h3 class="whiteFont">Pre alert [sec]</h3>
                 <div class="alignCenter justifyCenter gap10 w100">
                     <div class="column gap6">
-                        <button onclick="setPreIntervalOff()" id="preOffIntervalBtnId">
-                            Off
+                        <button onclick="setPreIntervalOff()" id="preOffIntervalBtnId" class="horicontalAndVertical">
+                            <h5>Off</h5>
                         </button>
                         <div class="changeIntervalArea" style="display: flex;
                         justify-content: flex-end;">
@@ -118,8 +115,9 @@
                         </div>
                     </div>
                     <div class="column gap6">
-                        <button onclick="setPreIntervalFirst()" id="preFirstPreIntervalBtnId">
-                            15
+                        <button onclick="setPreIntervalFirst()" id="preFirstPreIntervalBtnId"
+                            class="horicontalAndVertical">
+                            <h5>15</h5>
                         </button>
                         <div class="dFlex changeIntervalArea spaceBetween">
                             <input type="text" id="preIntervalFirstNumberFieldId" class="inputInterval"
@@ -133,8 +131,9 @@
                         </div>
                     </div>
                     <div class="column gap6">
-                        <button onclick="setPreIntervalSecond()" id="preSecondIntervalBtnId">
-                            10
+                        <button onclick="setPreIntervalSecond()" id="preSecondIntervalBtnId"
+                            class="horicontalAndVertical">
+                            <h5>10</h5>
                         </button>
                         <div class="dFlex changeIntervalArea spaceBetween">
                             <input type="text" id="preIntervalSecondNumberFieldId" class="inputInterval"
