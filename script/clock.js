@@ -35,6 +35,7 @@ let secondPreIntervalStandard = false;
 let thirdPreIntervalStandard = false;
 
 let settings = false;
+let preCounterId;
 
 async function init() {
     await loadUsersArray();
@@ -73,12 +74,28 @@ async function init() {
 
     await welcomeMessage();
 
-    if (intervalsStandardArray.length === 0) {
+    if (intervalsArray.length > 0 && intervalsArray[0].secondIntervalTime === null) {
+        document.getElementById('secondIntervalBtnId').innerHTML = intervalsArray[0].secondIntervalTime = 3;
+    }
+    if (intervalsArray.length > 0 && intervalsArray[0].thirdIntervalTime === null) {
+        document.getElementById('thirdIntervalBtnId').innerHTML = intervalsArray[0].thirdIntervalTime = 4;
+    }
+    if (intervalsArray.length > 0 && intervalsArray[0].firstPreIntervalTime === null) {
+        document.getElementById('preFirstPreIntervalBtnId').innerHTML = intervalsArray[0].firstPreIntervalTime = 50;
+    }
+    if (intervalsArray.length > 0 && intervalsArray[0].secondPreIntervalTime === null) {
+        document.getElementById('preSecondIntervalBtnId').innerHTML = intervalsArray[0].secondPreIntervalTime = 45;
+    }
+    if (intervalTime === 0) {
         setGoFirst();
     }
-    if (preIntervalsStandardArray.length === 0) {
+    if (preIntervalTime === 0) {
         setPreIntervalOff();
     }
+    // if (preIntervalsStandardArray.length === 0) {
+    //     setPreIntervalOff();
+    // }
+    document.getElementById('firstIntervalBtnId').innerHTML = '<h5>Off</h5>';
     toggleVisibilityByClass('changeIntervalArea', false);
     toggleVisibilityById('contentStartPageId', true);
     // addDiary();
@@ -131,12 +148,6 @@ async function loadIntervals() {
         document.getElementById('preSecondIntervalBtnId').innerHTML = secondPreIntervalTime;
     }
 }
-
-// async function loadIntervalsStandard() {
-//     firstIntervalStandard = intervalsStandardArray[0].firstIntervalStandard;
-//     secondIntervalStandard = intervalsStandardArray[0].secondIntervalStandard;
-//     thirdIntervalStandard = intervalsStandardArray[0].thirdIntervalStandard;
-// }
 
 async function saveIntervals() {
     intervalsArray = [];
@@ -210,16 +221,43 @@ async function welcomeMessage() {
     const capitalizedUserName = capitalizeFirstLetter(loggedInUser[0].name);
     document.getElementById('welcomeMessageId').innerHTML = `Welcome ${capitalizedUserName}`;
 }
+let counterActive = false;
+let preCounterActive = false;
+function startTimer(duration, displayElementId) {
+    let preTimer = duration, seconds;
+    const display = document.getElementById(displayElementId);
+    preCounterId = setInterval(function () {
+        seconds = parseInt(preTimer % 60, 10);
+        preCounterActive = true;
+        let secondsString = seconds < 10 ? "0" + seconds : "" + seconds;
+        display.textContent = secondsString;
+        if (--preTimer < 0) {
+            clearInterval(preCounterId);
+            preTimer = 0;
+            AUDIO_GO.play();
+            pauseRun = false;
+            preCounterActive = false;
+            counterActive = true;
+        }
+    }, 1000);
+}
 
 function start() {
     setActiveSPRBtn('startBtnId');
-    pauseRun = false;
-
+    if (preIntervalTime !== false && counterActive === false) {
+        startTimer(15, 'timeId');
+    } else {
+        pauseRun = false;
+    }
 }
 
 function pause() {
     setActiveSPRBtn('pauseBtnId');
     pauseRun = true;
+    clearInterval(preCounterId);
+    if (preCounterActive === true) {
+        updateDisplay();
+    }
 }
 
 function reset() {
@@ -229,6 +267,9 @@ function reset() {
     audioReadyPlayed = false;
     audioGoPlayed = false;
     updateDisplay();
+    AUDIO_GO.pause();
+    clearInterval(preCounterId);
+    counterActive = false;
 }
 
 function updateTime() {
@@ -278,18 +319,30 @@ function setGoThird() {
 function setPreIntervalOff() {
     setActivePreIntervalBtn('preOffIntervalBtnId');
     preIntervall = false;
+    preIntervalTime = false;
+    clearInterval(preCounterId);
 }
 
 function setPreIntervalFirst() {
     setActivePreIntervalBtn('preFirstPreIntervalBtnId');
-    preIntervalTime = 45;
-    preIntervall = true;
+    if (intervalsArray.length === 0) {
+        preIntervalTime = 10;
+        preIntervall = true;
+    } else {
+        preIntervalTime = intervalsArray[0].firstPreIntervalTime;
+        preIntervall = true;
+    }
 }
 
 function setPreIntervalSecond() {
     setActivePreIntervalBtn('preSecondIntervalBtnId');
-    preIntervalTime = 50;
-    preIntervall = true;
+    if (intervalsArray.length === 0) {
+        preIntervalTime = 15;
+        preIntervall = true;
+    } else {
+        preIntervalTime = intervalsArray[0].secondPreIntervalTime;
+        preIntervall = true;
+    }
 }
 
 function playSounds(m, s) {
