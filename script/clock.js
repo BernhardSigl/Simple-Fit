@@ -73,18 +73,25 @@ async function init() {
     document.getElementById('scrollboxId').classList.add('scrollboxStartPage');
 
     await welcomeMessage();
-
-    if (intervalsArray.length > 0 && intervalsArray[0].secondIntervalTime === null) {
-        document.getElementById('secondIntervalBtnId').innerHTML = intervalsArray[0].secondIntervalTime = 3;
+    if (firstIntervalTime === null || isNaN(firstIntervalTime)) {
+        firstIntervalTime = false;
+        document.getElementById('firstIntervalBtnId').innerHTML = 'Off';
     }
-    if (intervalsArray.length > 0 && intervalsArray[0].thirdIntervalTime === null) {
-        document.getElementById('thirdIntervalBtnId').innerHTML = intervalsArray[0].thirdIntervalTime = 4;
+    if (secondIntervalTime === null) {
+        secondIntervalTime = 3;
+        document.getElementById('secondIntervalBtnId').innerHTML = '3';
     }
-    if (intervalsArray.length > 0 && intervalsArray[0].firstPreIntervalTime === null) {
-        document.getElementById('preFirstPreIntervalBtnId').innerHTML = intervalsArray[0].firstPreIntervalTime = 50;
+    if (thirdIntervalTime === null) {
+        thirdIntervalTime = 4;
+        document.getElementById('thirdIntervalBtnId').innerHTML = '4';
     }
-    if (intervalsArray.length > 0 && intervalsArray[0].secondPreIntervalTime === null) {
-        document.getElementById('preSecondIntervalBtnId').innerHTML = intervalsArray[0].secondPreIntervalTime = 45;
+    if (firstPreIntervalTime === null) {
+        firstPreIntervalTime = 50;
+        document.getElementById('preFirstPreIntervalBtnId').innerHTML = '10';
+    }
+    if (secondPreIntervalTime === null) {
+        secondPreIntervalTime = 45;
+        document.getElementById('preSecondIntervalBtnId').innerHTML = '15';
     }
     if (intervalTime === 0) {
         setGoFirst();
@@ -92,9 +99,6 @@ async function init() {
     if (preIntervalTime === 0) {
         setPreIntervalOff();
     }
-    // if (preIntervalsStandardArray.length === 0) {
-    //     setPreIntervalOff();
-    // }
     document.getElementById('firstIntervalBtnId').innerHTML = '<h5>Off</h5>';
     toggleVisibilityByClass('changeIntervalArea', false);
     toggleVisibilityById('contentStartPageId', true);
@@ -154,8 +158,8 @@ async function saveIntervals() {
     firstIntervalTime = Number(document.getElementById('firstIntervalBtnId').innerHTML);
     secondIntervalTime = Number(document.getElementById('secondIntervalBtnId').innerHTML);
     thirdIntervalTime = Number(document.getElementById('thirdIntervalBtnId').innerHTML);
-    firstPreIntervalTime = Number(document.getElementById('preFirstPreIntervalBtnId').innerHTML);
-    secondPreIntervalTime = Number(document.getElementById('preSecondIntervalBtnId').innerHTML);
+    firstPreIntervalTime = 60 - Number(document.getElementById('preFirstPreIntervalBtnId').innerHTML);
+    secondPreIntervalTime = 60 - Number(document.getElementById('preSecondIntervalBtnId').innerHTML);
     intervalsArray.push({
         'firstIntervalTime': firstIntervalTime,
         'secondIntervalTime': secondIntervalTime,
@@ -244,7 +248,7 @@ function startTimer(duration, displayElementId) {
 
 function start() {
     setActiveSPRBtn('startBtnId');
-    if (preIntervalTime !== false && counterActive === false) {
+    if (preIntervalTime !== false && counterActive === false && preIntervall === true) {
         startTimer(15, 'timeId');
     } else {
         pauseRun = false;
@@ -326,7 +330,7 @@ function setPreIntervalOff() {
 function setPreIntervalFirst() {
     setActivePreIntervalBtn('preFirstPreIntervalBtnId');
     if (intervalsArray.length === 0) {
-        preIntervalTime = 10;
+        preIntervalTime = 50;
         preIntervall = true;
     } else {
         preIntervalTime = intervalsArray[0].firstPreIntervalTime;
@@ -337,7 +341,7 @@ function setPreIntervalFirst() {
 function setPreIntervalSecond() {
     setActivePreIntervalBtn('preSecondIntervalBtnId');
     if (intervalsArray.length === 0) {
-        preIntervalTime = 15;
+        preIntervalTime = 45;
         preIntervall = true;
     } else {
         preIntervalTime = intervalsArray[0].secondPreIntervalTime;
@@ -346,7 +350,7 @@ function setPreIntervalSecond() {
 }
 
 function playSounds(m, s) {
-    if (m % intervalTime === 0 && s <= 0.5 && !audioGoPlayed) {
+    if (m % intervalTime === 0 && s <= 0.5 && !audioGoPlayed && m >= 1) {
         AUDIO_GO.play();
         audioGoPlayed = true;
     } else {
