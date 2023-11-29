@@ -300,6 +300,7 @@ function updateDisplay() {
 function setGoFirst() {
     setActiveIntervalBtn('firstIntervalBtnId');
     intervalTime = false;
+    setPreIntervalOff();
 }
 
 function setGoSecond() {
@@ -335,6 +336,13 @@ function setPreIntervalFirst() {
     } else {
         preIntervalTime = intervalsArray[0].firstPreIntervalTime;
         preIntervall = true;
+        if (intervalTime === false) {
+            setPreIntervalOff();
+            toggleVisibilityById('requiresAlertTimeId', true);
+            setTimeout(() => {
+                toggleVisibilityById('requiresAlertTimeId', false);
+            }, 2500);
+        }
     }
 }
 
@@ -346,6 +354,13 @@ function setPreIntervalSecond() {
     } else {
         preIntervalTime = intervalsArray[0].secondPreIntervalTime;
         preIntervall = true;
+        if (intervalTime === false) {
+            setPreIntervalOff();
+            toggleVisibilityById('requiresAlertTimeId', true);
+            setTimeout(() => {
+                toggleVisibilityById('requiresAlertTimeId', false);
+            }, 2500);
+        }
     }
 }
 

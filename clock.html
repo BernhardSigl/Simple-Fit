@@ -58,7 +58,7 @@
                 <div class="alignCenter justifyCenter gap10 w100">
                     <div class="column gap6">
                         <button onclick="setGoFirst()" id="firstIntervalBtnId" class="horicontalAndVertical">
-                            <h5>Off</h5>
+                            Off
                         </button>
                         <div class="dFlex changeIntervalArea spaceBetween"
                             style="display: flex; justify-content: flex-end;">
@@ -69,9 +69,9 @@
                         </div>
                     </div>
                     <div class="column gap6">
-                        <button onclick="setGoSecond()" id="secondIntervalBtnId" class="horicontalAndVertical">
-                            <h5>3</h5>
-                        </button>
+                        <h5><button onclick="setGoSecond()" id="secondIntervalBtnId" class="horicontalAndVertical">
+                                3
+                            </button></h5>
                         <div class="dFlex changeIntervalArea spaceBetween">
                             <input type="text" id="intervalSecondNumberFieldId" class="inputInterval"
                                 oninput="this.value = this.value.replace(/[^\d]/g, '');">
@@ -85,7 +85,7 @@
                     </div>
                     <div class="column gap6">
                         <button onclick="setGoThird()" id="thirdIntervalBtnId" class="horicontalAndVertical">
-                            <h5>4</h5>
+                            4
                         </button>
                         <div class="dFlex changeIntervalArea spaceBetween">
                             <input type="text" id="intervalThirdNumberFieldId" class="inputInterval"
@@ -106,7 +106,7 @@
                 <div class="alignCenter justifyCenter gap10 w100">
                     <div class="column gap6">
                         <button onclick="setPreIntervalOff()" id="preOffIntervalBtnId" class="horicontalAndVertical">
-                            <h5>Off</h5>
+                            Off
                         </button>
                         <div class="changeIntervalArea" style="display: flex;
                         justify-content: flex-end;">
@@ -117,7 +117,7 @@
                     <div class="column gap6">
                         <button onclick="setPreIntervalFirst()" id="preFirstPreIntervalBtnId"
                             class="horicontalAndVertical">
-                            <h5>10</h5>
+                            10
                         </button>
                         <div class="dFlex changeIntervalArea spaceBetween">
                             <input type="text" id="preIntervalFirstNumberFieldId" class="inputInterval"
@@ -133,7 +133,7 @@
                     <div class="column gap6">
                         <button onclick="setPreIntervalSecond()" id="preSecondIntervalBtnId"
                             class="horicontalAndVertical">
-                            <h5>15</h5>
+                            15
                         </button>
                         <div class="dFlex changeIntervalArea spaceBetween">
                             <input type="text" id="preIntervalSecondNumberFieldId" class="inputInterval"
@@ -159,6 +159,10 @@
             <div class="w100">
                 <img src="img/plus.png" class="dNone" id="addDiaryBtnImgId" onclick="addNewBodypart()">
             </div>
+        </section>
+
+        <section class="errorMessage dNone" id="requiresAlertTimeId">
+            <h3>Requires alert time selection</h3>
         </section>
     </div>
 </body>

@@ -339,6 +339,16 @@ input {
     border: none;
 }
 
+.errorMessage {
+    color: red;
+    position: absolute;
+    top: 3.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 260px;
+    text-align: center;
+}
+
 /* scroll */
 .scrollbox {
     height: auto;
