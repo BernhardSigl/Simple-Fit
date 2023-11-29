@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fonts.css">
     <script src="script/clock.js"></script>
     <script src="script/settings.js"></script>
     <script src="script/templates.js"></script>
@@ -15,49 +16,50 @@
 
 <body onload="init()">
     <div class="content column gap10 dNone" id="contentStartPageId">
+        <img src="img/updates.png" class="symbol32 btnTopLeft" onclick="showUpdates()">
         <img src="img/logOut.png" class="symbol32 btnTopRightSecond" id="logOutBtnId" onclick="logOut()">
         <img src="img/settings.png" class="symbol32 btnTopRight" id="settingsImgId" onclick="showSettings()">
         <img src="img/dumbell.png" class="dumbell" id="dumbellId">
-        <span id="welcomeMessageId" class="whiteFont"></span>
+        <span id="welcomeMessageId" class="whiteFont font16"></span>
         <div id="timeId">
             00:00:00
         </div>
-        <h2 class="dNone alignCenter whiteFont" id="settingstitleId">Settings</h2>
+        <span class="dNone alignCenter whiteFont font24 bold" id="settingstitleId">Settings</span>
         <div class="dNone" id="settingsDescriptionId">
-            <span class="alignCenter settingsTitleMessage">
+            <span class="alignCenter settingsTitleMessage font16">
                 Set startup settings:
             </span>
             <div class="alignCenter">
                 <img src="img/exclamation.png" class="symbol15">
-                <span>
+                <span class="font16">
                     Set standard buttons
                 </span>
             </div>
             <div class="alignCenter">
                 <img src="img/confirm.png" class="symbol15">
-                <span>
+                <span class="font16">
                     Confirm input
                 </span>
             </div>
         </div>
         <section class="column gap10 w100" id="btnAreaId">
             <div class="justifyCenter gap10 alignCenter" id="SPRBtnAreaId">
-                <button onclick="start()" id="startBtnId" class="horicontalAndVertical">
-                    <h5>Start</h5>
+                <button onclick="start()" id="startBtnId" class="horicontalAndVertical font16">
+                    Start
                 </button>
-                <button onclick="pause()" id="pauseBtnId" class="horicontalAndVertical">
-                    <h5>Pause</h5>
+                <button onclick="pause()" id="pauseBtnId" class="horicontalAndVertical font16">
+                    Pause
                 </button>
-                <button onclick="reset()" id="resetBtnId" class="horicontalAndVertical">
-                    <h5>Reset</h5>
+                <button onclick="reset()" id="resetBtnId" class="horicontalAndVertical font16">
+                    Reset
                 </button>
             </div>
 
             <section class="column gap6 alignCenter">
-                <h3 class="whiteFont">Alert every [min]</h3>
+                <span class="whiteFont font18 bold">Alert every [min]</span>
                 <div class="alignCenter justifyCenter gap10 w100">
                     <div class="column gap6">
-                        <button onclick="setGoFirst()" id="firstIntervalBtnId" class="horicontalAndVertical">
+                        <button onclick="setGoFirst()" id="firstIntervalBtnId" class="horicontalAndVertical font16">
                             Off
                         </button>
                         <div class="dFlex changeIntervalArea spaceBetween"
@@ -69,7 +71,8 @@
                         </div>
                     </div>
                     <div class="column gap6">
-                        <h5><button onclick="setGoSecond()" id="secondIntervalBtnId" class="horicontalAndVertical">
+                        <h5><button onclick="setGoSecond()" id="secondIntervalBtnId"
+                                class="horicontalAndVertical font16">
                                 3
                             </button></h5>
                         <div class="dFlex changeIntervalArea spaceBetween">
@@ -84,7 +87,7 @@
                         </div>
                     </div>
                     <div class="column gap6">
-                        <button onclick="setGoThird()" id="thirdIntervalBtnId" class="horicontalAndVertical">
+                        <button onclick="setGoThird()" id="thirdIntervalBtnId" class="horicontalAndVertical font16">
                             4
                         </button>
                         <div class="dFlex changeIntervalArea spaceBetween">
@@ -102,10 +105,11 @@
             </section>
 
             <section class="column gap6 alignCenter">
-                <h3 class="whiteFont">Pre alert [sec]</h3>
+                <span class="whiteFont font18 bold">Pre alert [sec]</span>
                 <div class="alignCenter justifyCenter gap10 w100">
                     <div class="column gap6">
-                        <button onclick="setPreIntervalOff()" id="preOffIntervalBtnId" class="horicontalAndVertical">
+                        <button onclick="setPreIntervalOff()" id="preOffIntervalBtnId"
+                            class="horicontalAndVertical font16">
                             Off
                         </button>
                         <div class="changeIntervalArea" style="display: flex;
@@ -116,7 +120,7 @@
                     </div>
                     <div class="column gap6">
                         <button onclick="setPreIntervalFirst()" id="preFirstPreIntervalBtnId"
-                            class="horicontalAndVertical">
+                            class="horicontalAndVertical font16">
                             10
                         </button>
                         <div class="dFlex changeIntervalArea spaceBetween">
@@ -132,7 +136,7 @@
                     </div>
                     <div class="column gap6">
                         <button onclick="setPreIntervalSecond()" id="preSecondIntervalBtnId"
-                            class="horicontalAndVertical">
+                            class="horicontalAndVertical font16">
                             15
                         </button>
                         <div class="dFlex changeIntervalArea spaceBetween">
@@ -151,7 +155,7 @@
 
         </section>
         <section class="column gap6 alignCenter w100" id="gymDiaryAreaId">
-            <h3 class="whiteFont">Gym diary</h3>
+            <div class="whiteFont font18 bold">Gym diary</div>
             <div class="scrollbox scrollboxStartPage" id="scrollboxId">
                 <div class="alignCenter gap10 w100 gymDiaryArea" id="gymDiaryBtns">
                 </div>
@@ -161,7 +165,7 @@
             </div>
         </section>
 
-        <section class="errorMessage dNone" id="requiresAlertTimeId">
+        <section class="errorMessage dNone font16 lightBold" id="requiresAlertTimeId">
             <h3>Requires alert time selection</h3>
         </section>
     </div>

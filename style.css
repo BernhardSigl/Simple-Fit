@@ -6,15 +6,44 @@ body {
     display: flex;
     justify-content: center;
     overflow: hidden;
+    font-family: 'Roboto' !important;
 }
 
 .content {
     align-items: center;
-    font-family: monospace;
+
     width: 380px;
     height: 100%;
     padding: 60px 30px 20px;
     box-sizing: border-box;
+}
+
+.font30 {
+    font-size: 30px;
+}
+
+.font24 {
+    font-size: 24px;
+}
+
+.font18 {
+    font-size: 18px;
+}
+
+.font16 {
+    font-size: 16px;
+}
+
+.font14 {
+    font-size: 14px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.lightBold {
+    font-weight: 400;
 }
 
 h1,
@@ -112,22 +141,30 @@ h5 {
     cursor: pointer;
 }
 
+.btnTopLeft {
+    position: absolute;
+    top: 60px;
+    left: 30px;
+    cursor: pointer;
+}
+
 button.activePreIntervalBtn:hover,
 .activePreIntervalBtn,
 button.activeIntervalBtn:hover,
 .activeIntervalBtn,
 button.activeSPRBtn:hover,
 .activeSPRBtn {
-    background-color: #1c5e1e;
+    background-color: #413534;
 }
 
 #timeId {
     font-size: 30px;
     text-align: center;
+    font-family: monospace;
 }
 
 button {
-    padding: 12px;
+    padding: 0;
     margin: 0;
     width: 93px;
     height: 34px;
@@ -140,7 +177,7 @@ button {
 }
 
 button:hover {
-    border: solid 1px green;
+    border: solid 1px #413534;
 }
 
 button:focus {
@@ -297,7 +334,7 @@ input {
 }
 
 .inputDiaryBtn:hover {
-    border: solid 1px green;
+    border: solid 1px #413534;
 }
 
 .inputDiaryBtn:focus {
@@ -332,7 +369,7 @@ input {
 }
 
 .clickOnDiaryBtn:hover {
-    border: solid 1px green;
+    border: solid 1px #413534;
 }
 
 .clickOnDiaryBtn:focus {

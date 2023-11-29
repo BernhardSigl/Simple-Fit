@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fonts.css">
     <script src="script/templates.js"></script>
     <script src="script/authentification.js"></script>
     <script src="script/storage.js"></script>
@@ -16,32 +17,31 @@
 <body onload="initAuthentication()">
     <div class="content column gap15 dNone" id="logInContentId">
         <img src="img/dumbell.png" class="dumbell" id="dumbellId">
-        <h1 class="whiteFont">SIMPLE FIT</h1>
-        <h2 class="whiteFont">Log in</h2>
+        <span class="whiteFont font30 bold">SIMPLE FIT</span>
         <div class="justifyCenter inputWithImg relative">
-            <input type="text" placeholder="Username" id="usernameId">
+            <input class="font14" type="text" placeholder="Username" id="usernameId">
             <div class="imgBoxInInput horicontalAndVertical">
                 <img src="img/user.png" class="symbolInput">
             </div>
         </div>
         <div class="justifyCenter inputWithImg relative">
-            <input type="password" placeholder="Password" id="passwordId">
+            <input class="font14" type="password" placeholder="Password" id="passwordId">
             <div class="imgBoxInInput horicontalAndVertical" onclick="showPassword()">
                 <img src="img/eyeClosed.png" class="symbolInput" id="showPasswordId">
             </div>
         </div>
         <div class="alignCenter rememberMeArea dFlex">
             <input class="checkbox" type="checkbox" id="checkboxId">
-            Auto log in
+            <span class="font14">Auto log in</span>
         </div>
-        <div>
-            <button class="customBtn" onclick="logIn()" id="logInBtnId">Log in</button>
-            <button class="customBtn" onclick="register()" id="regBtnId">Register</button>
+        <div class="dFlex gap10">
+            <button class="customBtn font16" onclick="logIn()" id="logInBtnId">Log in</button>
+            <button class="customBtn font16" onclick="register()" id="regBtnId">Register</button>
         </div>
-        <div id="wrongCredentialId" class="dNone">Wrong username or password</div>
-        <div id="userAlreadyExistsTextId" class="dNone">Username already exists</div>
-        <div id="emptyInputId" class="dNone">Empty fields aren't allowed</div>
-        <div id="userCreatedTextId" class="dNone">User account successfully created</div>
+        <div id="wrongCredentialId" class="dNone font16 lightBold">Wrong username or password</div>
+        <div id="userAlreadyExistsTextId" class="dNone font16 lightBold">Username already exists</div>
+        <div id="emptyInputId" class="dNone font16 lightBold">Empty fields aren't allowed</div>
+        <div id="userCreatedTextId" class="dNone font16 lightBold">User account successfully created</div>
     </div>
 </body>
 

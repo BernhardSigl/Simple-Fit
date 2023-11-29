@@ -103,7 +103,7 @@ async function init() {
     if (preIntervalTime === 0) {
         setPreIntervalOff();
     }
-    document.getElementById('firstIntervalBtnId').innerHTML = '<h5>Off</h5>';
+    document.getElementById('firstIntervalBtnId').innerHTML = 'Off';
     toggleVisibilityByClass('changeIntervalArea', false);
     toggleVisibilityById('contentStartPageId', true);
     // addDiary();
