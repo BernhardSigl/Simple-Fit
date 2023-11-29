@@ -1,10 +1,8 @@
 let loggedInUser = [];
-let rememberMe = [];
+let rememberMe;
 let autoLogin = false;
 
 async function initAuthentication() {
-    rememberMe = [];
-    loggedInUser = [];
     usersArray = [];
     await loadUsersArray();
     await loadRememberMe();
@@ -99,12 +97,13 @@ function userAlreadyExists() {
 async function trueCredential(usernameInput, passwordInput) {
     let checkbox = document.getElementById('checkboxId');
     const isValid = checkbox.checked;
-    rememberMe = [];
     if (isValid) {
+        rememberMe = [];
         rememberMe.push({
             'username': usernameInput.value,
             'password': passwordInput.value,
         });
+        await saveRememberMe();
     } else if (!isValid) {
         rememberMe = [];
     }
@@ -114,7 +113,6 @@ async function trueCredential(usernameInput, passwordInput) {
     loggedInUser.push({
         'name': usernameInput.value,
     });
-    await saveRememberMe();
     await saveLoggedInUser();
     toggleVisibilityById('wrongCredentialId', false);
     window.location.href = 'clock.html';
