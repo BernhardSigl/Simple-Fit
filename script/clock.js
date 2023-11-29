@@ -88,10 +88,14 @@ async function init() {
     if (firstPreIntervalTime === null) {
         firstPreIntervalTime = 50;
         document.getElementById('preFirstPreIntervalBtnId').innerHTML = '10';
+    } else {
+        document.getElementById('preFirstPreIntervalBtnId').innerHTML = 60 - firstPreIntervalTime;
     }
     if (secondPreIntervalTime === null) {
         secondPreIntervalTime = 45;
         document.getElementById('preSecondIntervalBtnId').innerHTML = '15';
+    } else {
+        document.getElementById('preSecondIntervalBtnId').innerHTML = 60 - secondPreIntervalTime;
     }
     if (intervalTime === 0) {
         setGoFirst();
