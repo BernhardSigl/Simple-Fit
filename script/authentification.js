@@ -117,7 +117,7 @@ async function trueCredential(usernameInput, passwordInput) {
     await saveRememberMe();
     await saveLoggedInUser();
     toggleVisibilityById('wrongCredentialId', false);
-    window.location.href = 'index.html';
+    window.location.href = 'clock.html';
 }
 
 function checkRememberMe() {

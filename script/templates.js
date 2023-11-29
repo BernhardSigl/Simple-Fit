@@ -15,5 +15,5 @@ function logOut() {
     loggedInUser = [];
     saveRememberMe();
     saveLoggedInUser();
-    window.location.href = 'authentication.html';
+    window.location.href = 'index.html';
 }

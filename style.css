@@ -5,6 +5,7 @@ body {
     background: #343541;
     display: flex;
     justify-content: center;
+    overflow: hidden;
 }
 
 .content {

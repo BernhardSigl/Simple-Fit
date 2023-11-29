@@ -1,0 +1,10 @@
+{
+    "name": "Simple Fit",
+    "short_name": "Simple Fit",
+    "theme_color": "#343541",
+    "background_color": "#343541",
+    "display": "fullscreen",
+    "orientation": "portrait",
+    "scope": "/",
+    "start_url": "/"
+}

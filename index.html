@@ -5,161 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="script/clock.js"></script>
-    <script src="script/settings.js"></script>
     <script src="script/templates.js"></script>
+    <script src="script/authentification.js"></script>
     <script src="script/storage.js"></script>
     <title>Simple Fit</title>
     <link rel="icon" href="img/dumbell.png">
+    <link rel="manifest" href="manifest.json">
 </head>
 
-<body onload="init()">
-    <div class="content column gap10 dNone" id="contentStartPageId">
-        <img src="img/logOut.png" class="symbol32 btnTopRightSecond" id="logOutBtnId" onclick="logOut()">
-        <img src="img/settings.png" class="symbol32 btnTopRight" id="settingsImgId" onclick="showSettings()">
+<body onload="initAuthentication()">
+    <div class="content column gap15 dNone" id="logInContentId">
         <img src="img/dumbell.png" class="dumbell" id="dumbellId">
-        <span id="welcomeMessageId" class="whiteFont"></span>
-        <div id="timeId">
-            00:00:00
-        </div>
-        <h2 class="dNone alignCenter whiteFont" id="settingstitleId">Settings</h2>
-        <div class="dNone" id="settingsDescriptionId">
-            <span class="alignCenter settingsTitleMessage">
-                Set startup settings:
-            </span>
-            <div class="alignCenter">
-                <img src="img/exclamation.png" class="symbol15">
-                <span>
-                    Set standard buttons
-                </span>
-            </div>
-            <div class="alignCenter">
-                <img src="img/confirm.png" class="symbol15">
-                <span>
-                    Confirm input
-                </span>
+        <h1 class="whiteFont">SIMPLE FIT</h1>
+        <h2 class="whiteFont">Log in</h2>
+        <div class="justifyCenter inputWithImg relative">
+            <input type="text" placeholder="Username" id="usernameId">
+            <div class="imgBoxInInput horicontalAndVertical">
+                <img src="img/user.png" class="symbolInput">
             </div>
         </div>
-        <section class="column gap10 w100" id="btnAreaId">
-            <div class="justifyCenter gap10 alignCenter" id="SPRBtnAreaId">
-                <button onclick="start()" id="startBtnId" class="horicontalAndVertical">
-                    <h5>Start</h5>
-                </button>
-                <button onclick="pause()" id="pauseBtnId" class="horicontalAndVertical">
-                    <h5>Pause</h5>
-                </button>
-                <button onclick="reset()" id="resetBtnId" class="horicontalAndVertical">
-                    <h5>Reset</h5>
-                </button>
+        <div class="justifyCenter inputWithImg relative">
+            <input type="password" placeholder="Password" id="passwordId">
+            <div class="imgBoxInInput horicontalAndVertical" onclick="showPassword()">
+                <img src="img/eyeClosed.png" class="symbolInput" id="showPasswordId">
             </div>
-
-            <section class="column gap6 alignCenter">
-                <h3 class="whiteFont">Alert every [min]</h3>
-                <div class="alignCenter justifyCenter gap10 w100">
-                    <div class="column gap6">
-                        <button onclick="setGoFirst()" id="firstIntervalBtnId" class="horicontalAndVertical">
-                            <h5>Off</h5>
-                        </button>
-                        <div class="dFlex changeIntervalArea spaceBetween"
-                            style="display: flex; justify-content: flex-end;">
-                            <div class="standardConfirmBtnArea column spaceBetween">
-                                <img src="img/exclamation.png" class="standardConfirmBtn"
-                                    onclick="confirmFirstIntervalAsStandard()">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column gap6">
-                        <button onclick="setGoSecond()" id="secondIntervalBtnId" class="horicontalAndVertical">
-                            <h5>3</h5>
-                        </button>
-                        <div class="dFlex changeIntervalArea spaceBetween">
-                            <input type="text" id="intervalSecondNumberFieldId" class="inputInterval"
-                                oninput="this.value = this.value.replace(/[^\d]/g, '');">
-                            <div class="standardConfirmBtnArea column spaceBetween">
-                                <img src="img/exclamation.png" class="standardConfirmBtn"
-                                    onclick="confirmSecondIntervalAsStandard()">
-                                <img src="img/confirm.png" class="standardConfirmBtn"
-                                    onclick="confirmSecondInterval('intervalSecondNumberFieldId', 'secondIntervalBtnId')">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column gap6">
-                        <button onclick="setGoThird()" id="thirdIntervalBtnId" class="horicontalAndVertical">
-                            <h5>4</h5>
-                        </button>
-                        <div class="dFlex changeIntervalArea spaceBetween">
-                            <input type="text" id="intervalThirdNumberFieldId" class="inputInterval"
-                                oninput="this.value = this.value.replace(/[^\d]/g, '');">
-                            <div class="standardConfirmBtnArea column spaceBetween">
-                                <img src="img/exclamation.png" class="standardConfirmBtn"
-                                    onclick="confirmThirdIntervalAsStandard()">
-                                <img src="img/confirm.png" class="standardConfirmBtn"
-                                    onclick="confirmThirdInterval('intervalThirdNumberFieldId', 'thirdIntervalBtnId')">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="column gap6 alignCenter">
-                <h3 class="whiteFont">Pre alert [sec]</h3>
-                <div class="alignCenter justifyCenter gap10 w100">
-                    <div class="column gap6">
-                        <button onclick="setPreIntervalOff()" id="preOffIntervalBtnId" class="horicontalAndVertical">
-                            <h5>Off</h5>
-                        </button>
-                        <div class="changeIntervalArea" style="display: flex;
-                        justify-content: flex-end;">
-                            <img src="img/exclamation.png" class="standardConfirmBtn"
-                                onclick="confirmOffPreIntervalAsStandard()">
-                        </div>
-                    </div>
-                    <div class="column gap6">
-                        <button onclick="setPreIntervalFirst()" id="preFirstPreIntervalBtnId"
-                            class="horicontalAndVertical">
-                            <h5>10</h5>
-                        </button>
-                        <div class="dFlex changeIntervalArea spaceBetween">
-                            <input type="text" id="preIntervalFirstNumberFieldId" class="inputInterval"
-                                oninput="this.value = this.value.replace(/[^\d]/g, '');">
-                            <div class="standardConfirmBtnArea column spaceBetween">
-                                <img src="img/exclamation.png" class="standardConfirmBtn"
-                                    onclick="confirmFirstPreIntervalAsStandard()">
-                                <img src="img/confirm.png" class="standardConfirmBtn"
-                                    onclick="confirmFirstPreInterval('preIntervalFirstNumberFieldId', 'preFirstPreIntervalBtnId')">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column gap6">
-                        <button onclick="setPreIntervalSecond()" id="preSecondIntervalBtnId"
-                            class="horicontalAndVertical">
-                            <h5>15</h5>
-                        </button>
-                        <div class="dFlex changeIntervalArea spaceBetween">
-                            <input type="text" id="preIntervalSecondNumberFieldId" class="inputInterval"
-                                oninput="this.value = this.value.replace(/[^\d]/g, '');">
-                            <div class="standardConfirmBtnArea column spaceBetween">
-                                <img src="img/exclamation.png" class="standardConfirmBtn"
-                                    onclick="confirmSecondPreIntervalAsStandard()">
-                                <img src="img/confirm.png" class="standardConfirmBtn"
-                                    onclick="confirmSecondPreInterval('preIntervalSecondNumberFieldId', 'preSecondIntervalBtnId')">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-        </section>
-        <section class="column gap6 alignCenter w100" id="gymDiaryAreaId">
-            <h3 class="whiteFont">Gym diary</h3>
-            <div class="scrollbox scrollboxStartPage" id="scrollboxId">
-                <div class="alignCenter gap10 w100 gymDiaryArea" id="gymDiaryBtns">
-                </div>
-            </div>
-            <div class="w100">
-                <img src="img/plus.png" class="dNone" id="addDiaryBtnImgId" onclick="addNewBodypart()">
-            </div>
-        </section>
+        </div>
+        <div class="alignCenter rememberMeArea dFlex">
+            <input class="checkbox" type="checkbox" id="checkboxId">
+            Auto log in
+        </div>
+        <div>
+            <button class="customBtn" onclick="logIn()" id="logInBtnId">Log in</button>
+            <button class="customBtn" onclick="register()" id="regBtnId">Register</button>
+        </div>
+        <div id="wrongCredentialId" class="dNone">Wrong username or password</div>
+        <div id="userAlreadyExistsTextId" class="dNone">Username already exists</div>
+        <div id="emptyInputId" class="dNone">Empty fields aren't allowed</div>
+        <div id="userCreatedTextId" class="dNone">User account successfully created</div>
     </div>
 </body>
 
