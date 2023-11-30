@@ -2,6 +2,7 @@ let intervalsArray = [];
 let intervalsStandardArray = [];
 let preIntervalsStandardArray = [];
 let gymDiaryArray = [];
+let usersArray = [];
 
 var resetTime = 0;
 var pauseRun = true;
@@ -38,6 +39,7 @@ let settings = false;
 let preCounterId;
 
 async function init() {
+    checkEmptyUsers();
     await loadUsersArray();
     await loadLoggedInUser();
     await createIndividuallyIntervalsArray();
@@ -107,6 +109,12 @@ async function init() {
     toggleVisibilityByClass('changeIntervalArea', false);
     toggleVisibilityById('contentStartPageId', true);
     // addDiary();
+}
+
+function checkEmptyUsers() {
+    if (usersArray.length === 0) {
+        window.location.href = 'index.html';
+    }
 }
 
 async function createIndividuallyIntervalsArray() {
@@ -587,6 +595,11 @@ function deleteGymDiaryArray() {
 
 function openDiary(bodypartIndex) {
     // console.log(bodypartIndex);
+}
+
+async function deleteAllUser() {
+    usersArray = [];
+    await setItem('usersArray', JSON.stringify(usersArray));
 }
 
 updateTime();
