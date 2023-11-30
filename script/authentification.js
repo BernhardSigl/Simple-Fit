@@ -7,6 +7,7 @@ async function initAuthentication() {
     await loadUsersArray();
     await loadRememberMe();
     await loadLoggedInUser();
+    await checkEmptyUsers();
     autoLogin = false;
     document.getElementById('regBtnId').disabled = false;
     document.getElementById('logInBtnId').disabled = false;
@@ -15,6 +16,16 @@ async function initAuthentication() {
         toggleVisibilityById('logInContentId', false)
     } else if (autoLogin === false) {
         toggleVisibilityById('logInContentId', true)
+    }
+}
+
+async function checkEmptyUsers() {
+    if (usersArray.length === 0) {
+        window.location.href = 'index.html';
+        rememberMe = [];
+        loggedInUser = [];
+        await saveRememberMe();
+        await saveLoggedInUser();
     }
 }
 
