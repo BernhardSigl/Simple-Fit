@@ -21,7 +21,6 @@ async function initAuthentication() {
 
 async function checkEmptyUsers() {
     if (usersArray.length === 0) {
-        window.location.href = 'index.html';
         rememberMe = [];
         loggedInUser = [];
         await saveRememberMe();
