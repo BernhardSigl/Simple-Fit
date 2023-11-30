@@ -38,10 +38,3 @@ function changeShowUpdatesFunction() {
         fromUpdatesToMenu();
     };
 }
-
-// function originalChangeUpdateFunction() {
-//     const changeShowUpdatesBtn = document.getElementById('editContactFormId');
-//     changeShowUpdatesBtn.onclick = function () {
-//         createContact();
-//     };
-// }

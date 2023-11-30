@@ -39,9 +39,10 @@ let settings = false;
 let preCounterId;
 
 async function init() {
-    checkEmptyUsers();
     await loadUsersArray();
     await loadLoggedInUser();
+    await loadRememberMe();
+    await checkEmptyUsers();
     await createIndividuallyIntervalsArray();
     await loadIndividuallyIntervals();
 
@@ -111,9 +112,13 @@ async function init() {
     // addDiary();
 }
 
-function checkEmptyUsers() {
+async function checkEmptyUsers() {
     if (usersArray.length === 0) {
         window.location.href = 'index.html';
+        rememberMe = [];
+        loggedInUser = [];
+        await saveRememberMe();
+        await saveLoggedInUser();
     }
 }
 

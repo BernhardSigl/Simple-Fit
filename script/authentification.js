@@ -1,5 +1,5 @@
 let loggedInUser = [];
-let rememberMe;
+let rememberMe = [];
 let autoLogin = false;
 
 async function initAuthentication() {
@@ -53,13 +53,16 @@ function logIn() {
     if (usernameInput.value.length === 0 || passwordInput.value.length === 0) {
         emptyFields();
     } else {
+        let credentialsMatch = false;
         usersArray.forEach(user => {
             if (checkCredential(user, usernameInput, passwordInput)) {
+                credentialsMatch = true;
                 trueCredential(usernameInput, passwordInput);
-            } else {
-                wrongCredential();
             }
         });
+        if (!credentialsMatch) {
+            wrongCredential();
+        }
     }
 }
 
