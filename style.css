@@ -18,6 +18,10 @@ body {
     box-sizing: border-box;
 }
 
+.font36 {
+    font-size: 36px;
+}
+
 .font30 {
     font-size: 30px;
 }
@@ -44,19 +48,6 @@ body {
 
 .lightBold {
     font-weight: 400;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-    margin: 0;
-}
-
-h5 {
-    font-weight: lighter;
-    padding-top: 1px;
 }
 
 .dFlex {
@@ -122,9 +113,14 @@ h5 {
     height: auto;
 }
 
-.symbol32 {
-    width: 32px;
-    height: 32px;
+.symbol28 {
+    width: 28px;
+    height: 28px;
+}
+
+#updatesDescriptionId {
+    height: 70vh;
+    overflow-y: auto;
 }
 
 .btnTopRight {
@@ -158,9 +154,9 @@ button.activeSPRBtn:hover,
 }
 
 #timeId {
-    font-size: 30px;
     text-align: center;
     font-family: monospace;
+    color: white;
 }
 
 button {
@@ -184,17 +180,12 @@ button:focus {
     border: none !important;
 }
 
-#timeId {
-    color: white;
-    width: 132px;
-    height: 36px;
-}
-
 #settingstitleId {
     height: 32px;
     width: 100%;
 }
 
+#updatesDescriptionId,
 #settingsDescriptionId {
     width: 100%;
     height: auto;

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="fonts.css">
     <script src="script/clock.js"></script>
     <script src="script/settings.js"></script>
+    <script src="script/updates.js"></script>
     <script src="script/templates.js"></script>
     <script src="script/storage.js"></script>
     <title>Simple Fit</title>
@@ -16,14 +17,15 @@
 
 <body onload="init()">
     <div class="content column gap10 dNone" id="contentStartPageId">
-        <img src="img/updates.png" class="symbol32 btnTopLeft" onclick="showUpdates()">
-        <img src="img/logOut.png" class="symbol32 btnTopRightSecond" id="logOutBtnId" onclick="logOut()">
-        <img src="img/settings.png" class="symbol32 btnTopRight" id="settingsImgId" onclick="showSettings()">
+        <img src="img/updates.png" class="symbol28 btnTopLeft" id="updateImgId" onclick="showUpdates()">
+        <img src="img/logOut.png" class="symbol28 btnTopRightSecond" id="logOutBtnId" onclick="logOut()">
+        <img src="img/settings.png" class="symbol28 btnTopRight" id="settingsImgId" onclick="showSettings()">
         <img src="img/dumbell.png" class="dumbell" id="dumbellId">
         <span id="welcomeMessageId" class="whiteFont font16"></span>
-        <div id="timeId">
+        <div id="timeId" class="font36">
             00:00:00
         </div>
+        <!-- settings -->
         <span class="dNone alignCenter whiteFont font24 bold" id="settingstitleId">Settings</span>
         <div class="dNone" id="settingsDescriptionId">
             <span class="alignCenter settingsTitleMessage font16">
@@ -42,6 +44,30 @@
                 </span>
             </div>
         </div>
+        <!-- updates -->
+        <span class="dNone alignCenter whiteFont font24 bold w100" id="updatesTitleId">Updates</span>
+        <div class="dNone" id="updatesDescriptionId">
+            <span class="font16 bold">30/11/2024</span>
+            <li>add update button</li>
+            <li>style optimication</li>
+            <li>fix pre alert display bug</li>
+            <li>add error message</li>
+            <li>fix auto log in bug</li>
+            <span class="font16 bold">28/11/2024</span>
+            <li>fix pre alert sound bug</li>
+            <li>style optimication</li>
+            <li>decimal places are no longer allowed</li>
+            <span class="font16 bold">26/11/2024</span>
+            <li>fix log in screen error messages</li>
+            <li>save data global</li>
+            <li>edit input functions included</li>
+            <span class="font16 bold">25/11/2024</span>
+            <li>add settings menu</li>
+            <span class="font16 bold">24/11/2024</span>
+            <li>add timer with buttons</li>
+            <li>add login/register</li>
+        </div>
+        <!-- buttons -->
         <section class="column gap10 w100" id="btnAreaId">
             <div class="justifyCenter gap10 alignCenter" id="SPRBtnAreaId">
                 <button onclick="start()" id="startBtnId" class="horicontalAndVertical font16">
@@ -155,7 +181,7 @@
 
         </section>
         <section class="column gap6 alignCenter w100" id="gymDiaryAreaId">
-            <div class="whiteFont font18 bold">Gym diary</div>
+            <div class="whiteFont font18 bold" id="gymDiaryTitleId">Gym diary</div>
             <div class="scrollbox scrollboxStartPage" id="scrollboxId">
                 <div class="alignCenter gap10 w100 gymDiaryArea" id="gymDiaryBtns">
                 </div>
