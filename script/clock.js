@@ -110,6 +110,8 @@ async function init() {
     toggleVisibilityByClass('changeIntervalArea', false);
     toggleVisibilityById('contentStartPageId', true);
     // addDiary();
+    gymDiaryArray = [];
+    savegGymDiaryArray()
 }
 
 async function checkEmptyUsers() {
