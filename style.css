@@ -11,11 +11,18 @@ body {
 
 .content {
     align-items: center;
-
-    width: 380px;
+    width: 327px;
     height: 100%;
-    padding: 60px 30px 20px;
-    box-sizing: border-box;
+    padding: 60px 24px 20px;
+    /* box-sizing: border-box; */
+}
+
+.textCenter {
+    text-align: center;
+}
+
+.white {
+    color: white;
 }
 
 .font36 {
@@ -116,6 +123,7 @@ body {
 .symbol28 {
     width: 28px;
     height: 28px;
+    cursor: pointer;
 }
 
 #updatesDescriptionId {
@@ -277,8 +285,8 @@ input {
 }
 
 .standardConfirmBtn {
-    width: 14px;
-    height: 15px;
+    width: 16px;
+    height: 17px;
     padding: 0;
     margin-left: 6px;
     cursor: pointer;
@@ -299,6 +307,7 @@ input {
     flex-wrap: wrap;
     height: auto;
     padding-bottom: 6px;
+    justify-content: center;
 }
 
 .inputDiaryBtnArea {
@@ -377,9 +386,78 @@ input {
     text-align: center;
 }
 
+.calenderImg {
+    width: 24px;
+    height: 28px;
+    cursor: pointer;
+}
+
+.dateInputField {
+    background-color: #202124;
+    border: none;
+    height: 30px;
+    color: white;
+    width: 280px;
+    padding: 0;
+    border-radius: 3px;
+}
+
+#gymDiaryContainer {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+}
+
+#gymDiaryContent {
+    width: 100%;
+}
+
+.inputFieldReps {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+}
+
+.inputFieldRepsArea {
+    display: flex;
+    justify-content: space-between;
+}
+
+.addRep,
+.removeRep {
+    width: 20px;
+    height: 20px;
+}
+
+.addRemoveBtnArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.repsFieldAndBtnsArea {
+    display: flex;
+}
+
+.dateWeightArea {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    height: 30px;
+    align-items: center;
+}
+
+.weights {
+    width: 100%;
+}
+
+.lastWeightImg {
+    width: 24px;
+    height: 24px;
+}
+
 /* scroll */
 .scrollbox {
-    height: auto;
     max-height: 86px;
     overflow-y: scroll;
     padding-left: 8px;

@@ -123,24 +123,32 @@ async function checkEmptyUsers() {
 }
 
 async function createIndividuallyIntervalsArray() {
-    for (let i = 0; i < usersArray.length; i++) {
-        const user = usersArray[i];
-        id = user.id;
-        if (loggedInUser[0].name === user.username) {
-            intervalsArray = user[`individuallyIntervals_${id}`] = [];
-            return id, intervalsArray;
+    if (loggedInUser.length !== 0) {
+        for (let i = 0; i < usersArray.length; i++) {
+            const user = usersArray[i];
+            id = user.id;
+            if (loggedInUser[0].name === user.username) {
+                intervalsArray = user[`individuallyIntervals_${id}`] = [];
+                return id, intervalsArray;
+            }
         }
+    } else {
+        window.location.href = 'index.html';
     }
 }
 
 async function createIndividuallyIntervalsStandardArray() {
-    for (let i = 0; i < usersArray.length; i++) {
-        const user = usersArray[i];
-        id = user.id;
-        if (loggedInUser[0].name === user.username) {
-            intervalsStandardArray = user[`individuallyIntervalsStandardArray_${id}`] = [];
-            return id, intervalsStandardArray;
+    if (loggedInUser.length !== 0) {
+        for (let i = 0; i < usersArray.length; i++) {
+            const user = usersArray[i];
+            id = user.id;
+            if (loggedInUser[0].name === user.username) {
+                intervalsStandardArray = user[`individuallyIntervalsStandardArray_${id}`] = [];
+                return id, intervalsStandardArray;
+            }
         }
+    } else {
+        window.location.href = 'index.html';
     }
 }
 
@@ -349,17 +357,10 @@ function setPreIntervalFirst() {
     setActivePreIntervalBtn('preFirstPreIntervalBtnId');
     if (intervalsArray.length === 0) {
         preIntervalTime = 50;
-        preIntervall = true;
+        intervalTimeFalse();
     } else {
         preIntervalTime = intervalsArray[0].firstPreIntervalTime;
-        preIntervall = true;
-        if (intervalTime === false) {
-            setPreIntervalOff();
-            toggleVisibilityById('requiresAlertTimeId', true);
-            setTimeout(() => {
-                toggleVisibilityById('requiresAlertTimeId', false);
-            }, 2500);
-        }
+        intervalTimeFalse();
     }
 }
 
@@ -367,17 +368,21 @@ function setPreIntervalSecond() {
     setActivePreIntervalBtn('preSecondIntervalBtnId');
     if (intervalsArray.length === 0) {
         preIntervalTime = 45;
-        preIntervall = true;
+        intervalTimeFalse();
     } else {
         preIntervalTime = intervalsArray[0].secondPreIntervalTime;
-        preIntervall = true;
-        if (intervalTime === false) {
-            setPreIntervalOff();
-            toggleVisibilityById('requiresAlertTimeId', true);
-            setTimeout(() => {
-                toggleVisibilityById('requiresAlertTimeId', false);
-            }, 2500);
-        }
+        intervalTimeFalse();
+    }
+}
+
+function intervalTimeFalse() {
+    preIntervall = true;
+    if (intervalTime === false) {
+        setPreIntervalOff();
+        toggleVisibilityById('requiresAlertTimeId', true);
+        setTimeout(() => {
+            toggleVisibilityById('requiresAlertTimeId', false);
+        }, 2500);
     }
 }
 
@@ -596,10 +601,6 @@ function saveAfterInput() {
 function deleteGymDiaryArray() {
     gymDiaryArray = [];
     savegGymDiaryArray();
-}
-
-function openDiary(bodypartIndex) {
-    // console.log(bodypartIndex);
 }
 
 async function deleteAllUser() {

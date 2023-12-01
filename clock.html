@@ -8,9 +8,13 @@
     <link rel="stylesheet" href="fonts.css">
     <script src="script/clock.js"></script>
     <script src="script/settings.js"></script>
+    <script src="script/gymdiary.js"></script>
     <script src="script/updates.js"></script>
     <script src="script/templates.js"></script>
     <script src="script/storage.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
     <title>Simple Fit</title>
     <link rel="icon" href="img/dumbell.png">
 </head>
@@ -98,10 +102,9 @@
                         </div>
                     </div>
                     <div class="column gap6">
-                        <h5><button onclick="setGoSecond()" id="secondIntervalBtnId"
-                                class="horicontalAndVertical font16">
-                                3
-                            </button></h5>
+                        <button onclick="setGoSecond()" id="secondIntervalBtnId" class="horicontalAndVertical font16">
+                            3
+                        </button>
                         <div class="dFlex changeIntervalArea spaceBetween">
                             <input type="text" id="intervalSecondNumberFieldId" class="inputInterval"
                                 oninput="this.value = this.value.replace(/[^\d]/g, '');">
@@ -190,6 +193,10 @@
             <div class="w100">
                 <img src="img/plus.png" class="dNone" id="addDiaryBtnImgId" onclick="addNewBodypart()">
             </div>
+        </section>
+        <!-- open gym diary -->
+        <section id="gymDiaryAreaId">
+
         </section>
 
         <section class="errorMessage dNone font16 lightBold" id="requiresAlertTimeId">
