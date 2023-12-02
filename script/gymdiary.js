@@ -60,9 +60,15 @@ function renderGymDiaryElement(index) {
     const garbageImage = document.createElement('img');
     garbageImage.src = 'img/garbage.png';
     garbageImage.className = 'lastWeightImg';
-    garbageImage.onclick = function () {
+
+    garbageImage.addEventListener('click', function () {
         deleteGymDiaryElement(index);
-    };
+    });
+
+    garbageImage.addEventListener('touchstart', function (event) {
+        event.preventDefault();
+    });
+
     dateWeightArea.appendChild(garbageImage);
 
     gymDiaryContentElement.appendChild(dateWeightArea);
