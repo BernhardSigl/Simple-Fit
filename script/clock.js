@@ -39,6 +39,10 @@ let settings = false;
 let preCounterId;
 
 async function init() {
+    document.getElementById('requiresAlertTimeId').classList.add('visibilityHidden');
+    setTimeout(() => {
+        document.getElementById('requiresAlertTimeId').classList.remove('visibilityHidden');
+    }, 3000);
     await loadUsersArray();
     await loadLoggedInUser();
     await loadRememberMe();
@@ -49,7 +53,6 @@ async function init() {
     await createIndividuallyIntervalsStandardArray();
     await loadIndividuallyIntervalsStandard();
     await loadIntervals();
-
     await createIndividuallyPreIntervalsStandardArray();
     await loadIndividuallyPreIntervalsStandard();
 
@@ -109,6 +112,10 @@ async function init() {
     document.getElementById('firstIntervalBtnId').innerHTML = 'Off';
     toggleVisibilityByClass('changeIntervalArea', false);
     toggleVisibilityById('contentStartPageId', true);
+    document.getElementById('editAlertId').classList.remove('intervalLimit');
+    document.getElementById('editPreAlertId').classList.remove('intervalLimit');
+    document.getElementById('intervalSecondNumberFieldId').value = document.getElementById('secondIntervalBtnId').innerHTML;
+    document.getElementById('intervalThirdNumberFieldId').value = document.getElementById('thirdIntervalBtnId').innerHTML;
     // addDiary();
     gymDiaryArray = [];
     savegGymDiaryArray()
@@ -484,6 +491,8 @@ function confirmFirstIntervalAsStandard() {
     thirdIntervalStandard = false;
     setGoFirst();
     saveIntervalsStandard();
+    document.getElementById('intervalSecondNumberFieldId').style.background = '';
+    document.getElementById('intervalThirdNumberFieldId').style.background = '';
 }
 
 function confirmSecondIntervalAsStandard() {
@@ -492,6 +501,8 @@ function confirmSecondIntervalAsStandard() {
     thirdIntervalStandard = false;
     setGoSecond();
     saveIntervalsStandard();
+    document.getElementById('intervalSecondNumberFieldId').style.background = '#413534';
+    document.getElementById('intervalThirdNumberFieldId').style.background = '';
 }
 
 function confirmThirdIntervalAsStandard() {
@@ -500,6 +511,8 @@ function confirmThirdIntervalAsStandard() {
     thirdIntervalStandard = true;
     setGoThird();
     saveIntervalsStandard();
+    document.getElementById('intervalSecondNumberFieldId').style.background = '';
+    document.getElementById('intervalThirdNumberFieldId').style.background = '#413534';
 }
 
 function confirmOffPreIntervalAsStandard() {
@@ -508,6 +521,8 @@ function confirmOffPreIntervalAsStandard() {
     thirdPreIntervalStandard = false;
     setPreIntervalOff();
     savePreIntervalsStandard()
+    document.getElementById('preIntervalFirstNumberFieldId').style.background = '';
+    document.getElementById('preIntervalSecondNumberFieldId').style.background = '';
 }
 
 function confirmFirstPreIntervalAsStandard() {
@@ -516,6 +531,16 @@ function confirmFirstPreIntervalAsStandard() {
     thirdPreIntervalStandard = false;
     setPreIntervalFirst();
     savePreIntervalsStandard()
+    if (intervalTime === false) {
+        setPreIntervalOff();
+        toggleVisibilityById('requiresAlertTimeId', true);
+        setTimeout(() => {
+            toggleVisibilityById('requiresAlertTimeId', false);
+        }, 2500);
+    } else {
+        document.getElementById('preIntervalFirstNumberFieldId').style.background = '#413534';
+        document.getElementById('preIntervalSecondNumberFieldId').style.background = '';
+    }
 }
 
 function confirmSecondPreIntervalAsStandard() {
@@ -524,6 +549,16 @@ function confirmSecondPreIntervalAsStandard() {
     thirdPreIntervalStandard = true;
     setPreIntervalSecond();
     savePreIntervalsStandard()
+    if (intervalTime === false) {
+        setPreIntervalOff();
+        toggleVisibilityById('requiresAlertTimeId', true);
+        setTimeout(() => {
+            toggleVisibilityById('requiresAlertTimeId', false);
+        }, 2500);
+    } else {
+        document.getElementById('preIntervalFirstNumberFieldId').style.background = '';
+        document.getElementById('preIntervalSecondNumberFieldId').style.background = '#413534';
+    }
 }
 
 function addDiary(bodypartIndex) {

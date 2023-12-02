@@ -60,15 +60,9 @@ function renderGymDiaryElement(index) {
     const garbageImage = document.createElement('img');
     garbageImage.src = 'img/garbage.png';
     garbageImage.className = 'lastWeightImg';
-
-    garbageImage.addEventListener('click', function () {
+    garbageImage.onclick = function () {
         deleteGymDiaryElement(index);
-    });
-
-    garbageImage.addEventListener('touchstart', function (event) {
-        event.preventDefault();
-    });
-
+    };
     dateWeightArea.appendChild(garbageImage);
 
     gymDiaryContentElement.appendChild(dateWeightArea);
@@ -113,6 +107,7 @@ function renderGymDiaryElement(index) {
 
     gymDiaryContentElement.appendChild(additionalInputsContainer);
 
+    // Füge den gymDiaryContentElement zum Gym-Diary-Inhalt hinzu
     gymDiaryContent.insertBefore(gymDiaryContentElement, gymDiaryContent.firstChild);
 }
 
@@ -138,6 +133,15 @@ function decreaseNumber(inputField) {
 }
 
 function deleteGymDiaryElement(index) {
+    toggleVisibilityById('deleteDiaryElementId', true);
+    document.getElementById('deleteDiaryElementId').innerHTML = /*html*/ `
+    <button id="stopDeleteId" onclick="toggleVisibilityById('deleteDiaryElementId', false)">Abbrechen</button>
+    <button id="acceptDeleteId" onclick="purgeGymDiaryElement(${index})">Löschen</button>
+    `;
+}
+
+function purgeGymDiaryElement(index) {
+    toggleVisibilityById('deleteDiaryElementId', false);
     const gymDiaryContentElement = document.getElementById(`gymDiaryContentElement_${index}`);
     if (gymDiaryContentElement) {
         gymDiaryContentElement.remove();

@@ -10,7 +10,11 @@ function showSettings() {
     toggleVisibilityById('logOutBtnId', false);
     toggleVisibilityById('welcomeMessageId', false);
     toggleVisibilityByClass('changeIntervalArea', true);
+    toggleVisibilityByClass('intervalLimit', true);
     toggleVisibilityById('addDiaryBtnImgId', true);
+    toggleVisibilityById('updateImgId', false);
+    document.getElementById('editAlertId').classList.add('intervalLimit');
+    document.getElementById('editPreAlertId').classList.add('intervalLimit');
     document.getElementById('scrollboxId').classList.remove('scrollboxStartPage');
     let diaryRightBtnArea = document.getElementsByClassName('diaryRightBtnArea');
     for (let i = 0; i < diaryRightBtnArea.length; i++) {
@@ -40,6 +44,9 @@ function backToMenu() {
     toggleVisibilityById('welcomeMessageId', true);
     toggleVisibilityByClass('changeIntervalArea', false);
     toggleVisibilityById('addDiaryBtnImgId', false);
+    toggleVisibilityById('updateImgId', true);
+    document.getElementById('editAlertId').classList.remove('intervalLimit');
+    document.getElementById('editPreAlertId').classList.remove('intervalLimit');
     document.getElementById('scrollboxId').classList.add('scrollboxStartPage');
     let diaryRightBtnArea = document.getElementsByClassName('diaryRightBtnArea');
     for (let i = 0; i < diaryRightBtnArea.length; i++) {
