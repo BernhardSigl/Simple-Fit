@@ -20,6 +20,11 @@ function renderGymDiaryElement(index) {
     const gymDiaryContent = document.getElementById('gymDiaryContent');
     i++;
 
+    const gymDiaryContentElement = document.createElement('div');
+    gymDiaryContentElement.id = `gymDiaryContentElement_${index}`;
+    gymDiaryContentElement.className = 'gymDiaryContentElement';
+
+    // Erstelle dateWeightArea
     const dateWeightArea = document.createElement('div');
     dateWeightArea.className = 'dateWeightArea';
 
@@ -48,13 +53,21 @@ function renderGymDiaryElement(index) {
     lastWeight.className = 'lastWeightImg';
     dateWeightArea.appendChild(lastWeight);
 
-    // Änderungen: Füge dem lastWeight-Element einen Index hinzu und rufe die copyLastWeight-Funktion auf
     lastWeight.onclick = function () {
         copyLastWeight(index);
     };
 
-    gymDiaryContent.appendChild(dateWeightArea);
+    const garbageImage = document.createElement('img');
+    garbageImage.src = 'img/garbage.png';
+    garbageImage.className = 'lastWeightImg';
+    garbageImage.onclick = function () {
+        deleteGymDiaryElement(index);
+    };
+    dateWeightArea.appendChild(garbageImage);
 
+    gymDiaryContentElement.appendChild(dateWeightArea);
+
+    // Erstelle inputFieldRepsArea
     const additionalInputsContainer = document.createElement('div');
     additionalInputsContainer.className = 'inputFieldRepsArea';
     additionalInputsContainer.style.display = 'flex';
@@ -92,13 +105,9 @@ function renderGymDiaryElement(index) {
         additionalInputsContainer.appendChild(repsFieldAndBtnsArea);
     }
 
-    gymDiaryContent.appendChild(additionalInputsContainer);
+    gymDiaryContentElement.appendChild(additionalInputsContainer);
 
-    flatpickr(dateInputElement, {
-        enableTime: false,
-        dateFormat: 'd/m/Y',
-        defaultDate: 'today',
-    });
+    gymDiaryContent.insertBefore(gymDiaryContentElement, gymDiaryContent.firstChild);
 }
 
 function copyLastWeight(index) {
@@ -120,4 +129,11 @@ function increaseNumber(inputField) {
 function decreaseNumber(inputField) {
     const currentValue = parseInt(inputField.value, 10) || 0;
     inputField.value = Math.max(currentValue - 1, 0);
+}
+
+function deleteGymDiaryElement(index) {
+    const gymDiaryContentElement = document.getElementById(`gymDiaryContentElement_${index}`);
+    if (gymDiaryContentElement) {
+        gymDiaryContentElement.remove();
+    }
 }

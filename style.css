@@ -11,9 +11,9 @@ body {
 
 .content {
     align-items: center;
-    width: 327px;
+    width: 300px;
     height: 100%;
-    padding: 60px 24px 20px;
+    padding: 60px 12px 20px;
     /* box-sizing: border-box; */
 }
 
@@ -397,9 +397,10 @@ input {
     border: none;
     height: 30px;
     color: white;
-    width: 280px;
+    width: 340px;
     padding: 0;
     border-radius: 3px;
+    font-family: 'Roboto';
 }
 
 #gymDiaryContainer {
@@ -413,8 +414,8 @@ input {
 }
 
 .inputFieldReps {
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     padding: 0;
 }
 
@@ -425,8 +426,8 @@ input {
 
 .addRep,
 .removeRep {
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
 }
 
 .addRemoveBtnArea {
@@ -437,6 +438,8 @@ input {
 
 .repsFieldAndBtnsArea {
     display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .dateWeightArea {
@@ -454,6 +457,12 @@ input {
 .lastWeightImg {
     width: 24px;
     height: 24px;
+}
+
+.gymDiaryContentElement {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 /* scroll */
