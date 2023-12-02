@@ -62,7 +62,6 @@ async function init() {
     setActiveSPRBtn('pauseBtnId');
     settings = false;
     await loadGymDiaryArray();
-    renderDiaries();
     let diaryRightBtnArea = document.getElementsByClassName('diaryRightBtnArea');
     for (let i = 0; i < diaryRightBtnArea.length; i++) {
         diaryRightBtnArea[i].style.display = 'none';
@@ -76,7 +75,7 @@ async function init() {
     for (let i = 0; i < clickOnDiaryBtn.length; i++) {
         clickOnDiaryBtn[i].classList.remove('dNone');
     }
-    document.getElementById('scrollboxId').classList.add('scrollboxStartPage');
+    // document.getElementById('scrollboxId').classList.add('scrollboxStartPage');
 
     await welcomeMessage();
     if (firstIntervalTime === null || isNaN(firstIntervalTime)) {
@@ -128,9 +127,11 @@ async function init() {
     document.getElementById('intervalThirdNumberFieldId').value = document.getElementById('thirdIntervalBtnId').innerHTML;
     document.getElementById('preIntervalFirstNumberFieldId').value = document.getElementById('preFirstPreIntervalBtnId').innerHTML;
     document.getElementById('preIntervalSecondNumberFieldId').value = document.getElementById('preSecondIntervalBtnId').innerHTML;
-    // addDiary();
-    gymDiaryArray = [];
-    savegGymDiaryArray()
+    renderDiaryInputs();
+    for (let i = 0; i < gymDiaryArray.length; i++) {
+        toggleVisibilityById(`deleteDiaryBodypart_${i}`, false);
+        toggleVisibilityById(`saveDiaryBodypart_${i}`, false);
+    }
 }
 
 async function checkEmptyUsers() {
@@ -600,84 +601,107 @@ function confirmSecondPreIntervalAsStandard() {
         document.getElementById('preIntervalSecondNumberFieldId').style.background = '#413534';
     }
 }
-
-function addDiary(bodypartIndex) {
-    document.getElementById('gymDiaryBtns').innerHTML += /*html*/ `
-    <div class="inputDiaryBtnArea dFlex" id="bodypartField_${bodypartIndex}" onclick="saveAfterInput()">
-        <input type="text" class="inputDiaryBtn inputDiaryBtnEdit" id="bodypartTextId_${bodypartIndex}" disabled>
-        <div class="column spaceBetween diaryRightBtnArea">
-            <img src="img/cross.png" class="standardConfirmBtn" id="diaryDeleteId_${bodypartIndex}" onclick="saveAfterInput(), deleteDiaryElement(${bodypartIndex})">
-            <img src="img/confirm.png" class="standardConfirmBtn" id="addDiaryElementId_${bodypartIndex}" onclick="addDiaryElement(${bodypartIndex})">
-        </div>
-    <div>
-    `;
-}
-
-function renderDiaries() {
-    let gymDiaryElement = document.getElementById('gymDiaryBtns');
-    gymDiaryElement.innerHTML = "";
-    for (let bodypartIndex = 0; bodypartIndex < gymDiaryArray.length; bodypartIndex++) {
-        const bodypart = gymDiaryArray[bodypartIndex];
-        const newBodypartElement = document.createElement('div');
-        newBodypartElement.className = 'inputDiaryBtnArea dFlex';
-        newBodypartElement.id = `bodypartField_${bodypartIndex}`;
-        newBodypartElement.innerHTML = /*html*/ `
-        <div class="relative">
-            <div class="clickOnDiaryBtn" onclick="openDiary(${bodypartIndex})">
-            </div>
-              <input type="text" class="inputDiaryBtn inputDiaryBtnEdit" id="bodypartTextId_${bodypartIndex}" onclick="saveAfterInput()">
-        </div>
-            <div class="column spaceBetween diaryRightBtnArea">
-                <img src="img/cross.png" class="standardConfirmBtn" onclick="saveAfterInput(), deleteDiaryElement(${bodypartIndex})">
-            </div>
-        `;
-        gymDiaryElement.appendChild(newBodypartElement);
-        document.getElementById(`bodypartTextId_${bodypartIndex}`).value = bodypart;
-    }
-}
+let bodypartIndex = -1;
 
 function addNewBodypart() {
-    saveDiaryInputs();
     const gymDiaryElement = document.getElementById('gymDiaryBtns');
-    const newBodypartIndex = gymDiaryArray.length;
+    const newIndex = gymDiaryArray.length; // Verwende die aktuelle Länge des Arrays als Index
     const newBodypartElement = document.createElement('div');
-    newBodypartElement.className = 'inputDiaryBtnArea dFlex';
-    newBodypartElement.id = `bodypartField_${newBodypartIndex}`;
+    newBodypartElement.className = 'inputDiaryBtnArea column';
+    newBodypartElement.id = `bodypartField_${newIndex}`;
     newBodypartElement.innerHTML = /*html*/ `
-    <div class="relative">
-        <div class="clickOnDiaryBtn" onclick="openDiary(${newBodypartIndex})">
+        <div class="relative">
+            <div class="clickOnDiaryBtn">
+            </div>
+            <input type="text" class="inputDiaryBtn font16" id="bodypartTextId_${newIndex}">
         </div>
-        <input type="text" class="inputDiaryBtn" id="bodypartTextId_${newBodypartIndex}" onclick="saveAfterInput()">
-    </div>
-        <div class="column spaceBetween diaryRightBtnArea">
-            <img src="img/cross.png" class="standardConfirmBtn" onclick="deleteDiaryElement(${newBodypartIndex})">
+        <div class="deleteAndMemoryDiaryBtns">
+            <div class="column spaceBetween diaryRightBtnArea">
+            <img src="img/garbage.png" class="saveDiaryImg" onclick="deleteDiaryElement(${newIndex})">
+            </div>
+            <img src="img/save.png" class="saveDiaryImg" onclick="saveDiaryElement(${newIndex})" style="margin-top: 3px;">
         </div>
     `;
     gymDiaryElement.appendChild(newBodypartElement);
-    gymDiaryArray.push('');
+    let clickOnDiaryBtn = document.getElementsByClassName('clickOnDiaryBtn');
+    for (let i = 0; i < clickOnDiaryBtn.length; i++) {
+        clickOnDiaryBtn[i].classList.add('dNone');
+    }
 }
 
-function saveDiaryInputs() {
-    for (let bodypartIndex = 0; bodypartIndex < gymDiaryArray.length; bodypartIndex++) {
-        const bodypartValue = document.getElementById(`bodypartTextId_${bodypartIndex}`).value;
-        gymDiaryArray[bodypartIndex] = bodypartValue;
+function saveDiaryElement(index) {
+    const bodypartTextElement = document.getElementById(`bodypartTextId_${index}`);
+    const bodypartValue = bodypartTextElement.value;
+
+    if (!gymDiaryArray[index]) {
+        gymDiaryArray[index] = {}; // Falls noch kein Objekt im Array existiert, erstelle eins
     }
-    savegGymDiaryArray();
+    document.getElementById(`bodypartTextId_${index}`).style.background = 'green';
+    setTimeout(() => {
+        document.getElementById(`bodypartTextId_${index}`).style.background = '#202124';
+    }, 500);
+    gymDiaryArray[index].bodypart = bodypartValue;
+    saveGymDiaryArray();
+}
+
+function renderDiaryInputs() {
+    const gymDiaryElement = document.getElementById('gymDiaryBtns');
+    gymDiaryElement.innerHTML = ''; // Entferne vorhandene Elemente
+
+    for (let i = 0; i < gymDiaryArray.length; i++) {
+        const newBodypartElement = document.createElement('div');
+        newBodypartElement.className = 'inputDiaryBtnArea column';
+        newBodypartElement.id = `bodypartField_${i}`;
+        newBodypartElement.innerHTML = /*html*/ `
+        <div class="clickOnDiaryBtn">&nbsp;</div>
+        <input type="text" class="inputDiaryBtn font16" id="bodypartTextId_${i}" onclick="openDiary(${i})" readonly>
+        <div class="deleteAndMemoryDiaryBtns">
+            <div class="column spaceBetween diaryRightBtnArea dNone" id="deleteDiaryBodypart_${i}">
+            <img src="img/garbage.png" class="saveDiaryImg" onclick="deleteDiaryElement(${i})">
+            </div>
+            <img src="img/save.png" id="saveDiaryBodypart_${i}" class="saveDiaryImg" onclick="saveDiaryElement(${i})">
+        </div>
+        `;
+
+        gymDiaryElement.appendChild(newBodypartElement);
+
+        if (gymDiaryArray[i].bodypart) {
+            document.getElementById(`bodypartTextId_${i}`).value = gymDiaryArray[i].bodypart;
+        }
+
+        let clickOnDiaryBtn = document.getElementsByClassName('clickOnDiaryBtn');
+        for (let j = 0; j < clickOnDiaryBtn.length; j++) {
+            clickOnDiaryBtn[j].classList.add('dNone');
+        }
+        if (settings === true) {
+            toggleVisibilityById(`deleteDiaryBodypart_${i}`, true);
+            toggleVisibilityById(`saveDiaryBodypart_${i}`, true);
+        } else {
+            toggleVisibilityById(`deleteDiaryBodypart_${i}`, false);
+            toggleVisibilityById(`saveDiaryBodypart_${i}`, false);
+        }
+    }
+}
+
+function purgeDiaryCategory(bodypartIndex) {
+    gymDiaryArray.splice(bodypartIndex, 1);
+    saveGymDiaryArray();
+    renderDiaryInputs();
+    toggleVisibilityById('deleteDiaryElementId', false);
 }
 
 function deleteDiaryElement(bodypartIndex) {
-    gymDiaryArray.splice(bodypartIndex, 1);
-    renderDiaries();
-    savegGymDiaryArray();
-}
-
-function saveAfterInput() {
-    saveDiaryInputs();
+    toggleVisibilityById('deleteDiaryElementId', true);
+    document.getElementById('deleteDiaryElementId').innerHTML = /*html*/ `
+    <button id="stopDeleteId" onclick="toggleVisibilityById('deleteDiaryElementId', false)">Abbrechen</button>
+    <button id="acceptDeleteId" onclick="purgeDiaryCategory(${bodypartIndex})">Löschen</button>
+    `;
 }
 
 function deleteGymDiaryArray() {
     gymDiaryArray = [];
-    savegGymDiaryArray();
+    saveDiaryInputs();
+    renderDiaryInputs();
 }
 
 async function deleteAllUser() {

@@ -1,24 +1,50 @@
-let i = 0;
+// let i = 0;
 
 function openDiary(bodypartIndex) {
+    changeShowDiaryFunction();
+    document.getElementById('settingsImgId').src = 'img/backArrow.png';
     toggleVisibilityById('dumbellId', false);
     toggleVisibilityById('welcomeMessageId', false);
     toggleVisibilityById('btnAreaId', false);
     toggleVisibilityById('gymDiaryBtns', false);
     toggleVisibilityById('logOutBtnId', false);
     toggleVisibilityById('updateImgId', false);
+    toggleVisibilityById('gymDiaryStartPageId', false);
+    toggleVisibilityById('gymDiaryAreaId', true);
     document.getElementById('gymDiaryAreaId').innerHTML = /*html*/ `
-        <span class="font24 bold white">${gymDiaryArray[bodypartIndex]}</span>
+        <span class="font24 bold white">${gymDiaryArray[bodypartIndex].bodypart}</span>
         <div id="gymDiaryContainer" class="column gap10">
-            <img src="img/plus.png" class="symbol28" onclick="renderGymDiaryElement(i)">
-            <div id="gymDiaryContent" class="column gap10"></div>
+            <img src="img/plus.png" class="symbol28" onclick="renderGymDiaryElement(${bodypartIndex})">
+            <div id="gymDiaryContent" class="column gap10 scrollbox scrollboxDiary"></div>
         </div>
     `;
 }
 
+function changeShowDiaryFunction() {
+    document.getElementById('settingsImgId').onclick = function () {
+        fromDiaryToMenu();
+    };
+}
+
+function fromDiaryToMenu() {
+    document.getElementById('settingsImgId').src = 'img/settings.png';
+    toggleVisibilityById('dumbellId', true);
+    toggleVisibilityById('welcomeMessageId', true);
+    toggleVisibilityById('btnAreaId', true);
+    toggleVisibilityById('gymDiaryBtns', true);
+    toggleVisibilityById('gymDiaryStartPageId', true);
+    toggleVisibilityById('gymDiaryAreaId', false);
+    toggleVisibilityById('logOutBtnId', true);
+    toggleVisibilityById('updateImgId', true);
+    toggleVisibilityById('gymDiaryContent', false);
+    toggleVisibilityById('gymDiaryContainer', false);
+    toggleVisibilityById('deleteDiaryElementId', false);
+    originalShowSettingsFunction();
+}
+
 function renderGymDiaryElement(index) {
     const gymDiaryContent = document.getElementById('gymDiaryContent');
-    i++;
+    index++;
 
     const gymDiaryContentElement = document.createElement('div');
     gymDiaryContentElement.id = `gymDiaryContentElement_${index}`;
@@ -143,6 +169,8 @@ function deleteGymDiaryElement(index) {
 function purgeGymDiaryElement(index) {
     toggleVisibilityById('deleteDiaryElementId', false);
     const gymDiaryContentElement = document.getElementById(`gymDiaryContentElement_${index}`);
+    const acceptDeleteElement = document.getElementById('acceptDeleteId');
+    acceptDeleteElement.classList.add('wobble');
     if (gymDiaryContentElement) {
         gymDiaryContentElement.remove();
     }

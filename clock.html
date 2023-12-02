@@ -33,7 +33,7 @@
         <span class="dNone alignCenter whiteFont font24 bold" id="settingstitleId">Settings</span>
         <div class="dNone" id="settingsDescriptionId">
             <span class="alignCenter settingsTitleMessage font16">
-                Set startup settings:
+                Manual:
             </span>
             <div class="alignCenter">
                 <img src="img/exclamation.png" class="symbol15">
@@ -45,6 +45,24 @@
                 <img src="img/confirm.png" class="symbol15">
                 <span class="font16">
                     Confirm input
+                </span>
+            </div>
+            <div class="alignCenter">
+                <img src="img/garbage.png" class="symbol15">
+                <span class="font16">
+                    Delete category
+                </span>
+            </div>
+            <div class="alignCenter">
+                <img src="img/save.png" class="symbol15">
+                <span class="font16">
+                    Save category
+                </span>
+            </div>
+            <div class="alignCenter">
+                <img src="img/plus.png" class="symbol15">
+                <span class="font16">
+                    Add new category
                 </span>
             </div>
         </div>
@@ -189,25 +207,24 @@
             </section>
 
         </section>
-        <section class="column gap6 alignCenter w100" id="gymDiaryAreaId">
+        <section class="column gap6 alignCenter w100" id="gymDiaryStartPageId">
             <div class="whiteFont font18 bold" id="gymDiaryTitleId">Gym diary</div>
-            <div class="scrollbox scrollboxStartPage" id="scrollboxId">
-                <div class="alignCenter gap10 w100 gymDiaryArea" id="gymDiaryBtns">
-                </div>
+            <div class="alignCenter gap10 w100 gymDiaryArea spaceEvenly" id="gymDiaryBtns">
             </div>
             <div class="w100">
                 <img src="img/plus.png" class="dNone" id="addDiaryBtnImgId" onclick="addNewBodypart()">
             </div>
         </section>
         <!-- open gym diary -->
-        <section id="gymDiaryAreaId">
-
+        <section id="gymDiaryAreaId" class="column gap6 alignCenter w100">
+            <div class="scrollbox scrollboxStartPage" id="scrollboxDiaryId">
+            </div>
         </section>
 
         <section class="errorMessage dNone font16 lightBold" id="requiresAlertTimeId">
             Requires alert time selection
         </section>
-        <section class="errorMessage dNone font16 lightBold" id="deleteDiaryElementId">
+        <section class="purgeBtns dNone font16 lightBold" id="deleteDiaryElementId">
         </section>
     </div>
 </body>

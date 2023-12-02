@@ -76,7 +76,7 @@ async function loadLoggedInUser() {
     }
 }
 
-async function savegGymDiaryArray() {
+async function saveGymDiaryArray() {
     let gymDiaryArrayAsText = JSON.stringify(gymDiaryArray);
     localStorage.setItem('gymDiaryArray', gymDiaryArrayAsText);
 }
