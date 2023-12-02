@@ -109,6 +109,16 @@ async function init() {
     if (preIntervalTime === 0) {
         setPreIntervalOff();
     }
+    if (intervalsStandardArray[0].secondIntervalStandard === true) {
+        document.getElementById('intervalSecondNumberFieldId').style.background = '#413534';
+    } else if (intervalsStandardArray[0].thirdIntervalStandard === true) {
+        document.getElementById('intervalThirdNumberFieldId').style.background = '#413534';
+    }
+    if (preIntervalsStandardArray[0].secondPreIntervalStandard === true && intervalsStandardArray[0].firstIntervalStandard === false) {
+        document.getElementById('preIntervalFirstNumberFieldId').style.background = '#413534';
+    } else if (preIntervalsStandardArray[0].thirdPreIntervalStandard === true && intervalsStandardArray[0].firstIntervalStandard === false) {
+        document.getElementById('preIntervalSecondNumberFieldId').style.background = '#413534';
+    }
     document.getElementById('firstIntervalBtnId').innerHTML = 'Off';
     toggleVisibilityByClass('changeIntervalArea', false);
     toggleVisibilityById('contentStartPageId', true);
@@ -116,6 +126,8 @@ async function init() {
     document.getElementById('editPreAlertId').classList.remove('intervalLimit');
     document.getElementById('intervalSecondNumberFieldId').value = document.getElementById('secondIntervalBtnId').innerHTML;
     document.getElementById('intervalThirdNumberFieldId').value = document.getElementById('thirdIntervalBtnId').innerHTML;
+    document.getElementById('preIntervalFirstNumberFieldId').value = document.getElementById('preFirstPreIntervalBtnId').innerHTML;
+    document.getElementById('preIntervalSecondNumberFieldId').value = document.getElementById('preSecondIntervalBtnId').innerHTML;
     // addDiary();
     gymDiaryArray = [];
     savegGymDiaryArray()
@@ -451,7 +463,14 @@ function confirmSecondInterval(inputId, buttonId) {
         intervalTime = parseInt(newIntervalTime);
         document.getElementById(buttonId).innerText = newIntervalTime;
         saveIntervals();
-        document.getElementById(inputId).value = '';
+        document.getElementById('intervalSecondNumberFieldId').style.background = 'green';
+        setTimeout(() => {
+            if (secondIntervalStandard === true) {
+                document.getElementById('intervalSecondNumberFieldId').style.background = '#413534';
+            } else {
+                document.getElementById('intervalSecondNumberFieldId').style.background = '';
+            }
+        }, 500);
     }
 }
 
@@ -461,7 +480,14 @@ function confirmThirdInterval(inputId, buttonId) {
         intervalTime = parseInt(newIntervalTime);
         document.getElementById(buttonId).innerText = newIntervalTime;
         saveIntervals();
-        document.getElementById(inputId).value = '';
+        document.getElementById('intervalThirdNumberFieldId').style.background = 'green';
+        setTimeout(() => {
+            if (thirdIntervalStandard === true) {
+                document.getElementById('intervalThirdNumberFieldId').style.background = '#413534';
+            } else {
+                document.getElementById('intervalThirdNumberFieldId').style.background = '';
+            }
+        }, 500);
     }
 }
 
@@ -471,7 +497,14 @@ function confirmFirstPreInterval(inputId, buttonId) {
         preIntervalTime = 60 - parseInt(newIntervalTime);
         document.getElementById(buttonId).innerText = newIntervalTime;
         saveIntervals();
-        document.getElementById(inputId).value = '';
+        document.getElementById('preIntervalFirstNumberFieldId').style.background = 'green';
+        setTimeout(() => {
+            if (firstPreIntervalStandard === true) {
+                document.getElementById('preIntervalFirstNumberFieldId').style.background = '#413534';
+            } else {
+                document.getElementById('preIntervalFirstNumberFieldId').style.background = '';
+            }
+        }, 500);
     }
 }
 
@@ -481,7 +514,14 @@ function confirmSecondPreInterval(inputId, buttonId) {
         preIntervalTime = 60 - parseInt(newIntervalTime);
         document.getElementById(buttonId).innerText = newIntervalTime;
         saveIntervals();
-        document.getElementById(inputId).value = '';
+        document.getElementById('preIntervalSecondNumberFieldId').style.background = 'green';
+        setTimeout(() => {
+            if (secondPreIntervalStandard === true) {
+                document.getElementById('preIntervalSecondNumberFieldId').style.background = '#413534';
+            } else {
+                document.getElementById('preIntervalSecondNumberFieldId').style.background = '';
+            }
+        }, 500);
     }
 }
 
