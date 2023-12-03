@@ -20,9 +20,8 @@
     <link rel="icon" href="img/dumbell.png">
 </head>
 
-<body onload="init()">
-    <div class="content column gap10 dNone" id="contentStartPageId"
-        onclick="toggleVisibilityById('flagContainer', false)">
+<body onload="init()" onclick="toggleVisibilityById('flagContainer', false)">
+    <div class="content column gap10 dNone" id="contentStartPageId">
         <img src="img/updates.png" class="symbol28 btnTopLeft" id="updateImgId" onclick="showUpdates()">
 
         <img src="img/world.png" class="symbol28 btnTopLeft dNone" id="flagsId"
@@ -32,8 +31,16 @@
                 onclick="doNotClose(event); translateEnglish(); toggleVisibilityById('flagContainer', false)">
             <img src="img/germanflag.png" class="flag"
                 onclick="doNotClose(event); translateGerman(); toggleVisibilityById('flagContainer', false)">
+            <img src="img/bavariaflag.png" class="flag"
+                onclick="doNotClose(event); translateBavaria(); toggleVisibilityById('flagContainer', false)">
             <img src="img/serbianflag.png" class="flag"
                 onclick="doNotClose(event); translateSerbian(); toggleVisibilityById('flagContainer', false)">
+            <img src="img/marokkoflag.png" class="flag"
+                onclick="doNotClose(event); translateMarokko(); toggleVisibilityById('flagContainer', false)">
+            <img src="img/chinaflag.png" class="flag"
+                onclick="doNotClose(event); translateChina(); toggleVisibilityById('flagContainer', false)">
+            <img src="img/spainflag.png" class="flag"
+                onclick="doNotClose(event); translateSpain(); toggleVisibilityById('flagContainer', false)">
         </div>
 
         <img src="img/logOut.png" class="symbol28 btnTopRightSecond" id="logOutBtnId" onclick="logOut()">

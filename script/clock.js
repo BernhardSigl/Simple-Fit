@@ -47,16 +47,6 @@ async function init() {
     await loadUsersArray();
     await loadLoggedInUser();
     await loadRememberMe();
-    await loadLanguage();
-    if (languageArray[0] === undefined) {
-        translateEnglish();
-    } else if (languageArray[0] === 'english') {
-        translateEnglish();
-    } else if (languageArray[0] === 'german') {
-        translateGerman();
-    } else if (languageArray[0] === 'serbian') {
-        translateSerbian();
-    }
     await checkEmptyUsers();
     await createIndividuallyIntervalsArray();
     await loadIndividuallyIntervals();
@@ -142,6 +132,24 @@ async function init() {
     for (let i = 0; i < gymDiaryArray.length; i++) {
         toggleVisibilityById(`deleteDiaryBodypart_${i}`, false);
         toggleVisibilityById(`saveDiaryBodypart_${i}`, false);
+    }
+    await loadLanguage();
+    if (languageArray[0] === undefined) {
+        translateEnglish();
+    } else if (languageArray[0] === 'english') {
+        translateEnglish();
+    } else if (languageArray[0] === 'german') {
+        translateGerman();
+    } else if (languageArray[0] === 'serbian') {
+        translateSerbian();
+    } else if (languageArray[0] === 'marokko') {
+        translateMarokko();
+    } else if (languageArray[0] === 'china') {
+        translateChina();
+    } else if (languageArray[0] === 'spain') {
+        translateSpain();
+    } else if (languageArray[0] === 'bavaria') {
+        translateBavaria();
     }
 }
 
