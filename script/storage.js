@@ -87,3 +87,15 @@ async function loadGymDiaryArray() {
         gymDiaryArray = JSON.parse(gymDiaryArrayAsText);
     }
 }
+
+async function saveLanguage() {
+    let languageArrayAsText = JSON.stringify(languageArray);
+    localStorage.setItem('languageArray', languageArrayAsText);
+}
+
+async function loadLanguage() {
+    let languageArrayAsText = localStorage.getItem('languageArray');
+    if (languageArrayAsText) {
+        languageArray = JSON.parse(languageArrayAsText);
+    }
+}

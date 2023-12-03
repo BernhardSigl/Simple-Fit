@@ -131,7 +131,7 @@ body {
 }
 
 #updatesDescriptionId {
-    height: 70vh;
+    height: 70vh !important;
     overflow-y: auto;
 }
 
@@ -558,6 +558,28 @@ input {
 .scrollbox::-webkit-scrollbar-thumb {
     background-color: grey;
     border-radius: 10px;
+}
+
+.flagArea {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: absolute;
+    top: 60px;
+    left: 20px;
+    padding: 12px;
+    background-color: #202124;
+    width: auto;
+    height: auto;
+    border-radius: 6px;
+    border: solid 2px grey;
+}
+
+.flag {
+    width: 40px;
+    height: 26px;
+    border: 1px solid black;
+    cursor: pointer;
 }
 
 /* scroll diary*/

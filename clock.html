@@ -12,6 +12,7 @@
     <script src="script/updates.js"></script>
     <script src="script/templates.js"></script>
     <script src="script/storage.js"></script>
+    <script src="script/translate.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
@@ -20,11 +21,28 @@
 </head>
 
 <body onload="init()">
-    <div class="content column gap10 dNone" id="contentStartPageId">
+    <div class="content column gap10 dNone" id="contentStartPageId"
+        onclick="toggleVisibilityById('flagContainer', false)">
         <img src="img/updates.png" class="symbol28 btnTopLeft" id="updateImgId" onclick="showUpdates()">
+
+        <img src="img/world.png" class="symbol28 btnTopLeft dNone" id="flagsId"
+            onclick="toggleVisibilityById('flagContainer', true); doNotClose(event)">
+        <div id="flagContainer" class="flagArea dNone">
+            <img src="img/englishflag.png" class="flag"
+                onclick="doNotClose(event); translateEnglish(); toggleVisibilityById('flagContainer', false)">
+            <img src="img/germanflag.png" class="flag"
+                onclick="doNotClose(event); translateGerman(); toggleVisibilityById('flagContainer', false)">
+            <img src="img/serbianflag.png" class="flag"
+                onclick="doNotClose(event); translateSerbian(); toggleVisibilityById('flagContainer', false)">
+        </div>
+
         <img src="img/logOut.png" class="symbol28 btnTopRightSecond" id="logOutBtnId" onclick="logOut()">
         <img src="img/settings.png" class="symbol28 btnTopRight" id="settingsImgId" onclick="showSettings()">
         <img src="img/dumbell.png" class="dumbell" id="dumbellId">
+        <div class="gap6 w100 justifyCenter">
+            <span id="welcomeMessageTranslateId" class="whiteFont font16">Welcome</span>
+            <span id="welcomeMessageId" class="whiteFont font16"></span>
+        </div>
         <span id="welcomeMessageId" class="whiteFont font16"></span>
         <div id="timeId" class="font36">
             00:00:00
@@ -32,36 +50,36 @@
         <!-- settings -->
         <span class="dNone alignCenter whiteFont font24 bold" id="settingstitleId">Settings</span>
         <div class="dNone" id="settingsDescriptionId">
-            <span class="alignCenter settingsTitleMessage font16">
+            <span class="alignCenter settingsTitleMessage font16" id="manualTranslateId">
                 Manual:
             </span>
             <div class="alignCenter">
                 <img src="img/exclamation.png" class="symbol15">
-                <span class="font16">
+                <span class="font16" id="setStandardBtnsTranslateId">
                     Set standard buttons
                 </span>
             </div>
             <div class="alignCenter">
                 <img src="img/confirm.png" class="symbol15">
-                <span class="font16">
+                <span class="font16" id="confirmInputTranslateId">
                     Confirm input
                 </span>
             </div>
             <div class="alignCenter">
                 <img src="img/garbage.png" class="symbol15">
-                <span class="font16">
+                <span class="font16" id="deleteCategoryTranslateId">
                     Delete category
                 </span>
             </div>
             <div class="alignCenter">
                 <img src="img/save.png" class="symbol15">
-                <span class="font16">
+                <span class="font16" id="saveCategoryTranslateId">
                     Save category
                 </span>
             </div>
             <div class="alignCenter">
                 <img src="img/plus.png" class="symbol15">
-                <span class="font16">
+                <span class="font16" id="addNewCategoryTranslateId">
                     Add new category
                 </span>
             </div>
@@ -69,6 +87,9 @@
         <!-- updates -->
         <span class="dNone alignCenter whiteFont font24 bold w100" id="updatesTitleId">Updates</span>
         <div class="dNone" id="updatesDescriptionId">
+            <span class="font16 bold">03/12/2023</span>
+            <li>language option in settings</li>
+            <li>fix scroll bug at updates</li>
             <span class="font16 bold">02/12/2023</span>
             <li>bigger buttons in settings mode</li>
             <li>add delete diary function</li>
@@ -114,7 +135,9 @@
             </div>
 
             <section class="column gap6 alignCenter">
-                <span class="whiteFont font18 bold">Alert every [min]</span>
+                <span class="whiteFont font18 bold" id="alertEveryMinTranslateId">
+                    Alert every [min]
+                </span>
                 <div class="alignCenter justifyCenter w100 intervalLimit spaceEvenly" id="editAlertId">
                     <div class="column gap6">
                         <button onclick="setGoFirst()" id="firstIntervalBtnId" class="horicontalAndVertical font16">
@@ -161,7 +184,9 @@
             </section>
 
             <section class="column gap6 alignCenter">
-                <span class="whiteFont font18 bold">Pre alert [sec]</span>
+                <span class="whiteFont font18 bold" id="preAlertTranslateId">
+                    Pre alert [sec]
+                </span>
                 <div class="alignCenter justifyCenter w100 intervalLimit spaceEvenly" id="editPreAlertId">
                     <div class="column gap6">
                         <button onclick="setPreIntervalOff()" id="preOffIntervalBtnId"
@@ -212,7 +237,9 @@
 
         </section>
         <section class="column gap6 alignCenter w100" id="gymDiaryStartPageId">
-            <div class="whiteFont font18 bold" id="gymDiaryTitleId">Gym diary</div>
+            <div class="whiteFont font18 bold" id="gymDiaryTitleId">
+                Gym diary
+            </div>
             <div class="alignCenter gap10 w100 gymDiaryArea spaceEvenly" id="gymDiaryBtns">
             </div>
             <div class="w100">

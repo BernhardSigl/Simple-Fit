@@ -13,6 +13,7 @@ function showUpdates() {
     toggleVisibilityById('updatesTitleId', true);
     toggleVisibilityById('updatesDescriptionId', true);
     toggleVisibilityById('updateImgId', false);
+    toggleVisibilityById('welcomeMessageTranslateId', false);
 }
 
 function fromUpdatesToMenu() {
@@ -30,6 +31,7 @@ function fromUpdatesToMenu() {
     toggleVisibilityById('updatesTitleId', false);
     toggleVisibilityById('updatesDescriptionId', false);
     toggleVisibilityById('updateImgId', true);
+    toggleVisibilityById('welcomeMessageTranslateId', true);
 }
 
 function changeShowUpdatesFunction() {

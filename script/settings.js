@@ -12,6 +12,8 @@ function showSettings() {
     toggleVisibilityById('welcomeMessageId', false);
     toggleVisibilityByClass('changeIntervalArea', true);
     toggleVisibilityByClass('intervalLimit', true);
+    toggleVisibilityById('flagsId', true);
+    toggleVisibilityById('welcomeMessageTranslateId', false);
     document.getElementById('gymDiaryAreaId').classList.add('dNone');
     document.getElementById('addDiaryBtnImgId').classList.remove('dNone');
     toggleVisibilityById('updateImgId', false);
@@ -50,6 +52,8 @@ function backToMenu() {
     toggleVisibilityById('logOutBtnId', true);
     toggleVisibilityById('welcomeMessageId', true);
     toggleVisibilityByClass('changeIntervalArea', false);
+    toggleVisibilityById('flagsId', false);
+    toggleVisibilityById('welcomeMessageTranslateId', true);
     document.getElementById('gymDiaryAreaId').classList.add('dNone'); //
     document.getElementById('addDiaryBtnImgId').classList.add('dNone');
     toggleVisibilityById('updateImgId', true);
@@ -85,4 +89,8 @@ function originalShowSettingsFunction() {
     editContactForm.onclick = function () {
         showSettings();
     };
+}
+
+function doNotClose(event) {
+    event.stopPropagation();
 }

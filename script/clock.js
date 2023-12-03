@@ -3,6 +3,7 @@ let intervalsStandardArray = [];
 let preIntervalsStandardArray = [];
 let gymDiaryArray = [];
 let usersArray = [];
+let languageArray = [];
 
 var resetTime = 0;
 var pauseRun = true;
@@ -46,6 +47,16 @@ async function init() {
     await loadUsersArray();
     await loadLoggedInUser();
     await loadRememberMe();
+    await loadLanguage();
+    if (languageArray[0] === undefined) {
+        translateEnglish();
+    } else if (languageArray[0] === 'english') {
+        translateEnglish();
+    } else if (languageArray[0] === 'german') {
+        translateGerman();
+    } else if (languageArray[0] === 'serbian') {
+        translateSerbian();
+    }
     await checkEmptyUsers();
     await createIndividuallyIntervalsArray();
     await loadIndividuallyIntervals();
@@ -270,8 +281,9 @@ async function welcomeMessage() {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
     const capitalizedUserName = capitalizeFirstLetter(loggedInUser[0].name);
-    document.getElementById('welcomeMessageId').innerHTML = `Welcome ${capitalizedUserName}`;
+    document.getElementById('welcomeMessageId').innerHTML = `${capitalizedUserName}`;
 }
+
 let counterActive = false;
 let preCounterActive = false;
 function startTimer(duration, displayElementId) {

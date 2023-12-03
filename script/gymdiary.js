@@ -11,6 +11,7 @@ function openDiary(bodypartIndex) {
     toggleVisibilityById('updateImgId', false);
     toggleVisibilityById('gymDiaryStartPageId', false);
     toggleVisibilityById('gymDiaryAreaId', true);
+    toggleVisibilityById('welcomeMessageTranslateId', false);
     document.getElementById('gymDiaryAreaId').innerHTML = /*html*/ `
         <span class="font24 bold white">${gymDiaryArray[bodypartIndex].bodypart}</span>
         <div id="gymDiaryContainer" class="column gap10">
@@ -39,6 +40,7 @@ function fromDiaryToMenu() {
     toggleVisibilityById('gymDiaryContent', false);
     toggleVisibilityById('gymDiaryContainer', false);
     toggleVisibilityById('deleteDiaryElementId', false);
+    toggleVisibilityById('welcomeMessageTranslateId', true);
     originalShowSettingsFunction();
 }
 
