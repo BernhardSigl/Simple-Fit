@@ -94,6 +94,13 @@
         <!-- updates -->
         <span class="dNone alignCenter whiteFont font24 bold w100" id="updatesTitleId">Updates</span>
         <div class="dNone" id="updatesDescriptionId">
+            <span class="font16 bold">04/12/2023</span>
+            <li>media query diary scroll container</li>
+            <li>force to delete/save new diary item</li>
+            <li>delete/save diary animation</li>
+            <li>add language options on index</li>
+            <li>diary is saved globally</li>
+            <li>fix scroll container size</li>
             <span class="font16 bold">03/12/2023</span>
             <li>fix first log in empty arrays bug</li>
             <li>fix gym diary saving bug</li>
@@ -249,7 +256,7 @@
             <div class="whiteFont font18 bold" id="gymDiaryTitleId">
                 Gym diary
             </div>
-            <div class="alignCenter gap10 w100 gymDiaryArea spaceEvenly" id="gymDiaryBtns">
+            <div class="alignCenter gap10 w100 gymDiaryArea spaceEvenly scrollboxDiarySettings" id="gymDiaryBtns">
             </div>
             <div class="w100">
                 <img src="img/plus.png" class="dNone" id="addDiaryBtnImgId" onclick="addNewBodypart()">
@@ -266,6 +273,9 @@
         </section>
         <section class="errorMessage dNone font16 lightBold red" id="saveDeleteLastDiaryElementTranslateId">
             Save or delete last diary element first
+        </section>
+        <section class="errorMessage dNone font16 lightBold red" id="saveDeleteNewestDiaryElementTranslateId">
+            Save or delete last added diary element first
         </section>
         <section class="purgeBtns dNone font16 lightBold" id="deleteDiaryElementId">
         </section>

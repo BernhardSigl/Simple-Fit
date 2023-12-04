@@ -10,13 +10,35 @@
     <script src="script/authentification.js"></script>
     <script src="script/storage.js"></script>
     <script src="script/translate.js"></script>
-    <title>Simple Fit</title>
+    <script src="script/settings.js"></script>
+    <script src="script/translate.js"></script>
+    <title>Simple Fit - Log in</title>
     <link rel="icon" href="img/dumbell.png">
     <link rel="manifest" href="manifest.json">
 </head>
 
-<body onload="initAuthentication()">
-    <div class="content column gap15 dNone" id="logInContentId">
+<body onload="initAuthentication()" onclick="toggleVisibilityById('flagContainer', false)">
+    <div class="content column gap15 dNone" id="logInContentId" id="flagsId">
+        <img src="img/world.png" class="symbol28 btnTopLeft"
+            onclick="toggleVisibilityById('flagContainer', true); doNotClose(event)">
+        <div id="flagContainer" class="flagArea dNone">
+            <img src="img/englishflag.png" class="flag"
+                onclick="doNotClose(event); translateEnglish(); toggleVisibilityById('flagContainer', false)">
+            <img src="img/germanflag.png" class="flag"
+                onclick="doNotClose(event); translateGerman(); toggleVisibilityById('flagContainer', false)">
+            <img src="img/bavariaflag.png" class="flag"
+                onclick="doNotClose(event); translateBavaria(); toggleVisibilityById('flagContainer', false)">
+            <img src="img/serbianflag.png" class="flag"
+                onclick="doNotClose(event); translateSerbian(); toggleVisibilityById('flagContainer', false)">
+            <img src="img/marokkoflag.png" class="flag"
+                onclick="doNotClose(event); translateMarokko(); toggleVisibilityById('flagContainer', false)">
+            <img src="img/chinaflag.png" class="flag"
+                onclick="doNotClose(event); translateChina(); toggleVisibilityById('flagContainer', false)">
+            <img src="img/spainflag.png" class="flag"
+                onclick="doNotClose(event); translateSpain(); toggleVisibilityById('flagContainer', false)">
+        </div>
+
+
         <img src="img/dumbell.png" class="dumbell" id="dumbellId">
         <span class="whiteFont font30 bold">SIMPLE FIT</span>
         <div class="justifyCenter inputWithImg relative">
@@ -33,7 +55,7 @@
         </div>
         <div class="alignCenter rememberMeArea dFlex">
             <input class="checkbox" type="checkbox" id="checkboxId">
-            <span class="font14">Auto log in</span>
+            <span class="font14" id="autoLoginLanguageId">Auto log in</span>
         </div>
         <div class="dFlex gap10">
             <button class="customBtn font16" onclick="logIn()" id="logInBtnId">Log in</button>

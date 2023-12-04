@@ -27,7 +27,6 @@ async function loadUsersArray() {
 async function loadIndividuallyIntervals() {
     try {
         intervalsArray = JSON.parse(await getItem(`individuallyIntervals_${id}`));
-        console.log(id);
     } catch {
         console.warn('Token invalid becauce no intervals has been created yet');
     }
@@ -36,7 +35,6 @@ async function loadIndividuallyIntervals() {
 async function loadIndividuallyIntervalsStandard() {
     try {
         intervalsStandardArray = JSON.parse(await getItem(`individuallyIntervalsStandardArray_${id}`));
-        console.log(id);
     } catch {
         console.warn('Token invalid becauce no standards has been created yet');
     }
@@ -45,9 +43,16 @@ async function loadIndividuallyIntervalsStandard() {
 async function loadIndividuallyPreIntervalsStandard() {
     try {
         preIntervalsStandardArray = JSON.parse(await getItem(`individuallyPreIntervalsStandardArray_${id}`));
-        console.log(id);
     } catch {
         console.warn('Token invalid becauce no pre standards has been created yet');
+    }
+}
+
+async function loadIndividuallyGymDiaryArray() {
+    try {
+        gymDiaryArray = JSON.parse(await getItem(`individuallyGymDiaryArray_${id}`));
+    } catch {
+        console.warn('Token invalid becauce no gym diary has been created yet');
     }
 }
 

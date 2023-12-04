@@ -62,7 +62,10 @@ async function init() {
 
     setActiveSPRBtn('pauseBtnId');
     settings = false;
-    await loadGymDiaryArray();
+    // await loadGymDiaryArray();
+    await createIndividuallyGymDiaryArray();
+    await loadIndividuallyGymDiaryArray();
+
     let diaryRightBtnArea = document.getElementsByClassName('diaryRightBtnArea');
     for (let i = 0; i < diaryRightBtnArea.length; i++) {
         diaryRightBtnArea[i].style.display = 'none';
@@ -668,8 +671,7 @@ function addNewBodypart() {
     }
 }
 
-function saveDiaryElement(index) {
-    console.log(index);
+async function saveDiaryElement(index) {
     if (gymDiaryArray.length === index) {
         preGymDiaryArray = [];
     }
@@ -683,8 +685,13 @@ function saveDiaryElement(index) {
     setTimeout(() => {
         document.getElementById(`bodypartTextId_${index}`).style.background = '#202124';
     }, 500);
-    gymDiaryArray[index].bodypart = bodypartValue;
-    saveGymDiaryArray();
+    gymDiaryArray[index] = {
+        'bodypart': bodypartValue,
+        'diaryelements': [],
+    };
+    // gymDiaryArray[index].bodypart = bodypartValue;
+    saveGymDiaryArray(); ///////////
+    await setItem(`individuallyGymDiaryArray_${id}`, JSON.stringify(gymDiaryArray));
     toggleVisibilityById('deleteDiaryElementId', false);
 }
 
@@ -727,9 +734,10 @@ function renderDiaryInputs() {
     }
 }
 
-function purgeDiaryCategory(bodypartIndex) {
+async function purgeDiaryCategory(bodypartIndex) {
     gymDiaryArray.splice(bodypartIndex, 1);
-    saveGymDiaryArray();
+    // saveGymDiaryArray(); ///////
+    await setItem(`individuallyGymDiaryArray_${id}`, JSON.stringify(gymDiaryArray));
     // renderDiaryInputs();
     backToMenu();
     showSettings();
@@ -739,8 +747,6 @@ function purgeDiaryCategory(bodypartIndex) {
 
 function deleteDiaryElement(bodypartIndex) {
     let lastNotSavedGymDiaryElement = gymDiaryArray.length;
-    console.log(lastNotSavedGymDiaryElement);
-    console.log(bodypartIndex);
     if (lastNotSavedGymDiaryElement === bodypartIndex) {
         preDelete(bodypartIndex);
     } else if (preGymDiaryArray.length > 0) {

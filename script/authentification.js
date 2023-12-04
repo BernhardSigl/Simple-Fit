@@ -1,6 +1,7 @@
 let loggedInUser = [];
 let rememberMe = [];
 let autoLogin = false;
+let languageArray = [];
 
 async function initAuthentication() {
     usersArray = [];
@@ -16,6 +17,24 @@ async function initAuthentication() {
         toggleVisibilityById('logInContentId', false)
     } else if (autoLogin === false) {
         toggleVisibilityById('logInContentId', true)
+    }
+    await loadLanguage();
+    if (languageArray[0] === undefined) {
+        translateEnglish();
+    } else if (languageArray[0] === 'english') {
+        translateEnglish();
+    } else if (languageArray[0] === 'german') {
+        translateGerman();
+    } else if (languageArray[0] === 'serbian') {
+        translateSerbian();
+    } else if (languageArray[0] === 'marokko') {
+        translateMarokko();
+    } else if (languageArray[0] === 'china') {
+        translateChina();
+    } else if (languageArray[0] === 'spain') {
+        translateSpain();
+    } else if (languageArray[0] === 'bavaria') {
+        translateBavaria();
     }
 }
 
