@@ -25,6 +25,7 @@ function translateEnglish() {
         document.getElementById('settingstitleId').innerHTML = 'Settings';
         document.getElementById('updatesTitleId').innerHTML = 'Updates';
         document.getElementById('saveDeleteLastDiaryElementTranslateId').innerHTML = 'Save or delete last diary element first';
+        document.getElementById('emptyDiaryTranslateId').innerHTML = 'Add diary in settings...';
     }
     languageArray = [];
     languageArray.push('english');
@@ -58,6 +59,7 @@ function translateGerman() {
         document.getElementById('settingstitleId').innerHTML = 'Einstellungen';
         document.getElementById('updatesTitleId').innerHTML = 'Aktualisierungen';
         document.getElementById('saveDeleteLastDiaryElementTranslateId').innerHTML = 'Speichere oder lösche das letzte Tagebuchelement';
+        document.getElementById('emptyDiaryTranslateId').innerHTML = 'Füge ein Tagebuch in den Einstellungen hinzu...';
     }
     languageArray = [];
     languageArray.push('german');
@@ -91,6 +93,7 @@ function translateSerbian() {
         document.getElementById('settingstitleId').innerHTML = 'Подешавања';
         document.getElementById('updatesTitleId').innerHTML = 'Обнове';
         document.getElementById('saveDeleteLastDiaryElementTranslateId').innerHTML = 'Сохраните или удалите последний элемент дневника сначала';
+        document.getElementById('emptyDiaryTranslateId').innerHTML = 'Добавете дневник в настройките...';
     }
     languageArray = [];
     languageArray.push('serbian');
@@ -124,6 +127,7 @@ function translateMarokko() {
         document.getElementById('settingstitleId').innerHTML = 'الإعدادات';
         document.getElementById('updatesTitleId').innerHTML = 'تحديثات';
         document.getElementById('saveDeleteLastDiaryElementTranslateId').innerHTML = 'احفظ أو احذف العنصر الأخير في اليومية أولاً.';
+        document.getElementById('emptyDiaryTranslateId').innerHTML = 'زيدو اليوميات فالإعدادات';
     }
     languageArray = [];
     languageArray.push('marokko');
@@ -157,6 +161,7 @@ function translateChina() {
         document.getElementById('settingstitleId').innerHTML = '设置';
         document.getElementById('updatesTitleId').innerHTML = '更新';
         document.getElementById('saveDeleteLastDiaryElementTranslateId').innerHTML = '先保存或删除最后的日记元素';
+        document.getElementById('emptyDiaryTranslateId').innerHTML = '在设置中添加日记';
     }
     languageArray = [];
     languageArray.push('china');
@@ -190,6 +195,7 @@ function translateSpain() {
         document.getElementById('settingstitleId').innerHTML = 'Configuración';
         document.getElementById('updatesTitleId').innerHTML = 'Actualizaciones';
         document.getElementById('saveDeleteLastDiaryElementTranslateId').innerHTML = 'Guardar o eliminar primero el último elemento del diario';
+        document.getElementById('emptyDiaryTranslateId').innerHTML = 'Agregar diario en configuraciones...';
     }
     languageArray = [];
     languageArray.push('spain');
@@ -224,6 +230,7 @@ function translateBavaria() {
         document.getElementById('settingstitleId').innerHTML = 'G’fummel';
         document.getElementById('updatesTitleId').innerHTML = 'Neier Firlefanz';
         document.getElementById('saveDeleteLastDiaryElementTranslateId').innerHTML = `Speicher oda lösch z'erst 's dei letzte Schmarrnübung`;
+        document.getElementById('emptyDiaryTranslateId').innerHTML = 'Füg a Gymnastikheft in de Einstellungen hi...';
     }
     languageArray = [];
     languageArray.push('bavaria');

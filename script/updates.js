@@ -14,6 +14,7 @@ function showUpdates() {
     toggleVisibilityById('updatesDescriptionId', true);
     toggleVisibilityById('updateImgId', false);
     toggleVisibilityById('welcomeMessageTranslateId', false);
+    document.getElementById('emptyDiaryTranslateId').style.display = 'none';
 }
 
 function fromUpdatesToMenu() {
@@ -32,6 +33,9 @@ function fromUpdatesToMenu() {
     toggleVisibilityById('updatesDescriptionId', false);
     toggleVisibilityById('updateImgId', true);
     toggleVisibilityById('welcomeMessageTranslateId', true);
+    if (gymDiaryArray.length === 0) {
+        document.getElementById('emptyDiaryTranslateId').style.display = 'flex';
+    }
 }
 
 function changeShowUpdatesFunction() {

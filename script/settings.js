@@ -14,6 +14,7 @@ function showSettings() {
     toggleVisibilityByClass('intervalLimit', true);
     toggleVisibilityById('flagsId', true);
     toggleVisibilityById('welcomeMessageTranslateId', false);
+    document.getElementById('emptyDiaryTranslateId').style.display = 'none';
     document.getElementById('gymDiaryAreaId').classList.add('dNone');
     document.getElementById('addDiaryBtnImgId').classList.remove('dNone');
     toggleVisibilityById('updateImgId', false);
@@ -53,12 +54,15 @@ function backToMenu() {
     toggleVisibilityByClass('changeIntervalArea', false);
     toggleVisibilityById('flagsId', false);
     toggleVisibilityById('welcomeMessageTranslateId', true);
+    toggleVisibilityById('emptyDiaryTranslateId', true);
     document.getElementById('gymDiaryAreaId').classList.add('dNone'); //
     document.getElementById('addDiaryBtnImgId').classList.add('dNone');
     toggleVisibilityById('updateImgId', true);
+    if (gymDiaryArray.length === 0) {
+        document.getElementById('emptyDiaryTranslateId').style.display = 'flex';
+    }
     document.getElementById('editAlertId').classList.remove('intervalLimit');
     document.getElementById('editPreAlertId').classList.remove('intervalLimit');
-    // document.getElementById('scrollboxId').classList.add('scrollboxStartPage');
     let diaryRightBtnArea = document.getElementsByClassName('diaryRightBtnArea');
     for (let i = 0; i < diaryRightBtnArea.length; i++) {
         diaryRightBtnArea[i].style.display = 'none';

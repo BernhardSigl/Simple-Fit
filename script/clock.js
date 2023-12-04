@@ -154,6 +154,10 @@ async function init() {
     } else if (languageArray[0] === 'bavaria') {
         translateBavaria();
     }
+
+    if (gymDiaryArray.length === 0) {
+        document.getElementById('emptyDiaryTranslateId').style.display = 'flex';
+    }
 }
 
 async function checkEmptyUsers() {
