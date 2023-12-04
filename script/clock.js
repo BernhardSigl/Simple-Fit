@@ -109,14 +109,14 @@ async function init() {
     if (preIntervalTime === 0) {
         setPreIntervalOff();
     }
-    if (intervalsStandardArray[0].secondIntervalStandard === true) {
+    if (intervalsStandardArray.length !== 0 && intervalsStandardArray[0].secondIntervalStandard === true) {
         document.getElementById('intervalSecondNumberFieldId').style.background = '#413534';
-    } else if (intervalsStandardArray[0].thirdIntervalStandard === true) {
+    } else if (intervalsStandardArray.length !== 0 && intervalsStandardArray[0].thirdIntervalStandard === true) {
         document.getElementById('intervalThirdNumberFieldId').style.background = '#413534';
     }
-    if (preIntervalsStandardArray[0].secondPreIntervalStandard === true && intervalsStandardArray[0].firstIntervalStandard === false) {
+    if (preIntervalsStandardArray.length !== 0 && preIntervalsStandardArray[0].secondPreIntervalStandard === true && intervalsStandardArray[0].firstIntervalStandard === false) {
         document.getElementById('preIntervalFirstNumberFieldId').style.background = '#413534';
-    } else if (preIntervalsStandardArray[0].thirdPreIntervalStandard === true && intervalsStandardArray[0].firstIntervalStandard === false) {
+    } else if (preIntervalsStandardArray.length !== 0 && preIntervalsStandardArray[0].thirdPreIntervalStandard === true && intervalsStandardArray[0].firstIntervalStandard === false) {
         document.getElementById('preIntervalSecondNumberFieldId').style.background = '#413534';
     }
     document.getElementById('firstIntervalBtnId').innerHTML = 'Off';
@@ -493,6 +493,7 @@ function confirmSecondInterval(inputId, buttonId) {
             }
         }, 500);
     }
+    toggleVisibilityById('deleteDiaryElementId', false);
 }
 
 function confirmThirdInterval(inputId, buttonId) {
@@ -510,6 +511,7 @@ function confirmThirdInterval(inputId, buttonId) {
             }
         }, 500);
     }
+    toggleVisibilityById('deleteDiaryElementId', false);
 }
 
 function confirmFirstPreInterval(inputId, buttonId) {
@@ -527,6 +529,7 @@ function confirmFirstPreInterval(inputId, buttonId) {
             }
         }, 500);
     }
+    toggleVisibilityById('deleteDiaryElementId', false);
 }
 
 function confirmSecondPreInterval(inputId, buttonId) {
@@ -544,6 +547,7 @@ function confirmSecondPreInterval(inputId, buttonId) {
             }
         }, 500);
     }
+    toggleVisibilityById('deleteDiaryElementId', false);
 }
 
 function confirmFirstIntervalAsStandard() {
@@ -554,6 +558,7 @@ function confirmFirstIntervalAsStandard() {
     saveIntervalsStandard();
     document.getElementById('intervalSecondNumberFieldId').style.background = '';
     document.getElementById('intervalThirdNumberFieldId').style.background = '';
+    toggleVisibilityById('deleteDiaryElementId', false);
 }
 
 function confirmSecondIntervalAsStandard() {
@@ -564,6 +569,7 @@ function confirmSecondIntervalAsStandard() {
     saveIntervalsStandard();
     document.getElementById('intervalSecondNumberFieldId').style.background = '#413534';
     document.getElementById('intervalThirdNumberFieldId').style.background = '';
+    toggleVisibilityById('deleteDiaryElementId', false);
 }
 
 function confirmThirdIntervalAsStandard() {
@@ -574,6 +580,7 @@ function confirmThirdIntervalAsStandard() {
     saveIntervalsStandard();
     document.getElementById('intervalSecondNumberFieldId').style.background = '';
     document.getElementById('intervalThirdNumberFieldId').style.background = '#413534';
+    toggleVisibilityById('deleteDiaryElementId', false);
 }
 
 function confirmOffPreIntervalAsStandard() {
@@ -584,6 +591,7 @@ function confirmOffPreIntervalAsStandard() {
     savePreIntervalsStandard()
     document.getElementById('preIntervalFirstNumberFieldId').style.background = '';
     document.getElementById('preIntervalSecondNumberFieldId').style.background = '';
+    toggleVisibilityById('deleteDiaryElementId', false);
 }
 
 function confirmFirstPreIntervalAsStandard() {
@@ -602,6 +610,7 @@ function confirmFirstPreIntervalAsStandard() {
         document.getElementById('preIntervalFirstNumberFieldId').style.background = '#413534';
         document.getElementById('preIntervalSecondNumberFieldId').style.background = '';
     }
+    toggleVisibilityById('deleteDiaryElementId', false);
 }
 
 function confirmSecondPreIntervalAsStandard() {
@@ -620,16 +629,19 @@ function confirmSecondPreIntervalAsStandard() {
         document.getElementById('preIntervalFirstNumberFieldId').style.background = '';
         document.getElementById('preIntervalSecondNumberFieldId').style.background = '#413534';
     }
+    toggleVisibilityById('deleteDiaryElementId', false);
 }
-let bodypartIndex = -1;
 
+let bodypartIndex = -1;
+let preGymDiaryArray = [];
 function addNewBodypart() {
-    const gymDiaryElement = document.getElementById('gymDiaryBtns');
-    const newIndex = gymDiaryArray.length; // Verwende die aktuelle Länge des Arrays als Index
-    const newBodypartElement = document.createElement('div');
-    newBodypartElement.className = 'inputDiaryBtnArea column';
-    newBodypartElement.id = `bodypartField_${newIndex}`;
-    newBodypartElement.innerHTML = /*html*/ `
+    if (preGymDiaryArray.length < 1) {
+        const gymDiaryElement = document.getElementById('gymDiaryBtns');
+        const newIndex = gymDiaryArray.length;
+        const newBodypartElement = document.createElement('div');
+        newBodypartElement.className = 'inputDiaryBtnArea column';
+        newBodypartElement.id = `bodypartField_${newIndex}`;
+        newBodypartElement.innerHTML = /*html*/ `
         <div class="relative">
             <div class="clickOnDiaryBtn">
             </div>
@@ -642,19 +654,30 @@ function addNewBodypart() {
             <img src="img/save.png" class="saveDiaryImg" onclick="saveDiaryElement(${newIndex})" style="margin-top: 3px;">
         </div>
     `;
-    gymDiaryElement.appendChild(newBodypartElement);
-    let clickOnDiaryBtn = document.getElementsByClassName('clickOnDiaryBtn');
-    for (let i = 0; i < clickOnDiaryBtn.length; i++) {
-        clickOnDiaryBtn[i].classList.add('dNone');
+        gymDiaryElement.appendChild(newBodypartElement);
+        let clickOnDiaryBtn = document.getElementsByClassName('clickOnDiaryBtn');
+        for (let i = 0; i < clickOnDiaryBtn.length; i++) {
+            clickOnDiaryBtn[i].classList.add('dNone');
+        }
+        preGymDiaryArray.push(`bodypartTextId_${newIndex}`);
+    } else {
+        toggleVisibilityById('saveDeleteLastDiaryElementTranslateId', true);
+        setTimeout(() => {
+            toggleVisibilityById('saveDeleteLastDiaryElementTranslateId', false);
+        }, 3500);
     }
 }
 
 function saveDiaryElement(index) {
+    console.log(index);
+    if (gymDiaryArray.length === index) {
+        preGymDiaryArray = [];
+    }
     const bodypartTextElement = document.getElementById(`bodypartTextId_${index}`);
     const bodypartValue = bodypartTextElement.value;
 
     if (!gymDiaryArray[index]) {
-        gymDiaryArray[index] = {}; // Falls noch kein Objekt im Array existiert, erstelle eins
+        gymDiaryArray[index] = {};
     }
     document.getElementById(`bodypartTextId_${index}`).style.background = 'green';
     setTimeout(() => {
@@ -662,6 +685,7 @@ function saveDiaryElement(index) {
     }, 500);
     gymDiaryArray[index].bodypart = bodypartValue;
     saveGymDiaryArray();
+    toggleVisibilityById('deleteDiaryElementId', false);
 }
 
 function renderDiaryInputs() {
@@ -706,11 +730,30 @@ function renderDiaryInputs() {
 function purgeDiaryCategory(bodypartIndex) {
     gymDiaryArray.splice(bodypartIndex, 1);
     saveGymDiaryArray();
-    renderDiaryInputs();
+    // renderDiaryInputs();
+    backToMenu();
+    showSettings();
     toggleVisibilityById('deleteDiaryElementId', false);
+    preGymDiaryArray = [];
 }
 
 function deleteDiaryElement(bodypartIndex) {
+    let lastNotSavedGymDiaryElement = gymDiaryArray.length;
+    console.log(lastNotSavedGymDiaryElement);
+    console.log(bodypartIndex);
+    if (lastNotSavedGymDiaryElement === bodypartIndex) {
+        preDelete(bodypartIndex);
+    } else if (preGymDiaryArray.length > 0) {
+        toggleVisibilityById('saveDeleteLastDiaryElementTranslateId', true);
+        setTimeout(() => {
+            toggleVisibilityById('saveDeleteLastDiaryElementTranslateId', false);
+        }, 3000);
+    } else {
+        preDelete(bodypartIndex);
+    }
+}
+
+function preDelete(bodypartIndex) {
     toggleVisibilityById('deleteDiaryElementId', true);
     document.getElementById('deleteDiaryElementId').innerHTML = /*html*/ `
     <button id="stopDeleteId" onclick="toggleVisibilityById('deleteDiaryElementId', false)">Abbrechen</button>

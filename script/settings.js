@@ -24,19 +24,18 @@ function showSettings() {
     for (let i = 0; i < diaryRightBtnArea.length; i++) {
         diaryRightBtnArea[i].style.display = 'block';
     }
-    let inputDiaryBtns = document.getElementsByClassName('inputDiaryBtn');
+    // let inputDiaryBtns = document.getElementsByClassName('inputDiaryBtn');
     for (let i = 0; i < gymDiaryArray.length; i++) {
         toggleVisibilityById(`deleteDiaryBodypart_${i}`, true);
         toggleVisibilityById(`saveDiaryBodypart_${i}`, true);
-        inputDiaryBtns[i].removeAttribute('readonly');
-        // inputDiaryBtns[i].setAttribute('data-original-onclick', inputDiaryBtns[i].getAttribute('onclick'));
-        inputDiaryBtns[i].removeAttribute('onclick');
+        document.getElementById(`bodypartTextId_${i}`).removeAttribute('readonly');
+        document.getElementById(`bodypartTextId_${i}`).removeAttribute('onclick');
     }
     let clickOnDiaryBtn = document.getElementsByClassName('clickOnDiaryBtn');
     for (let i = 0; i < clickOnDiaryBtn.length; i++) {
         clickOnDiaryBtn[i].classList.add('dNone');
     }
-    renderDiaryInputs();
+    // renderDiaryInputs();
 }
 
 function backToMenu() {
@@ -75,6 +74,7 @@ function backToMenu() {
     for (let i = 0; i < clickOnDiaryBtn.length; i++) {
         clickOnDiaryBtn[i].classList.remove('dNone');
     }
+    preGymDiaryArray = [];
     toggleVisibilityById('deleteDiaryElementId', false);
 }
 

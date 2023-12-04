@@ -17,6 +17,7 @@ function translateEnglish() {
     document.getElementById('manualTranslateId').innerHTML = 'Manual';
     document.getElementById('settingstitleId').innerHTML = 'Settings';
     document.getElementById('updatesTitleId').innerHTML = 'Updates';
+    document.getElementById('saveDeleteLastDiaryElementTranslateId').innerHTML = 'Save or delete last diary element first';
     languageArray = [];
     languageArray.push('english');
     saveLanguage();
@@ -41,6 +42,7 @@ function translateGerman() {
     document.getElementById('manualTranslateId').innerHTML = 'Anleitung';
     document.getElementById('settingstitleId').innerHTML = 'Einstellungen';
     document.getElementById('updatesTitleId').innerHTML = 'Aktualisierungen';
+    document.getElementById('saveDeleteLastDiaryElementTranslateId').innerHTML = 'Speichere oder lösche das letzte Tagebuchelement';
     languageArray = [];
     languageArray.push('german');
     saveLanguage();
@@ -65,6 +67,7 @@ function translateSerbian() {
     document.getElementById('manualTranslateId').innerHTML = 'Упутство';
     document.getElementById('settingstitleId').innerHTML = 'Подешавања';
     document.getElementById('updatesTitleId').innerHTML = 'Обнове';
+    document.getElementById('saveDeleteLastDiaryElementTranslateId').innerHTML = 'Сохраните или удалите последний элемент дневника сначала';
     languageArray = [];
     languageArray.push('serbian');
     saveLanguage();
@@ -89,6 +92,7 @@ function translateMarokko() {
     document.getElementById('manualTranslateId').innerHTML = 'دليل';
     document.getElementById('settingstitleId').innerHTML = 'الإعدادات';
     document.getElementById('updatesTitleId').innerHTML = 'تحديثات';
+    document.getElementById('saveDeleteLastDiaryElementTranslateId').innerHTML = 'احفظ أو احذف العنصر الأخير في اليومية أولاً.';
     languageArray = [];
     languageArray.push('marokko');
     saveLanguage();
@@ -113,6 +117,7 @@ function translateChina() {
     document.getElementById('manualTranslateId').innerHTML = '手动';
     document.getElementById('settingstitleId').innerHTML = '设置';
     document.getElementById('updatesTitleId').innerHTML = '更新';
+    document.getElementById('saveDeleteLastDiaryElementTranslateId').innerHTML = '先保存或删除最后的日记元素';
     languageArray = [];
     languageArray.push('china');
     saveLanguage();
@@ -137,6 +142,7 @@ function translateSpain() {
     document.getElementById('manualTranslateId').innerHTML = 'Instrucciones';
     document.getElementById('settingstitleId').innerHTML = 'Configuración';
     document.getElementById('updatesTitleId').innerHTML = 'Actualizaciones';
+    document.getElementById('saveDeleteLastDiaryElementTranslateId').innerHTML = 'Guardar o eliminar primero el último elemento del diario';
     languageArray = [];
     languageArray.push('spain');
     saveLanguage();
@@ -155,13 +161,14 @@ function translateBavaria() {
     document.getElementById('preAlertTranslateId').innerHTML = 'Scho vorher [Sek]';
     document.getElementById('gymDiaryTitleId').innerHTML = 'Gymnastikheft';
     document.getElementById('alertEveryMinTranslateId').innerHTML = 'Alarm olle [Min]';
-    document.getElementById('welcomeMessageTranslateId').innerHTML = 'Grüß Gott';
+    document.getElementById('welcomeMessageTranslateId').innerHTML = 'Griaß di';
     document.getElementById('firstIntervalBtnId').innerHTML = 'Aus';
     document.getElementById('preOffIntervalBtnId').innerHTML = 'Aus';
     document.getElementById('requiresAlertTimeId').innerHTML = 'Benötigt a Zeit fürn Alarm';
     document.getElementById('manualTranslateId').innerHTML = 'Leitfodn';
     document.getElementById('settingstitleId').innerHTML = 'G’fummel';
     document.getElementById('updatesTitleId').innerHTML = 'Neier Firlefanz';
+    document.getElementById('saveDeleteLastDiaryElementTranslateId').innerHTML = `Speicher oda lösch z'erst 's dei letzte Schmarrnübung`;
     languageArray = [];
     languageArray.push('bavaria');
     saveLanguage();
