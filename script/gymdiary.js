@@ -5,8 +5,6 @@ async function openDiary(bodypartIndex) {
     index = -1;
     preGymDiaryElementArray = [];
     changeShowDiaryFunction();
-    // gymDiaryArray[bodypartIndex] = [];
-    // await loadGymDiaryArray();
     await loadIndividuallyGymDiaryArray();
     document.getElementById('settingsImgId').src = 'img/backArrow.png';
     toggleVisibilityById('dumbellId', false);
@@ -111,7 +109,6 @@ function addGymDiaryElement(bodypartIndex) {
         gymDiaryContentElement.id = `gymDiaryContentElement_${index}`;
         gymDiaryContentElement.className = 'gymDiaryContentElement';
 
-        // Erstelle dateWeightArea
         const dateWeightArea = document.createElement('div');
         dateWeightArea.className = 'dateWeightArea';
 
@@ -212,7 +209,6 @@ function addGymDiaryElement(bodypartIndex) {
 
         gymDiaryContentElement.appendChild(dateWeightArea);
 
-        // Erstelle inputFieldRepsArea
         const additionalInputsContainer = document.createElement('div');
         additionalInputsContainer.className = 'inputFieldRepsArea';
         additionalInputsContainer.style.display = 'flex';
@@ -252,7 +248,6 @@ function addGymDiaryElement(bodypartIndex) {
 
         gymDiaryContentElement.appendChild(additionalInputsContainer);
 
-        // Füge den gymDiaryContentElement zum Gym-Diary-Inhalt hinzu
         gymDiaryContent.insertBefore(gymDiaryContentElement, gymDiaryContent.firstChild);
     }
 }
@@ -312,10 +307,8 @@ async function purgeGymDiaryElement(bodypartIndex, localIndex) {
     if (gymDiaryContentElement) {
         gymDiaryContentElement.remove();
         gymDiaryArray[bodypartIndex].diaryelements.splice(localIndex, 1);
-        // saveGymDiaryArray(); /////////
         await setItem(`individuallyGymDiaryArray_${id}`, JSON.stringify(gymDiaryArray));
         preGymDiaryElementArray = [];
-        // document.getElementById(`gymDiaryContentElement_${localIndex}`).style.background = '#343541';
     }
 }
 
@@ -349,7 +342,6 @@ async function saveGymDiaryData(bodypartIndex, localIndex) {
                 } else {
                     gymDiaryArray[bodypartIndex].diaryelements.push(diaryElement);
                 }
-                // saveGymDiaryArray(); //////
                 await setItem(`individuallyGymDiaryArray_${id}`, JSON.stringify(gymDiaryArray));
             }
         }

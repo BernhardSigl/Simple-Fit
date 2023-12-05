@@ -6,9 +6,8 @@ function showUpdates() {
     toggleVisibilityById('welcomeMessageId', false);
     toggleVisibilityById('btnAreaId', false);
     toggleVisibilityById('gymDiaryBtns', false);
-    // toggleVisibilityById('scrollboxId', true);
     toggleVisibilityById('dumbellId', false);
-    toggleVisibilityById('gymDiaryTitleId', false);
+    toggleVisibilityById('gymDiaryTxtWithBtnId', false);
     toggleVisibilityById('gymDiaryAreaId', false);
     toggleVisibilityById('updatesTitleId', true);
     toggleVisibilityById('updatesDescriptionId', true);
@@ -25,10 +24,9 @@ function fromUpdatesToMenu() {
     toggleVisibilityById('welcomeMessageId', true);
     toggleVisibilityById('btnAreaId', true);
     toggleVisibilityById('gymDiaryBtns', true);
-    // toggleVisibilityById('scrollboxId', true);
     toggleVisibilityById('gymDiaryAreaId', false);
     toggleVisibilityById('dumbellId', true);
-    toggleVisibilityById('gymDiaryTitleId', true);
+    toggleVisibilityById('gymDiaryTxtWithBtnId', true);
     toggleVisibilityById('updatesTitleId', false);
     toggleVisibilityById('updatesDescriptionId', false);
     toggleVisibilityById('updateImgId', true);
