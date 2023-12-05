@@ -129,6 +129,10 @@ body {
     gap: 15px;
 }
 
+.gap12 {
+    gap: 12px;
+}
+
 .gap10 {
     gap: 10px;
 }
@@ -164,6 +168,12 @@ body {
 .symbol28 {
     width: 28px;
     height: 28px;
+    cursor: pointer;
+}
+
+.symbol22 {
+    width: 18px;
+    height: 18px;
     cursor: pointer;
 }
 

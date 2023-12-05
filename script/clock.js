@@ -63,7 +63,6 @@ async function init() {
 
     setActiveSPRBtn('pauseBtnId');
     settings = false;
-    // await loadGymDiaryArray();
     await createIndividuallyGymDiaryArray();
     await loadIndividuallyGymDiaryArray();
 
@@ -80,7 +79,6 @@ async function init() {
     for (let i = 0; i < clickOnDiaryBtn.length; i++) {
         clickOnDiaryBtn[i].classList.remove('dNone');
     }
-    // document.getElementById('scrollboxId').classList.add('scrollboxStartPage');
 
     await welcomeMessage();
     if (firstIntervalTime === null || isNaN(firstIntervalTime)) {
@@ -735,16 +733,15 @@ async function saveDiaryElement(index) {
     hideSaveImg[index] = true;
     await setItem(`individuallyHideSaveImg_${id}`, JSON.stringify(hideSaveImg));
 
-    // gymDiaryArray[index].bodypart = bodypartValue;
     toggleVisibilityById('cancelSaveSettingsId', false);
-    await saveGymDiaryArray(); ///////////
+    await saveGymDiaryArray();
     await setItem(`individuallyGymDiaryArray_${id}`, JSON.stringify(gymDiaryArray));
     toggleVisibilityById('deleteDiaryElementId', false);
 }
 
 function renderDiaryInputs() {
     const gymDiaryElement = document.getElementById('gymDiaryBtns');
-    gymDiaryElement.innerHTML = ''; // Entferne vorhandene Elemente
+    gymDiaryElement.innerHTML = '';
 
     for (let i = 0; i < gymDiaryArray.length; i++) {
         const newBodypartElement = document.createElement('div');
@@ -783,9 +780,7 @@ function renderDiaryInputs() {
 
 async function purgeDiaryCategory(bodypartIndex) {
     gymDiaryArray.splice(bodypartIndex, 1);
-    // saveGymDiaryArray(); ///////
     await setItem(`individuallyGymDiaryArray_${id}`, JSON.stringify(gymDiaryArray));
-    // renderDiaryInputs();
     preGymDiaryArray = [];
     backToMenu();
     showSettings();
@@ -826,5 +821,39 @@ async function deleteAllUser() {
     usersArray = [];
     await setItem('usersArray', JSON.stringify(usersArray));
 }
+
+function downloadDiary() {
+    let textInhalt = '';
+    gymDiaryArray.forEach(function (entry) {
+        textInhalt += 'Bodypart: ' + entry.bodypart + '\n';
+        entry.diaryelements.reverse().forEach(function (diaryEntry) {
+            if (diaryEntry.date) {
+                textInhalt += 'Date: ' + diaryEntry.date + '\n';
+            }
+            if (diaryEntry.weight) {
+                textInhalt += 'Weight: ' + diaryEntry.weight + '\n';
+            }
+            if (diaryEntry.reps && diaryEntry.reps.length > 0) {
+                let repsWithoutEmptyValues = diaryEntry.reps.filter(function (rep) {
+                    return rep !== '';
+                });
+                if (repsWithoutEmptyValues.length > 0) {
+                    textInhalt += 'Reps: ' + repsWithoutEmptyValues.join(', ') + '\n';
+                }
+            }
+            textInhalt += '\n';
+        });
+        textInhalt += '\n';
+    });
+    let blob = new Blob([textInhalt], { type: 'text/plain' });
+    let downloadLink = document.createElement('a');
+    downloadLink.href = window.URL.createObjectURL(blob);
+    downloadLink.download = 'gymDiary.txt';
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+}
+
+
 
 updateTime();

@@ -95,6 +95,8 @@
         <!-- updates -->
         <span class="dNone alignCenter whiteFont font24 bold w100" id="updatesTitleId">Updates</span>
         <div class="dNone" id="updatesDescriptionId">
+            <span class="font16 bold">05/12/2023</span>
+            <li>add diary download button</li>
             <span class="font16 bold">04/12/2023</span>
             <li>compromise images</li>
             <li>use cloudflare pikaday and moment</li>
@@ -264,8 +266,11 @@
 
         </section>
         <section class="column gap6 alignCenter w100" id="gymDiaryStartPageId">
-            <div class="whiteFont font18 bold" id="gymDiaryTitleId">
-                Gym diary
+            <div class="alignCenter gap12" id="gymDiaryTxtWithBtnId">
+                <div class="whiteFont font18 bold" id="gymDiaryTitleId">
+                    Gym diary
+                </div>
+                <img src="img/download.png" class="symbol22" onclick="downloadDiary()">
             </div>
             <div class="alignCenter gap10 w100 gymDiaryArea spaceEvenly scrollboxDiarySettings" id="gymDiaryBtns">
             </div>
