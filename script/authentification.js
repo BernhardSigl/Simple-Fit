@@ -132,7 +132,7 @@ async function trueCredential(usernameInput, passwordInput) {
     if (isValid) {
         rememberMe = [];
         rememberMe.push({
-            'username': usernameInput.value,
+            'username': usernameInput.value.toLowerCase(),
             'password': passwordInput.value,
         });
         await saveRememberMe();
@@ -143,7 +143,7 @@ async function trueCredential(usernameInput, passwordInput) {
     // who is logged in
     loggedInUser = [];
     loggedInUser.push({
-        'name': usernameInput.value,
+        'name': usernameInput.value.toLowerCase(),
     });
     await saveLoggedInUser();
     toggleVisibilityById('wrongCredentialId', false);

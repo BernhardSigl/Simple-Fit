@@ -1,6 +1,7 @@
 function showSettings() {
     settings = true;
     changeShowSettingsFunction();
+    checkSavedDiaryElement();
     document.getElementById('settingsImgId').src = 'img/backArrow.png';
     document.getElementById('btnAreaId').classList.add('btnArea');
     toggleVisibilityById('settingstitleId', true);
@@ -46,6 +47,7 @@ function backToMenu() {
         settings = false;
         renderDiaryInputs();
         originalShowSettingsFunction();
+        toggleVisibilityById('cancelSaveSettingsId', false);
         document.getElementById('settingsImgId').src = 'img/settings.png';
         document.getElementById('btnAreaId').classList.remove('btnArea');
         toggleVisibilityById('settingstitleId', false);

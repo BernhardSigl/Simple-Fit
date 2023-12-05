@@ -13,14 +13,15 @@
     <script src="script/templates.js"></script>
     <script src="script/storage.js"></script>
     <script src="script/translate.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script type="text/javascript" src="node_modules/moment/moment.js"></script>
+    <link rel="stylesheet" type="text/css" href="node_modules/pikaday/css/pikaday.css">
+    <script type="text/javascript" src="node_modules/pikaday/pikaday.js"></script>
 
     <title>Simple Fit</title>
     <link rel="icon" href="img/dumbell.png">
 </head>
 
-<body onload="init()" onclick="toggleVisibilityById('flagContainer', false)">
+<body onload="init()" onclick="toggleVisibilityById('flagContainer', false);">
     <div class="content column gap10 dNone" id="contentStartPageId">
         <img src="img/updates.png" class="symbol28 btnTopLeft" id="updateImgId" onclick="showUpdates()">
 
@@ -95,6 +96,10 @@
         <span class="dNone alignCenter whiteFont font24 bold w100" id="updatesTitleId">Updates</span>
         <div class="dNone" id="updatesDescriptionId">
             <span class="font16 bold">04/12/2023</span>
+            <li>gym diary renaming isn't allowed after saving</li>
+            <li>fix set standard color after confirm</li>
+            <li>fix local storage lower case bug</li>
+            <li>add pikaday and calender bug fix on mobile</li>
             <li>add warning for unsaved changes</li>
             <li>new diary layout</li>
             <li>add calendar date manually or with button</li>

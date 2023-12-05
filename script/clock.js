@@ -4,6 +4,7 @@ let preIntervalsStandardArray = [];
 let gymDiaryArray = [];
 let usersArray = [];
 let languageArray = [];
+let hideSaveImg = [];
 
 var resetTime = 0;
 var pauseRun = true;
@@ -158,6 +159,26 @@ async function init() {
     if (gymDiaryArray.length === 0) {
         document.getElementById('emptyDiaryTranslateId').style.display = 'flex';
     }
+
+    hideSaveImg = [];
+    for (let k = 0; k < gymDiaryArray.length; k++) {
+        saveImg = gymDiaryArray[k];
+        hideSaveImg[k] = false;
+    }
+    await createIndividuallyHideSaveImg();
+    await loadIndividuallyHideSaveImg();
+    checkSavedDiaryElement();
+}
+
+function checkSavedDiaryElement() {
+    for (let k = 0; k < gymDiaryArray.length; k++) {
+        saveImg = gymDiaryArray[k];
+        if (hideSaveImg[k] === true) {
+            document.getElementById(`saveDiaryBodypart_${k}`).style.display = 'none';
+            document.getElementById(`bodypartTextId_${k}`).setAttribute('readonly', false);
+            document.getElementById(`bodypartTextId_${k}`).style.caretColor = 'transparent';
+        }
+    }
 }
 
 async function checkEmptyUsers() {
@@ -167,6 +188,21 @@ async function checkEmptyUsers() {
         loggedInUser = [];
         await saveRememberMe();
         await saveLoggedInUser();
+    }
+}
+
+async function createIndividuallyHideSaveImg() {
+    if (loggedInUser.length !== 0) {
+        for (let i = 0; i < usersArray.length; i++) {
+            const user = usersArray[i];
+            id = user.id;
+            if (loggedInUser[0].name === user.username) {
+                hideSaveImg = user[`individuallyHideSaveImg_${id}`] = [];
+                return id, hideSaveImg;
+            }
+        }
+    } else {
+        window.location.href = 'index.html';
     }
 }
 
@@ -529,7 +565,7 @@ function confirmFirstPreInterval(inputId, buttonId) {
         saveIntervals();
         document.getElementById('preIntervalFirstNumberFieldId').style.background = 'green';
         setTimeout(() => {
-            if (firstPreIntervalStandard === true) {
+            if (preIntervalsStandardArray[0].secondPreIntervalStandard === true) {
                 document.getElementById('preIntervalFirstNumberFieldId').style.background = '#413534';
             } else {
                 document.getElementById('preIntervalFirstNumberFieldId').style.background = '';
@@ -547,7 +583,7 @@ function confirmSecondPreInterval(inputId, buttonId) {
         saveIntervals();
         document.getElementById('preIntervalSecondNumberFieldId').style.background = 'green';
         setTimeout(() => {
-            if (secondPreIntervalStandard === true) {
+            if (preIntervalsStandardArray[0].thirdPreIntervalStandard === true) {
                 document.getElementById('preIntervalSecondNumberFieldId').style.background = '#413534';
             } else {
                 document.getElementById('preIntervalSecondNumberFieldId').style.background = '';
@@ -652,13 +688,13 @@ function addNewBodypart() {
         <div class="relative">
             <div class="clickOnDiaryBtn">
             </div>
-            <input type="text" class="inputDiaryBtn font14" id="bodypartTextId_${newIndex}">
+            <input type="text" class="inputDiaryBtn font11" id="bodypartTextId_${newIndex}">
         </div>
         <div class="deleteAndMemoryDiaryBtns">
             <div class="column spaceBetween diaryRightBtnArea">
             <img src="img/garbage.png" class="saveDiaryImg" onclick="deleteDiaryElement(${newIndex})">
             </div>
-            <img src="img/save.png" class="saveDiaryImg" onclick="saveDiaryElement(${newIndex})" style="margin-top: 3px;">
+            <img src="img/save.png" class="saveDiaryImg" onclick="saveDiaryElement(${newIndex})" style="margin-top: 3px;" id="saveDiaryBodypart_${newIndex}">
         </div>
     `;
         gymDiaryElement.appendChild(newBodypartElement);
@@ -693,8 +729,15 @@ async function saveDiaryElement(index) {
         'bodypart': bodypartValue,
         'diaryelements': [],
     };
+    document.getElementById(`saveDiaryBodypart_${index}`).style.display = 'none';
+    document.getElementById(`bodypartTextId_${index}`).setAttribute('readonly', true);
+    document.getElementById(`bodypartTextId_${index}`).style.caretColor = 'transparent';
+    hideSaveImg[index] = true;
+    await setItem(`individuallyHideSaveImg_${id}`, JSON.stringify(hideSaveImg));
+
     // gymDiaryArray[index].bodypart = bodypartValue;
-    saveGymDiaryArray(); ///////////
+    toggleVisibilityById('cancelSaveSettingsId', false);
+    await saveGymDiaryArray(); ///////////
     await setItem(`individuallyGymDiaryArray_${id}`, JSON.stringify(gymDiaryArray));
     toggleVisibilityById('deleteDiaryElementId', false);
 }
@@ -709,7 +752,7 @@ function renderDiaryInputs() {
         newBodypartElement.id = `bodypartField_${i}`;
         newBodypartElement.innerHTML = /*html*/ `
         <div class="clickOnDiaryBtn">&nbsp;</div>
-        <input type="text" class="inputDiaryBtn font14" id="bodypartTextId_${i}" onclick="openDiary(${i})" readonly>
+        <input type="text" class="inputDiaryBtn font11" id="bodypartTextId_${i}" onclick="openDiary(${i})" readonly>
         <div class="deleteAndMemoryDiaryBtns">
             <div class="column spaceBetween diaryRightBtnArea dNone" id="deleteDiaryBodypart_${i}">
             <img src="img/garbage.png" class="saveDiaryImg" onclick="deleteDiaryElement(${i})">
@@ -743,6 +786,7 @@ async function purgeDiaryCategory(bodypartIndex) {
     // saveGymDiaryArray(); ///////
     await setItem(`individuallyGymDiaryArray_${id}`, JSON.stringify(gymDiaryArray));
     // renderDiaryInputs();
+    preGymDiaryArray = [];
     backToMenu();
     showSettings();
     toggleVisibilityById('deleteDiaryElementId', false);
@@ -769,6 +813,7 @@ function preDelete(bodypartIndex) {
     <button id="stopDeleteId" onclick="toggleVisibilityById('deleteDiaryElementId', false)">Abbrechen</button>
     <button id="acceptDeleteId" onclick="purgeDiaryCategory(${bodypartIndex})">Löschen</button>
     `;
+    toggleVisibilityById('cancelSaveSettingsId', false);
 }
 
 function deleteGymDiaryArray() {

@@ -56,6 +56,14 @@ async function loadIndividuallyGymDiaryArray() {
     }
 }
 
+async function loadIndividuallyHideSaveImg() {
+    try {
+        hideSaveImg = JSON.parse(await getItem(`individuallyHideSaveImg_${id}`));
+    } catch {
+        console.warn('Token invalid becauce no gym diary is saved');
+    }
+}
+
 // save locally
 async function saveRememberMe() {
     let rememberMeAsText = JSON.stringify(rememberMe);

@@ -141,9 +141,11 @@ function addGymDiaryElement(bodypartIndex) {
 
         dateAndSaveBtn.appendChild(dateInputElement);
 
-        flatpickr(dateInputElement, {
-            enableTime: false,
-            dateFormat: 'd/m/Y',
+        const picker = new Pikaday({
+            field: dateInputElement,
+            format: 'DD/MM/YYYY',
+            showYearDropdown: true,
+            yearRange: [1900, new Date().getFullYear()],
         });
 
         //date today
@@ -152,11 +154,7 @@ function addGymDiaryElement(bodypartIndex) {
         todayDateImage.className = 'lastWeightImg';
         todayDateImage.onclick = function () {
             const today = new Date();
-            const day = String(today.getDate()).padStart(2, '0');
-            const month = String(today.getMonth() + 1).padStart(2, '0');
-            const year = String(today.getFullYear()).slice(-2);
-            const formattedDate = `${day}/${month}/${year}`;
-            dateInputElement._flatpickr.setDate(formattedDate, true);
+            picker.setDate(today);
         };
         dateAndSaveBtn.appendChild(todayDateImage);
 
@@ -297,9 +295,13 @@ function deleteGymDiaryElement(bodypartIndex, localIndex) {
         `;
         document.getElementById(`gymDiaryContentElement_${localIndex}`).style.background = 'red';
         setTimeout(() => {
-            document.getElementById(`gymDiaryContentElement_${localIndex}`).style.background = '#343541';
+            const gymDiaryContentElement = document.getElementById(`gymDiaryContentElement_${localIndex}`);
+            if (gymDiaryContentElement) {
+                gymDiaryContentElement.style.background = '#343541';
+            }
         }, 3000);
     }
+    toggleVisibilityById('cancelSaveId', false);
 }
 
 async function purgeGymDiaryElement(bodypartIndex, localIndex) {
@@ -313,7 +315,7 @@ async function purgeGymDiaryElement(bodypartIndex, localIndex) {
         // saveGymDiaryArray(); /////////
         await setItem(`individuallyGymDiaryArray_${id}`, JSON.stringify(gymDiaryArray));
         preGymDiaryElementArray = [];
-        document.getElementById(`gymDiaryContentElement_${localIndex}`).style.background = '#343541';
+        // document.getElementById(`gymDiaryContentElement_${localIndex}`).style.background = '#343541';
     }
 }
 
@@ -357,5 +359,6 @@ async function saveGymDiaryData(bodypartIndex, localIndex) {
             document.getElementById(`gymDiaryContentElement_${localIndex}`).style.background = '#343541';
         }, 500);
     }
+    toggleVisibilityById('cancelSaveId', false);
 }
 
