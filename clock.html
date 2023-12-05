@@ -95,8 +95,12 @@
         <span class="dNone alignCenter whiteFont font24 bold w100" id="updatesTitleId">Updates</span>
         <div class="dNone" id="updatesDescriptionId">
             <span class="font16 bold">04/12/2023</span>
+            <li>add warning for unsaved changes</li>
+            <li>new diary layout</li>
+            <li>add calendar date manually or with button</li>
+            <li>fix auto-fill diary bug</li>
             <li>media query diary scroll container</li>
-            <li>force to delete/save new diary item</li>
+            <li>forced to delete/save new diary item</li>
             <li>delete/save diary animation</li>
             <li>add language options on index</li>
             <li>diary is saved globally</li>
@@ -118,17 +122,17 @@
             <span class="font16 bold">30/11/2023</span>
             <li>fix empty users array bug</li>
             <li>add update button</li>
-            <li>style optimication</li>
-            <li>fix pre alert display bug</li>
+            <li>style optimization</li>
+            <li>fix pre-alert display bug</li>
             <li>add error message</li>
             <li>fix auto log in bug</li>
             <span class="font16 bold">28/11/2023</span>
-            <li>fix pre alert sound bug</li>
-            <li>style optimication</li>
+            <li>fix pre-alert sound bug</li>
+            <li>style optimization</li>
             <li>decimal places are no longer allowed</li>
             <span class="font16 bold">26/11/2023</span>
             <li>fix log in screen error messages</li>
-            <li>save data global</li>
+            <li>save data globally</li>
             <li>edit input functions included</li>
             <span class="font16 bold">25/11/2023</span>
             <li>add settings menu</li>
@@ -280,6 +284,32 @@
             Save or delete last added diary element first
         </section>
         <section class="purgeBtns dNone font16 lightBold" id="deleteDiaryElementId">
+        </section>
+        <section class="purgeBtns font16 lightBold column gap4 dNone" id="cancelSaveId">
+            <span class="font16 redFont" id="notSavedWarningTranslateId">
+                Newest diary element has not yet been saved
+            </span>
+            <div>
+                <button class="cancelBtn" id="cancelBtnId" onclick="cancelSaveDiary()">
+                    Cancel
+                </button>
+                <button class="continueBtn" id="continueBtnId" onclick="continueDiary()">
+                    Continue
+                </button>
+            </div>
+        </section>
+        <section class="purgeBtns font16 lightBold column gap4 dNone" id="cancelSaveSettingsId">
+            <span class="font16 redFont" id="notSavedWarningSettingsTranslateId">
+                Newest diary element has not yet been saved
+            </span>
+            <div>
+                <button class="cancelBtn" id="cancelBtnSettingsId" onclick="cancelSaveDiarySettings()">
+                    Cancel
+                </button>
+                <button class="continueBtn" id="continueBtnSettingsId" onclick="continueDiarySettings()">
+                    Continue
+                </button>
+            </div>
         </section>
     </div>
 </body>

@@ -652,7 +652,7 @@ function addNewBodypart() {
         <div class="relative">
             <div class="clickOnDiaryBtn">
             </div>
-            <input type="text" class="inputDiaryBtn font16" id="bodypartTextId_${newIndex}">
+            <input type="text" class="inputDiaryBtn font14" id="bodypartTextId_${newIndex}">
         </div>
         <div class="deleteAndMemoryDiaryBtns">
             <div class="column spaceBetween diaryRightBtnArea">
@@ -709,7 +709,7 @@ function renderDiaryInputs() {
         newBodypartElement.id = `bodypartField_${i}`;
         newBodypartElement.innerHTML = /*html*/ `
         <div class="clickOnDiaryBtn">&nbsp;</div>
-        <input type="text" class="inputDiaryBtn font16" id="bodypartTextId_${i}" onclick="openDiary(${i})" readonly>
+        <input type="text" class="inputDiaryBtn font14" id="bodypartTextId_${i}" onclick="openDiary(${i})" readonly>
         <div class="deleteAndMemoryDiaryBtns">
             <div class="column spaceBetween diaryRightBtnArea dNone" id="deleteDiaryBodypart_${i}">
             <img src="img/garbage.png" class="saveDiaryImg" onclick="deleteDiaryElement(${i})">

@@ -40,46 +40,50 @@ function showSettings() {
 }
 
 function backToMenu() {
-    settings = false;
-    renderDiaryInputs();
-    originalShowSettingsFunction();
-    document.getElementById('settingsImgId').src = 'img/settings.png';
-    document.getElementById('btnAreaId').classList.remove('btnArea');
-    toggleVisibilityById('settingstitleId', false);
-    toggleVisibilityById('dumbellId', true);
-    toggleVisibilityById('SPRBtnAreaId', true);
-    toggleVisibilityById('settingsDescriptionId', false);
-    toggleVisibilityById('logOutBtnId', true);
-    toggleVisibilityById('welcomeMessageId', true);
-    toggleVisibilityByClass('changeIntervalArea', false);
-    toggleVisibilityById('flagsId', false);
-    toggleVisibilityById('welcomeMessageTranslateId', true);
-    toggleVisibilityById('emptyDiaryTranslateId', true);
-    document.getElementById('gymDiaryAreaId').classList.add('dNone'); //
-    document.getElementById('addDiaryBtnImgId').classList.add('dNone');
-    toggleVisibilityById('updateImgId', true);
-    if (gymDiaryArray.length === 0) {
-        document.getElementById('emptyDiaryTranslateId').style.display = 'flex';
+    if (preGymDiaryArray.length === 1) {
+        toggleVisibilityById('cancelSaveSettingsId', true);
+    } else {
+        settings = false;
+        renderDiaryInputs();
+        originalShowSettingsFunction();
+        document.getElementById('settingsImgId').src = 'img/settings.png';
+        document.getElementById('btnAreaId').classList.remove('btnArea');
+        toggleVisibilityById('settingstitleId', false);
+        toggleVisibilityById('dumbellId', true);
+        toggleVisibilityById('SPRBtnAreaId', true);
+        toggleVisibilityById('settingsDescriptionId', false);
+        toggleVisibilityById('logOutBtnId', true);
+        toggleVisibilityById('welcomeMessageId', true);
+        toggleVisibilityByClass('changeIntervalArea', false);
+        toggleVisibilityById('flagsId', false);
+        toggleVisibilityById('welcomeMessageTranslateId', true);
+        toggleVisibilityById('emptyDiaryTranslateId', true);
+        document.getElementById('gymDiaryAreaId').classList.add('dNone'); //
+        document.getElementById('addDiaryBtnImgId').classList.add('dNone');
+        toggleVisibilityById('updateImgId', true);
+        if (gymDiaryArray.length === 0) {
+            document.getElementById('emptyDiaryTranslateId').style.display = 'flex';
+        }
+        document.getElementById('editAlertId').classList.remove('intervalLimit');
+        document.getElementById('editPreAlertId').classList.remove('intervalLimit');
+        let diaryRightBtnArea = document.getElementsByClassName('diaryRightBtnArea');
+        for (let i = 0; i < diaryRightBtnArea.length; i++) {
+            diaryRightBtnArea[i].style.display = 'none';
+        }
+        let inputDiaryBtns = document.getElementsByClassName('inputDiaryBtn');
+        for (let i = 0; i < gymDiaryArray.length; i++) {
+            toggleVisibilityById(`deleteDiaryBodypart_${i}`, false);
+            toggleVisibilityById(`saveDiaryBodypart_${i}`, false);
+            inputDiaryBtns[i].setAttribute('readonly', '');
+            // inputDiaryBtns[i].setAttribute('onclick', inputDiaryBtns[i].getAttribute('data-original-onclick'));
+        }
+        let clickOnDiaryBtn = document.getElementsByClassName('clickOnDiaryBtn');
+        for (let i = 0; i < clickOnDiaryBtn.length; i++) {
+            clickOnDiaryBtn[i].classList.remove('dNone');
+        }
+        preGymDiaryArray = [];
+        toggleVisibilityById('deleteDiaryElementId', false);
     }
-    document.getElementById('editAlertId').classList.remove('intervalLimit');
-    document.getElementById('editPreAlertId').classList.remove('intervalLimit');
-    let diaryRightBtnArea = document.getElementsByClassName('diaryRightBtnArea');
-    for (let i = 0; i < diaryRightBtnArea.length; i++) {
-        diaryRightBtnArea[i].style.display = 'none';
-    }
-    let inputDiaryBtns = document.getElementsByClassName('inputDiaryBtn');
-    for (let i = 0; i < gymDiaryArray.length; i++) {
-        toggleVisibilityById(`deleteDiaryBodypart_${i}`, false);
-        toggleVisibilityById(`saveDiaryBodypart_${i}`, false);
-        inputDiaryBtns[i].setAttribute('readonly', '');
-        // inputDiaryBtns[i].setAttribute('onclick', inputDiaryBtns[i].getAttribute('data-original-onclick'));
-    }
-    let clickOnDiaryBtn = document.getElementsByClassName('clickOnDiaryBtn');
-    for (let i = 0; i < clickOnDiaryBtn.length; i++) {
-        clickOnDiaryBtn[i].classList.remove('dNone');
-    }
-    preGymDiaryArray = [];
-    toggleVisibilityById('deleteDiaryElementId', false);
 }
 
 function changeShowSettingsFunction() {
@@ -97,4 +101,14 @@ function originalShowSettingsFunction() {
 
 function doNotClose(event) {
     event.stopPropagation();
+}
+
+function cancelSaveDiarySettings() {
+    toggleVisibilityById('cancelSaveSettingsId', false);
+}
+
+function continueDiarySettings() {
+    toggleVisibilityById('cancelSaveSettingsId', false);
+    preGymDiaryArray = [];
+    backToMenu();
 }

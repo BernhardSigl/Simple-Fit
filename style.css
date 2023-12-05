@@ -115,6 +115,20 @@ body {
     gap: 6px;
 }
 
+.gap4 {
+    gap: 4px !important;
+}
+
+#cancelSaveSettingsId,
+#cancelSaveId {
+    width: 100%;
+}
+
+.cancelBtn,
+.continueBtn {
+    height: 25px;
+}
+
 .whiteFont {
     color: white;
 }
@@ -260,6 +274,11 @@ input {
 .rememberMeArea {
     color: white;
     gap: 8px;
+}
+
+.redFont {
+    color: red;
+    cursor: default;
 }
 
 #emptyInputId,
@@ -464,7 +483,7 @@ input {
     border: none;
     height: 30px;
     color: white;
-    width: 300px;
+    width: 100%;
     padding: 0;
     border-radius: 3px;
     font-family: 'Roboto';
@@ -498,6 +517,10 @@ input {
     justify-content: space-between;
 }
 
+.addRep {
+    margin-bottom: 4px;
+}
+
 .addRep,
 .removeRep {
     width: 40px;
@@ -518,10 +541,27 @@ input {
 
 .dateWeightArea {
     display: flex;
-    gap: 6px;
     width: 100%;
-    height: 30px;
+    height: auto;
     align-items: center;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.dateAndSaveBtn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.weightAndBtns {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px
 }
 
 .weights {
@@ -532,13 +572,18 @@ input {
     width: 24px;
     height: 24px;
     cursor: pointer;
+    aspect-ratio: 1/1;
 }
 
 .gymDiaryContentElement {
     display: flex;
     flex-direction: column;
     gap: 4px;
+    padding: 5px;
+    border: solid 3px #202124;
+    border-radius: 8px;
 }
+
 
 /* scroll */
 .scrollbox {
@@ -661,6 +706,6 @@ input {
 
 @media(max-height: 667px) {
     .scrollboxDiarySettings {
-        max-height: 72px;
+        max-height: 73px;
     }
 }

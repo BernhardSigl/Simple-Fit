@@ -26,6 +26,12 @@ function translateEnglish() {
         document.getElementById('updatesTitleId').innerHTML = 'Updates';
         document.getElementById('saveDeleteLastDiaryElementTranslateId').innerHTML = 'Save or delete last diary element first';
         document.getElementById('emptyDiaryTranslateId').innerHTML = 'Add diary in settings...';
+        document.getElementById('notSavedWarningTranslateId').innerHTML = 'Newest diary element has not yet been saved';
+        document.getElementById('notSavedWarningSettingsTranslateId').innerHTML = 'Newest diary element has not yet been saved';
+        document.getElementById('cancelBtnId').innerHTML = 'Cancel';
+        document.getElementById('cancelBtnSettingsId').innerHTML = 'Cancel';
+        document.getElementById('continueBtnId').innerHTML = 'Continue';
+        document.getElementById('continueBtnSettingsId').innerHTML = 'Continue';
     }
     languageArray = [];
     languageArray.push('english');
@@ -60,6 +66,12 @@ function translateGerman() {
         document.getElementById('updatesTitleId').innerHTML = 'Aktualisierungen';
         document.getElementById('saveDeleteLastDiaryElementTranslateId').innerHTML = 'Speichere oder lösche das letzte Tagebuchelement';
         document.getElementById('emptyDiaryTranslateId').innerHTML = 'Füge ein Tagebuch in den Einstellungen hinzu...';
+        document.getElementById('notSavedWarningTranslateId').innerHTML = 'Neuestes Tagebuchelement wurde noch nicht gespeichert';
+        document.getElementById('notSavedWarningSettingsTranslateId').innerHTML = 'Neuestes Tagebuchelement wurde noch nicht gespeichert';
+        document.getElementById('cancelBtnId').innerHTML = 'Abbrechen';
+        document.getElementById('cancelBtnSettingsId').innerHTML = 'Abbrechen';
+        document.getElementById('continueBtnId').innerHTML = 'Weiter';
+        document.getElementById('continueBtnSettingsId').innerHTML = 'Weiter';
     }
     languageArray = [];
     languageArray.push('german');
@@ -94,6 +106,12 @@ function translateSerbian() {
         document.getElementById('updatesTitleId').innerHTML = 'Обнове';
         document.getElementById('saveDeleteLastDiaryElementTranslateId').innerHTML = 'Сохраните или удалите последний элемент дневника сначала';
         document.getElementById('emptyDiaryTranslateId').innerHTML = 'Добавете дневник в настройките...';
+        document.getElementById('notSavedWarningTranslateId').innerHTML = 'Најновији елемент дневника још увек није сачуван';
+        document.getElementById('notSavedWarningSettingsTranslateId').innerHTML = 'Најновији елемент дневника још увек није сачуван';
+        document.getElementById('cancelBtnId').innerHTML = 'Откажи';
+        document.getElementById('cancelBtnSettingsId').innerHTML = 'Откажи';
+        document.getElementById('continueBtnId').innerHTML = 'Настави';
+        document.getElementById('continueBtnSettingsId').innerHTML = 'Настави';
     }
     languageArray = [];
     languageArray.push('serbian');
@@ -128,6 +146,12 @@ function translateMarokko() {
         document.getElementById('updatesTitleId').innerHTML = 'تحديثات';
         document.getElementById('saveDeleteLastDiaryElementTranslateId').innerHTML = 'احفظ أو احذف العنصر الأخير في اليومية أولاً.';
         document.getElementById('emptyDiaryTranslateId').innerHTML = 'زيدو اليوميات فالإعدادات';
+        document.getElementById('notSavedWarningTranslateId').innerHTML = 'لم يتم حفظ أحدث عنصر في اليومية بعد';
+        document.getElementById('notSavedWarningSettingsTranslateId').innerHTML = 'لم يتم حفظ أحدث عنصر في اليومية بعد';
+        document.getElementById('cancelBtnId').innerHTML = 'إلغاء';
+        document.getElementById('cancelBtnSettingsId').innerHTML = 'إلغاء';
+        document.getElementById('continueBtnId').innerHTML = 'متابعة';
+        document.getElementById('continueBtnSettingsId').innerHTML = 'متابعة';
     }
     languageArray = [];
     languageArray.push('marokko');
@@ -162,6 +186,12 @@ function translateChina() {
         document.getElementById('updatesTitleId').innerHTML = '更新';
         document.getElementById('saveDeleteLastDiaryElementTranslateId').innerHTML = '先保存或删除最后的日记元素';
         document.getElementById('emptyDiaryTranslateId').innerHTML = '在设置中添加日记';
+        document.getElementById('notSavedWarningTranslateId').innerHTML = '最新的日记元素尚未保存';
+        document.getElementById('notSavedWarningSettingsTranslateId').innerHTML = '最新的日记元素尚未保存';
+        document.getElementById('cancelBtnId').innerHTML = '取消';
+        document.getElementById('cancelBtnSettingsId').innerHTML = '取消';
+        document.getElementById('continueBtnId').innerHTML = '继续';
+        document.getElementById('continueBtnSettingsId').innerHTML = '继续';
     }
     languageArray = [];
     languageArray.push('china');
@@ -196,6 +226,12 @@ function translateSpain() {
         document.getElementById('updatesTitleId').innerHTML = 'Actualizaciones';
         document.getElementById('saveDeleteLastDiaryElementTranslateId').innerHTML = 'Guardar o eliminar primero el último elemento del diario';
         document.getElementById('emptyDiaryTranslateId').innerHTML = 'Agregar diario en configuraciones...';
+        document.getElementById('notSavedWarningTranslateId').innerHTML = 'El elemento más reciente del diario aún no se ha guardado';
+        document.getElementById('notSavedWarningSettingsTranslateId').innerHTML = 'El elemento más reciente del diario aún no se ha guardado';
+        document.getElementById('cancelBtnId').innerHTML = 'Cancelar';
+        document.getElementById('cancelBtnSettingsId').innerHTML = 'Cancelar';
+        document.getElementById('continueBtnId').innerHTML = 'Continuar';
+        document.getElementById('continueBtnSettingsId').innerHTML = 'Continuar';
     }
     languageArray = [];
     languageArray.push('spain');
@@ -231,6 +267,12 @@ function translateBavaria() {
         document.getElementById('updatesTitleId').innerHTML = 'Neier Firlefanz';
         document.getElementById('saveDeleteLastDiaryElementTranslateId').innerHTML = `Speicher oda lösch z'erst 's dei letzte Schmarrnübung`;
         document.getElementById('emptyDiaryTranslateId').innerHTML = 'Füg a Gymnastikheft in de Einstellungen hi...';
+        document.getElementById('notSavedWarningTranslateId').innerHTML = `Des neie Togbuachelement is no ned g'speichert`;
+        document.getElementById('notSavedWarningSettingsTranslateId').innerHTML = `Des neie Togbuachelement is no ned g'speichert`;
+        document.getElementById('cancelBtnId').innerHTML = `Brems'n`;
+        document.getElementById('cancelBtnSettingsId').innerHTML = `Brems'n`;
+        document.getElementById('continueBtnId').innerHTML = 'Weitermacha';
+        document.getElementById('continueBtnSettingsId').innerHTML = 'Weitermacha';
     }
     languageArray = [];
     languageArray.push('bavaria');

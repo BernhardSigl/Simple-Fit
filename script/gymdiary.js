@@ -65,21 +65,35 @@ function changeShowDiaryFunction() {
     };
 }
 
+function cancelSaveDiary() {
+    toggleVisibilityById('cancelSaveId', false);
+}
+
+function continueDiary() {
+    toggleVisibilityById('cancelSaveId', false);
+    preGymDiaryElementArray = [];
+    fromDiaryToMenu();
+}
+
 function fromDiaryToMenu() {
-    document.getElementById('settingsImgId').src = 'img/settings.png';
-    toggleVisibilityById('dumbellId', true);
-    toggleVisibilityById('welcomeMessageId', true);
-    toggleVisibilityById('btnAreaId', true);
-    toggleVisibilityById('gymDiaryBtns', true);
-    toggleVisibilityById('gymDiaryStartPageId', true);
-    toggleVisibilityById('gymDiaryAreaId', false);
-    toggleVisibilityById('logOutBtnId', true);
-    toggleVisibilityById('updateImgId', true);
-    toggleVisibilityById('gymDiaryContent', false);
-    toggleVisibilityById('gymDiaryContainer', false);
-    toggleVisibilityById('deleteDiaryElementId', false);
-    toggleVisibilityById('welcomeMessageTranslateId', true);
-    originalShowSettingsFunction();
+    if (preGymDiaryElementArray.length === 1) {
+        toggleVisibilityById('cancelSaveId', true);
+    } else {
+        document.getElementById('settingsImgId').src = 'img/settings.png';
+        toggleVisibilityById('dumbellId', true);
+        toggleVisibilityById('welcomeMessageId', true);
+        toggleVisibilityById('btnAreaId', true);
+        toggleVisibilityById('gymDiaryBtns', true);
+        toggleVisibilityById('gymDiaryStartPageId', true);
+        toggleVisibilityById('gymDiaryAreaId', false);
+        toggleVisibilityById('logOutBtnId', true);
+        toggleVisibilityById('updateImgId', true);
+        toggleVisibilityById('gymDiaryContent', false);
+        toggleVisibilityById('gymDiaryContainer', false);
+        toggleVisibilityById('deleteDiaryElementId', false);
+        toggleVisibilityById('welcomeMessageTranslateId', true);
+        originalShowSettingsFunction();
+    }
 }
 
 function addGymDiaryElement(bodypartIndex) {
@@ -101,29 +115,90 @@ function addGymDiaryElement(bodypartIndex) {
         const dateWeightArea = document.createElement('div');
         dateWeightArea.className = 'dateWeightArea';
 
+        const dateAndSaveBtn = document.createElement('div');
+        dateAndSaveBtn.className = 'dateAndSaveBtn';
+        dateWeightArea.appendChild(dateAndSaveBtn);
+
         const dateInputElement = document.createElement('input');
         dateInputElement.type = 'text';
         dateInputElement.className = 'dateInputField font16 textCenter';
         dateInputElement.id = `datePickerInput_${index}`;
-        dateWeightArea.appendChild(dateInputElement);
+        if (languageArray[0] === 'english') {
+            dateInputElement.placeholder = 'Enter date';
+        } else if (languageArray[0] === 'german') {
+            dateInputElement.placeholder = 'Datum hinzufügen';
+        } else if (languageArray[0] === 'serbian') {
+            dateInputElement.placeholder = 'Унесите датум';
+        } else if (languageArray[0] === 'marokko') {
+            dateInputElement.placeholder = 'أدخل التاريخ';
+        } else if (languageArray[0] === 'china') {
+            dateInputElement.placeholder = '输入日期';
+        } else if (languageArray[0] === 'spain') {
+            dateInputElement.placeholder = 'Introduce la fecha';
+        } else if (languageArray[0] === 'bavaria') {
+            dateInputElement.placeholder = 'Datum eigeem';
+        }
+
+        dateAndSaveBtn.appendChild(dateInputElement);
 
         flatpickr(dateInputElement, {
             enableTime: false,
             dateFormat: 'd/m/Y',
-            defaultDate: 'today',
         });
+
+        //date today
+        const todayDateImage = document.createElement('img');
+        todayDateImage.src = 'img/date.png';
+        todayDateImage.className = 'lastWeightImg';
+        todayDateImage.onclick = function () {
+            const today = new Date();
+            const day = String(today.getDate()).padStart(2, '0');
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const year = String(today.getFullYear()).slice(-2);
+            const formattedDate = `${day}/${month}/${year}`;
+            dateInputElement._flatpickr.setDate(formattedDate, true);
+        };
+        dateAndSaveBtn.appendChild(todayDateImage);
+
+        //save
+        const saveDiarayElementImage = document.createElement('img');
+        saveDiarayElementImage.src = 'img/save.png';
+        saveDiarayElementImage.className = 'lastWeightImg';
+        saveDiarayElementImage.onclick = function () {
+            saveGymDiaryData(bodypartIndex, localIndex);
+        };
+        dateAndSaveBtn.appendChild(saveDiarayElementImage);
+
+        const weightAndBtns = document.createElement('div');
+        weightAndBtns.className = 'weightAndBtns';
+        dateWeightArea.appendChild(weightAndBtns);
 
         const additionalInputElement = document.createElement('input');
         additionalInputElement.type = 'text';
         additionalInputElement.className = 'weights font16 textCenter';
         additionalInputElement.id = `additionalInput_${index}`;
-        additionalInputElement.placeholder = 'Weights';
-        dateWeightArea.appendChild(additionalInputElement);
+        if (languageArray[0] === 'english') {
+            additionalInputElement.placeholder = 'Weights / Info';
+        } else if (languageArray[0] === 'german') {
+            additionalInputElement.placeholder = 'Gewicht / Info';
+        } else if (languageArray[0] === 'serbian') {
+            additionalInputElement.placeholder = 'Тежине / Инфо';
+        } else if (languageArray[0] === 'marokko') {
+            additionalInputElement.placeholder = 'الأوزان / المعلومات';
+        } else if (languageArray[0] === 'china') {
+            additionalInputElement.placeholder = '重量 / 信息';
+        } else if (languageArray[0] === 'spain') {
+            additionalInputElement.placeholder = 'Pesos / Información';
+        } else if (languageArray[0] === 'bavaria') {
+            additionalInputElement.placeholder = 'Gwicht / Info';
+        }
+
+        weightAndBtns.appendChild(additionalInputElement);
 
         const lastWeight = document.createElement('img');
         lastWeight.src = 'img/backArrow.png';
         lastWeight.className = 'lastWeightImg';
-        dateWeightArea.appendChild(lastWeight);
+        weightAndBtns.appendChild(lastWeight);
 
         lastWeight.onclick = function () {
             copyLastWeight(index);
@@ -135,15 +210,7 @@ function addGymDiaryElement(bodypartIndex) {
         garbageImage.onclick = function () {
             deleteGymDiaryElement(bodypartIndex, localIndex);
         };
-        dateWeightArea.appendChild(garbageImage);
-
-        const saveDiarayElementImage = document.createElement('img');
-        saveDiarayElementImage.src = 'img/save.png';
-        saveDiarayElementImage.className = 'lastWeightImg';
-        saveDiarayElementImage.onclick = function () {
-            saveGymDiaryData(bodypartIndex, localIndex);
-        };
-        dateWeightArea.appendChild(saveDiarayElementImage);
+        weightAndBtns.appendChild(garbageImage);
 
         gymDiaryContentElement.appendChild(dateWeightArea);
 
