@@ -7,10 +7,10 @@ function translateEnglish() {
         document.getElementById('regBtnId').innerHTML = 'Register';
     } else {
         document.getElementById('setStandardBtnsTranslateId').innerHTML = 'Set standard buttons';
-        document.getElementById('confirmInputTranslateId').innerHTML = 'Confirm input';
-        document.getElementById('deleteCategoryTranslateId').innerHTML = 'Delete category';
+        document.getElementById('confirmInputTranslateId').innerHTML = 'Confirm';
+        document.getElementById('deleteCategoryTranslateId').innerHTML = 'Delete';
         document.getElementById('saveCategoryTranslateId').innerHTML = 'Save category';
-        document.getElementById('addNewCategoryTranslateId').innerHTML = 'Add new category';
+        document.getElementById('addNewCategoryTranslateId').innerHTML = 'Add new element';
         document.getElementById('startBtnId').innerHTML = 'Start';
         document.getElementById('pauseBtnId').innerHTML = 'Pause';
         document.getElementById('resetBtnId').innerHTML = 'Reset';
@@ -21,7 +21,7 @@ function translateEnglish() {
         document.getElementById('firstIntervalBtnId').innerHTML = 'Off';
         document.getElementById('preOffIntervalBtnId').innerHTML = 'Off';
         document.getElementById('requiresAlertTimeId').innerHTML = 'Requires alert time selection';
-        document.getElementById('manualTranslateId').innerHTML = 'Manual';
+        document.getElementById('manualTitleId').innerHTML = 'Manual';
         document.getElementById('settingstitleId').innerHTML = 'Settings';
         document.getElementById('updatesTitleId').innerHTML = 'Updates';
         document.getElementById('saveDeleteLastDiaryElementTranslateId').innerHTML = 'Save or delete last diary element first';
@@ -32,6 +32,9 @@ function translateEnglish() {
         document.getElementById('cancelBtnSettingsId').innerHTML = 'Cancel';
         document.getElementById('continueBtnId').innerHTML = 'Continue';
         document.getElementById('continueBtnSettingsId').innerHTML = 'Continue';
+        document.getElementById('dateTodayTranslateId').innerHTML = `Insert today's date`;
+        document.getElementById('addLastWeightTranslateId').innerHTML = 'Adopt info from previous entry';
+        document.getElementById('downloadTranslateId').innerHTML = 'Download gym diary as text file';
     }
     languageArray = [];
     languageArray.push('english');
@@ -50,7 +53,7 @@ function translateGerman() {
         document.getElementById('confirmInputTranslateId').innerHTML = 'Bestätige Eingabe';
         document.getElementById('deleteCategoryTranslateId').innerHTML = 'Lösche Kategorie';
         document.getElementById('saveCategoryTranslateId').innerHTML = 'Speichere Kategorie';
-        document.getElementById('addNewCategoryTranslateId').innerHTML = 'Neue Kategorie';
+        document.getElementById('addNewCategoryTranslateId').innerHTML = 'Neues Element hinzufügen';
         document.getElementById('startBtnId').innerHTML = 'Start';
         document.getElementById('pauseBtnId').innerHTML = 'Pause';
         document.getElementById('resetBtnId').innerHTML = 'Neu';
@@ -61,7 +64,7 @@ function translateGerman() {
         document.getElementById('firstIntervalBtnId').innerHTML = 'Aus';
         document.getElementById('preOffIntervalBtnId').innerHTML = 'Aus';
         document.getElementById('requiresAlertTimeId').innerHTML = 'Alarmzeit wird benötigt';
-        document.getElementById('manualTranslateId').innerHTML = 'Anleitung';
+        document.getElementById('manualTitleId').innerHTML = 'Anleitung';
         document.getElementById('settingstitleId').innerHTML = 'Einstellungen';
         document.getElementById('updatesTitleId').innerHTML = 'Aktualisierungen';
         document.getElementById('saveDeleteLastDiaryElementTranslateId').innerHTML = 'Speichere oder lösche das letzte Tagebuchelement';
@@ -72,6 +75,9 @@ function translateGerman() {
         document.getElementById('cancelBtnSettingsId').innerHTML = 'Abbrechen';
         document.getElementById('continueBtnId').innerHTML = 'Weiter';
         document.getElementById('continueBtnSettingsId').innerHTML = 'Weiter';
+        document.getElementById('dateTodayTranslateId').innerHTML = `Fügt heutiges Datum ein`;
+        document.getElementById('addLastWeightTranslateId').innerHTML = 'Info vom vorherigen Eintrag übernehmen';
+        document.getElementById('downloadTranslateId').innerHTML = 'Fitness-Tagebuch als Textdatei herunterladen';
     }
     languageArray = [];
     languageArray.push('german');
@@ -90,7 +96,7 @@ function translateSerbian() {
         document.getElementById('confirmInputTranslateId').innerHTML = 'Потврди унос';
         document.getElementById('deleteCategoryTranslateId').innerHTML = 'Избриши категорију';
         document.getElementById('saveCategoryTranslateId').innerHTML = 'Сачувај категорију';
-        document.getElementById('addNewCategoryTranslateId').innerHTML = 'Нова категорија';
+        document.getElementById('addNewCategoryTranslateId').innerHTML = 'Добавить новый элемент';
         document.getElementById('startBtnId').innerHTML = 'Почетак';
         document.getElementById('pauseBtnId').innerHTML = 'Пауза';
         document.getElementById('resetBtnId').innerHTML = 'Ресетуј';
@@ -101,7 +107,7 @@ function translateSerbian() {
         document.getElementById('firstIntervalBtnId').innerHTML = 'Искључи';
         document.getElementById('preOffIntervalBtnId').innerHTML = 'Искључи';
         document.getElementById('requiresAlertTimeId').innerHTML = 'Потребно је време за упозорење';
-        document.getElementById('manualTranslateId').innerHTML = 'Упутство';
+        document.getElementById('manualTitleId').innerHTML = 'Упутство';
         document.getElementById('settingstitleId').innerHTML = 'Подешавања';
         document.getElementById('updatesTitleId').innerHTML = 'Обнове';
         document.getElementById('saveDeleteLastDiaryElementTranslateId').innerHTML = 'Сохраните или удалите последний элемент дневника сначала';
@@ -112,6 +118,9 @@ function translateSerbian() {
         document.getElementById('cancelBtnSettingsId').innerHTML = 'Откажи';
         document.getElementById('continueBtnId').innerHTML = 'Настави';
         document.getElementById('continueBtnSettingsId').innerHTML = 'Настави';
+        document.getElementById('dateTodayTranslateId').innerHTML = `Фүгт хеутигес Датум еин`;
+        document.getElementById('addLastWeightTranslateId').innerHTML = 'Инфо вом ворхериген Еинтраг ӱбернэхмэн';
+        document.getElementById('downloadTranslateId').innerHTML = 'Фитнесс-Тагебуч алс Тэкстдатеи херунтерладен';
     }
     languageArray = [];
     languageArray.push('serbian');
@@ -130,7 +139,7 @@ function translateMarokko() {
         document.getElementById('confirmInputTranslateId').innerHTML = 'تأكيد الإدخال';
         document.getElementById('deleteCategoryTranslateId').innerHTML = 'حذف الفئة';
         document.getElementById('saveCategoryTranslateId').innerHTML = 'حفظ الفئة';
-        document.getElementById('addNewCategoryTranslateId').innerHTML = 'إضافة فئة جديدة';
+        document.getElementById('addNewCategoryTranslateId').innerHTML = 'إضافة عنصر جديد';
         document.getElementById('startBtnId').innerHTML = 'ابدأ';
         document.getElementById('pauseBtnId').innerHTML = 'توقف';
         document.getElementById('resetBtnId').innerHTML = 'إعادة تعيين';
@@ -141,7 +150,7 @@ function translateMarokko() {
         document.getElementById('firstIntervalBtnId').innerHTML = 'إيقاف';
         document.getElementById('preOffIntervalBtnId').innerHTML = 'إيقاف';
         document.getElementById('requiresAlertTimeId').innerHTML = 'يتطلب اختيار وقت التنبيه';
-        document.getElementById('manualTranslateId').innerHTML = 'دليل';
+        document.getElementById('manualTitleId').innerHTML = 'دليل';
         document.getElementById('settingstitleId').innerHTML = 'الإعدادات';
         document.getElementById('updatesTitleId').innerHTML = 'تحديثات';
         document.getElementById('saveDeleteLastDiaryElementTranslateId').innerHTML = 'احفظ أو احذف العنصر الأخير في اليومية أولاً.';
@@ -152,6 +161,10 @@ function translateMarokko() {
         document.getElementById('cancelBtnSettingsId').innerHTML = 'إلغاء';
         document.getElementById('continueBtnId').innerHTML = 'متابعة';
         document.getElementById('continueBtnSettingsId').innerHTML = 'متابعة';
+        document.getElementById('dateTodayTranslateId').innerHTML = `أدخل تاريخ اليوم`;
+        document.getElementById('addLastWeightTranslateId').innerHTML = 'اعتماد معلومات من الإدخال السابق';
+        document.getElementById('downloadTranslateId').innerHTML = 'تنزيل يوميات اللياقة كملف نصي';
+
     }
     languageArray = [];
     languageArray.push('marokko');
@@ -170,7 +183,7 @@ function translateChina() {
         document.getElementById('confirmInputTranslateId').innerHTML = '确认输入';
         document.getElementById('deleteCategoryTranslateId').innerHTML = '删除类别';
         document.getElementById('saveCategoryTranslateId').innerHTML = '保存类别';
-        document.getElementById('addNewCategoryTranslateId').innerHTML = '添加新类别';
+        document.getElementById('addNewCategoryTranslateId').innerHTML = '添加新元素';
         document.getElementById('startBtnId').innerHTML = '开始';
         document.getElementById('pauseBtnId').innerHTML = '暂停';
         document.getElementById('resetBtnId').innerHTML = '重置';
@@ -181,7 +194,7 @@ function translateChina() {
         document.getElementById('firstIntervalBtnId').innerHTML = '关闭';
         document.getElementById('preOffIntervalBtnId').innerHTML = '关闭';
         document.getElementById('requiresAlertTimeId').innerHTML = '需要选择提醒时间';
-        document.getElementById('manualTranslateId').innerHTML = '手动';
+        document.getElementById('manualTitleId').innerHTML = '手动';
         document.getElementById('settingstitleId').innerHTML = '设置';
         document.getElementById('updatesTitleId').innerHTML = '更新';
         document.getElementById('saveDeleteLastDiaryElementTranslateId').innerHTML = '先保存或删除最后的日记元素';
@@ -192,6 +205,10 @@ function translateChina() {
         document.getElementById('cancelBtnSettingsId').innerHTML = '取消';
         document.getElementById('continueBtnId').innerHTML = '继续';
         document.getElementById('continueBtnSettingsId').innerHTML = '继续';
+        document.getElementById('dateTodayTranslateId').innerHTML = `插入今天的日期`;
+        document.getElementById('addLastWeightTranslateId').innerHTML = '采用上一条记录的信息';
+        document.getElementById('downloadTranslateId').innerHTML = '下载健身日记为文本文件';
+
     }
     languageArray = [];
     languageArray.push('china');
@@ -210,7 +227,7 @@ function translateSpain() {
         document.getElementById('confirmInputTranslateId').innerHTML = 'Confirmar entrada';
         document.getElementById('deleteCategoryTranslateId').innerHTML = 'Eliminar categoría';
         document.getElementById('saveCategoryTranslateId').innerHTML = 'Guardar categoría';
-        document.getElementById('addNewCategoryTranslateId').innerHTML = 'Agregar nueva categoría';
+        document.getElementById('addNewCategoryTranslateId').innerHTML = 'Agregar nuevo elemento';
         document.getElementById('startBtnId').innerHTML = 'Inicio';
         document.getElementById('pauseBtnId').innerHTML = 'Pausa';
         document.getElementById('resetBtnId').innerHTML = 'Restablecer';
@@ -221,7 +238,7 @@ function translateSpain() {
         document.getElementById('firstIntervalBtnId').innerHTML = 'Apagar';
         document.getElementById('preOffIntervalBtnId').innerHTML = 'Apagar';
         document.getElementById('requiresAlertTimeId').innerHTML = 'Requiere selección de tiempo de alerta';
-        document.getElementById('manualTranslateId').innerHTML = 'Instrucciones';
+        document.getElementById('manualTitleId').innerHTML = 'Instrucciones';
         document.getElementById('settingstitleId').innerHTML = 'Configuración';
         document.getElementById('updatesTitleId').innerHTML = 'Actualizaciones';
         document.getElementById('saveDeleteLastDiaryElementTranslateId').innerHTML = 'Guardar o eliminar primero el último elemento del diario';
@@ -232,6 +249,10 @@ function translateSpain() {
         document.getElementById('cancelBtnSettingsId').innerHTML = 'Cancelar';
         document.getElementById('continueBtnId').innerHTML = 'Continuar';
         document.getElementById('continueBtnSettingsId').innerHTML = 'Continuar';
+        document.getElementById('dateTodayTranslateId').innerHTML = `Insertar la fecha de hoy`;
+        document.getElementById('addLastWeightTranslateId').innerHTML = 'Adoptar información del registro anterior';
+        document.getElementById('downloadTranslateId').innerHTML = 'Descargar diario de gimnasio como archivo de texto';
+
     }
     languageArray = [];
     languageArray.push('spain');
@@ -251,7 +272,7 @@ function translateBavaria() {
         document.getElementById('confirmInputTranslateId').innerHTML = 'Oiso, des passt so';
         document.getElementById('deleteCategoryTranslateId').innerHTML = 'Pack des Zeig weg';
         document.getElementById('saveCategoryTranslateId').innerHTML = 'Speicher den Schmarrn';
-        document.getElementById('addNewCategoryTranslateId').innerHTML = 'Hau ane nei Kategorie nei';
+        document.getElementById('addNewCategoryTranslateId').innerHTML = 'Hau a neis Element nei';
         document.getElementById('startBtnId').innerHTML = 'Geh los';
         document.getElementById('pauseBtnId').innerHTML = 'Hoid an';
         document.getElementById('resetBtnId').innerHTML = 'Nai';
@@ -262,7 +283,7 @@ function translateBavaria() {
         document.getElementById('firstIntervalBtnId').innerHTML = 'Aus';
         document.getElementById('preOffIntervalBtnId').innerHTML = 'Aus';
         document.getElementById('requiresAlertTimeId').innerHTML = 'Benötigt a Zeit fürn Alarm';
-        document.getElementById('manualTranslateId').innerHTML = 'Leitfodn';
+        document.getElementById('manualTitleId').innerHTML = 'Leitfodn';
         document.getElementById('settingstitleId').innerHTML = 'G’fummel';
         document.getElementById('updatesTitleId').innerHTML = 'Neier Firlefanz';
         document.getElementById('saveDeleteLastDiaryElementTranslateId').innerHTML = `Speicher oda lösch z'erst 's dei letzte Schmarrnübung`;
@@ -273,6 +294,10 @@ function translateBavaria() {
         document.getElementById('cancelBtnSettingsId').innerHTML = `Brems'n`;
         document.getElementById('continueBtnId').innerHTML = 'Weitermacha';
         document.getElementById('continueBtnSettingsId').innerHTML = 'Weitermacha';
+        document.getElementById('dateTodayTranslateId').innerHTML = `Heid is:`;
+        document.getElementById('addLastWeightTranslateId').innerHTML = 'Nimm de Infos vom vorigen Eintrag her';
+        document.getElementById('downloadTranslateId').innerHTML = 'Lad des Gymnastikheft ois Textdatei oba';
+
     }
     languageArray = [];
     languageArray.push('bavaria');

@@ -1,5 +1,5 @@
-function showUpdates() {
-    changeShowUpdatesFunction();
+function showManual() {
+    changeShowManualFunction();
     document.getElementById('settingsImgId').src = 'img/close.png';
     toggleVisibilityById('logOutBtnId', false);
     toggleVisibilityById('settingsImgId', true);
@@ -9,15 +9,16 @@ function showUpdates() {
     toggleVisibilityById('dumbellId', false);
     toggleVisibilityById('gymDiaryTxtWithBtnId', false);
     toggleVisibilityById('gymDiaryAreaId', false);
-    toggleVisibilityById('updatesTitleId', true);
-    toggleVisibilityById('updatesDescriptionId', true);
-    toggleVisibilityById('updateImgId', false);
     toggleVisibilityById('manualImgId', false);
+    toggleVisibilityById('manualTitleId', true);
+    toggleVisibilityById('settingsDescriptionId', true);
+    // toggleVisibilityById('updatesDescriptionId', true);
+    toggleVisibilityById('updateImgId', false);
     toggleVisibilityById('welcomeMessageTranslateId', false);
     document.getElementById('emptyDiaryTranslateId').style.display = 'none';
 }
 
-function fromUpdatesToMenu() {
+function fromManualToMenu() {
     originalShowSettingsFunction();
     document.getElementById('settingsImgId').src = 'img/settings.png';
     toggleVisibilityById('logOutBtnId', true);
@@ -28,19 +29,20 @@ function fromUpdatesToMenu() {
     toggleVisibilityById('gymDiaryAreaId', false);
     toggleVisibilityById('dumbellId', true);
     toggleVisibilityById('gymDiaryTxtWithBtnId', true);
-    toggleVisibilityById('updatesTitleId', false);
-    toggleVisibilityById('updatesDescriptionId', false);
-    toggleVisibilityById('updateImgId', true);
     toggleVisibilityById('manualImgId', true);
+    toggleVisibilityById('settingsDescriptionId', false);
+    // toggleVisibilityById('updatesDescriptionId', false);
+    toggleVisibilityById('manualTitleId', false);
+    toggleVisibilityById('updateImgId', true);
     toggleVisibilityById('welcomeMessageTranslateId', true);
     if (gymDiaryArray.length === 0) {
         document.getElementById('emptyDiaryTranslateId').style.display = 'flex';
     }
 }
 
-function changeShowUpdatesFunction() {
-    const changeShowUpdatesBtn = document.getElementById('settingsImgId');
-    changeShowUpdatesBtn.onclick = function () {
-        fromUpdatesToMenu();
+function changeShowManualFunction() {
+    const changeShowManualBtn = document.getElementById('settingsImgId');
+    changeShowManualBtn.onclick = function () {
+        fromManualToMenu();
     };
 }

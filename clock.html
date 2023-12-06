@@ -10,6 +10,7 @@
     <script src="script/settings.js"></script>
     <script src="script/gymdiary.js"></script>
     <script src="script/updates.js"></script>
+    <script src="script/manual.js"></script>
     <script src="script/templates.js"></script>
     <script src="script/storage.js"></script>
     <script src="script/translate.js"></script>
@@ -24,6 +25,7 @@
 <body onload="init()" onclick="toggleVisibilityById('flagContainer', false);">
     <div class="content column gap10 dNone" id="contentStartPageId">
         <img src="img/updates.png" class="symbol28 btnTopLeft" id="updateImgId" onclick="showUpdates()">
+        <img src="img/manual.png" class="symbol28 btnTopLeftSecond" id="manualImgId" onclick="showManual()">
 
         <img src="img/world.png" class="symbol28 btnTopLeft dNone" id="flagsId"
             onclick="toggleVisibilityById('flagContainer', true); doNotClose(event)">
@@ -56,45 +58,67 @@
             00:00:00
         </div>
         <!-- settings -->
-        <span class="dNone alignCenter whiteFont font24 bold" id="settingstitleId">Settings</span>
-        <div class="dNone" id="settingsDescriptionId">
-            <span class="alignCenter settingsTitleMessage font16" id="manualTranslateId">
-                Manual:
-            </span>
+        <span class="dNone alignCenter whiteFont font24 bold justifyCenter" id="settingstitleId">Settings</span>
+        <!-- Manual -->
+        <span class="dNone alignCenter whiteFont font24 bold" id="manualTitleId">Manual</span>
+        <div class="dNone column" id="settingsDescriptionId">
             <div class="alignCenter">
-                <img src="img/exclamation.png" class="symbol15">
+                <img src="img/exclamation.png" class="symbol23">
                 <span class="font16" id="setStandardBtnsTranslateId">
                     Set standard buttons
                 </span>
             </div>
             <div class="alignCenter">
-                <img src="img/confirm.png" class="symbol15">
+                <img src="img/confirm.png" class="symbol23">
                 <span class="font16" id="confirmInputTranslateId">
-                    Confirm input
+                    Confirm
                 </span>
             </div>
             <div class="alignCenter">
-                <img src="img/garbage.png" class="symbol15">
+                <img src="img/garbage.png" class="symbol23">
                 <span class="font16" id="deleteCategoryTranslateId">
-                    Delete category
+                    Delete
                 </span>
             </div>
             <div class="alignCenter">
-                <img src="img/save.png" class="symbol15">
+                <img src="img/save.png" class="symbol23">
                 <span class="font16" id="saveCategoryTranslateId">
-                    Save category
+                    Save
                 </span>
             </div>
             <div class="alignCenter">
-                <img src="img/plus.png" class="symbol15">
+                <img src="img/plus.png" class="symbol23">
                 <span class="font16" id="addNewCategoryTranslateId">
-                    Add new category
+                    Add new element
+                </span>
+            </div>
+            <div class="alignCenter">
+                <img src="img/calender.png" class="symbol23">
+                <span class="font16" id="dateTodayTranslateId">
+                    Insert today's date
+                </span>
+            </div>
+            <div class="alignCenter">
+                <img src="img/backArrow.png" class="symbol23 symbol23alt">
+                <span class="font16" id="addLastWeightTranslateId">
+                    Adopt info from previous entry
+                </span>
+            </div>
+            <div class="alignCenter">
+                <img src="img/download.png" class="symbol23 symbolDownload">
+                <span class="font16" id="downloadTranslateId">
+                    Download gym diary as text file
                 </span>
             </div>
         </div>
         <!-- updates -->
         <span class="dNone alignCenter whiteFont font24 bold w100" id="updatesTitleId">Updates</span>
         <div class="dNone" id="updatesDescriptionId">
+            <span class="font16 bold">06/12/2023</span>
+            <li>official release</li>
+            <li>delete all arrays</li>
+            <li>add new token</li>
+            <li>add manual section</li>
             <span class="font16 bold">05/12/2023</span>
             <li>add github profile link at index.html</li>
             <li>add diary download button</li>
@@ -149,6 +173,10 @@
             <span class="font16 bold">24/11/2023</span>
             <li>add timer with buttons</li>
             <li>add login/register</li>
+        </div>
+        <!-- manual -->
+        <span class="dNone alignCenter whiteFont font24 bold w100" id="manualTitleId">Manual</span>
+        <div class="dNone" id="manualTextBlockId">
         </div>
         <!-- buttons -->
         <section class="column w100 gap10" id="btnAreaId">

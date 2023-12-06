@@ -173,8 +173,3 @@ function showPassword() {
         showPasswordImg.src = 'img/eyeClosed.png';
     }
 }
-
-async function deleteAllUser() {
-    usersArray = [];
-    await setItem('usersArray', JSON.stringify(usersArray));
-}

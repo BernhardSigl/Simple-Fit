@@ -6,7 +6,7 @@ async function openDiary(bodypartIndex) {
     preGymDiaryElementArray = [];
     changeShowDiaryFunction();
     await loadIndividuallyGymDiaryArray();
-    document.getElementById('settingsImgId').src = 'img/backArrow.png';
+    document.getElementById('settingsImgId').src = 'img/close.png';
     toggleVisibilityById('dumbellId', false);
     toggleVisibilityById('welcomeMessageId', false);
     toggleVisibilityById('btnAreaId', false);
@@ -16,6 +16,7 @@ async function openDiary(bodypartIndex) {
     toggleVisibilityById('gymDiaryStartPageId', false);
     toggleVisibilityById('gymDiaryAreaId', true);
     toggleVisibilityById('welcomeMessageTranslateId', false);
+    toggleVisibilityById('manualImgId', false);
     document.getElementById('gymDiaryAreaId').innerHTML = /*html*/ `
         <span class="font24 bold white">${gymDiaryArray[bodypartIndex].bodypart}</span>
         <div id="gymDiaryContainer" class="column gap10">
@@ -90,6 +91,7 @@ function fromDiaryToMenu() {
         toggleVisibilityById('gymDiaryContainer', false);
         toggleVisibilityById('deleteDiaryElementId', false);
         toggleVisibilityById('welcomeMessageTranslateId', true);
+        toggleVisibilityById('manualImgId', true);
         originalShowSettingsFunction();
     }
 }

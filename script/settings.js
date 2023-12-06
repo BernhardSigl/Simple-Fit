@@ -2,12 +2,13 @@ function showSettings() {
     settings = true;
     changeShowSettingsFunction();
     checkSavedDiaryElement();
-    document.getElementById('settingsImgId').src = 'img/backArrow.png';
+    document.getElementById('settingsImgId').src = 'img/close.png';
     document.getElementById('btnAreaId').classList.add('btnArea');
     toggleVisibilityById('settingstitleId', true);
     toggleVisibilityById('dumbellId', false);
     toggleVisibilityById('SPRBtnAreaId', false);
-    toggleVisibilityById('settingsDescriptionId', true);
+    // toggleVisibilityById('settingsDescriptionId', true);
+    toggleVisibilityById('manualImgId', false);
     toggleVisibilityById('logOutBtnId', false);
     toggleVisibilityById('logOutBtnId', false);
     toggleVisibilityById('welcomeMessageId', false);
@@ -52,7 +53,8 @@ function backToMenu() {
         toggleVisibilityById('settingstitleId', false);
         toggleVisibilityById('dumbellId', true);
         toggleVisibilityById('SPRBtnAreaId', true);
-        toggleVisibilityById('settingsDescriptionId', false);
+        // toggleVisibilityById('settingsDescriptionId', false);
+        toggleVisibilityById('manualImgId', true);
         toggleVisibilityById('logOutBtnId', true);
         toggleVisibilityById('welcomeMessageId', true);
         toggleVisibilityByClass('changeIntervalArea', false);

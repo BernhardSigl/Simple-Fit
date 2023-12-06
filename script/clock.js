@@ -854,6 +854,4 @@ function downloadDiary() {
     document.body.removeChild(downloadLink);
 }
 
-
-
 updateTime();
