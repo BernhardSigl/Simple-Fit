@@ -110,10 +110,22 @@
                     Download gym diary as text file
                 </span>
             </div>
+            <div class="alignCenter">
+                <span class="font16" id="timeExplainingTranslateId">
+                    The alarm is indicated as follows: "0.00".
+                    For example, 1.25 is 1 minute and 15 seconds.
+                    The pre-alarm sounds a tone at the selected time before the main alarm. Possible pre alarm: "> 0
+                    seconds".
+                </span>
+            </div>
         </div>
         <!-- updates -->
         <span class="dNone alignCenter whiteFont font24 bold w100" id="updatesTitleId">Updates</span>
         <div class="dNone" id="updatesDescriptionId">
+            <span class="font16 bold">07/12/2023</span>
+            <li>alarm time with decimal places</li>
+            <li>pre alarm time over 60 sec</li>
+            <li>manual extension</li>
             <span class="font16 bold">06/12/2023</span>
             <li>official release</li>
             <li>delete all arrays</li>
@@ -214,7 +226,7 @@
                         </button>
                         <div class="changeIntervalArea">
                             <input type="text" id="intervalSecondNumberFieldId" class="inputInterval"
-                                oninput="this.value = this.value.replace(/[^\d]/g, '');">
+                                onchange="validateInputInterval(this)">
                             <div class="standardConfirmBtnArea column">
                                 <img src="img/exclamation.png" class="standardConfirmBtn"
                                     onclick="confirmSecondIntervalAsStandard()">
@@ -229,7 +241,7 @@
                         </button>
                         <div class="changeIntervalArea">
                             <input type="text" id="intervalThirdNumberFieldId" class="inputInterval"
-                                oninput="this.value = this.value.replace(/[^\d]/g, '');">
+                                onchange="validateInputInterval(this)">
                             <div class="standardConfirmBtnArea column">
                                 <img src="img/exclamation.png" class="standardConfirmBtn"
                                     onclick="confirmThirdIntervalAsStandard()">
@@ -265,7 +277,7 @@
                         </button>
                         <div class="changeIntervalArea">
                             <input type="text" id="preIntervalFirstNumberFieldId" class="inputInterval"
-                                oninput="this.value = this.value.replace(/[^\d]/g, '');">
+                                oninput="validatePreIntervalInput(this)">
                             <div class="standardConfirmBtnArea column">
                                 <img src="img/exclamation.png" class="standardConfirmBtn"
                                     onclick="confirmFirstPreIntervalAsStandard()">
@@ -281,7 +293,7 @@
                         </button>
                         <div class="changeIntervalArea">
                             <input type="text" id="preIntervalSecondNumberFieldId" class="inputInterval"
-                                oninput="this.value = this.value.replace(/[^\d]/g, '');">
+                                oninput="validatePreIntervalInput(this)">
                             <div class="standardConfirmBtnArea column">
                                 <img src="img/exclamation.png" class="standardConfirmBtn"
                                     onclick="confirmSecondPreIntervalAsStandard()">

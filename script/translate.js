@@ -35,6 +35,10 @@ function translateEnglish() {
         document.getElementById('dateTodayTranslateId').innerHTML = `Insert today's date`;
         document.getElementById('addLastWeightTranslateId').innerHTML = 'Adopt info from previous entry';
         document.getElementById('downloadTranslateId').innerHTML = 'Download gym diary as text file';
+        document.getElementById('timeExplainingTranslateId').innerHTML = `The alarm is indicated as follows: "0.00".
+        For example, "1.25" is 1 minute and 15 seconds.
+        The pre-alarm sounds a tone at the selected time before the main alarm. Possible pre alarm: "> 0
+        seconds".`;
     }
     languageArray = [];
     languageArray.push('english');
@@ -78,6 +82,9 @@ function translateGerman() {
         document.getElementById('dateTodayTranslateId').innerHTML = `Fügt heutiges Datum ein`;
         document.getElementById('addLastWeightTranslateId').innerHTML = 'Info vom vorherigen Eintrag übernehmen';
         document.getElementById('downloadTranslateId').innerHTML = 'Fitness-Tagebuch als Textdatei herunterladen';
+        document.getElementById('timeExplainingTranslateId').innerHTML = `Der Alarm wird wie folgt angegeben: "0.00".
+        Dabei ist zum Beispiel "1.25" 1 Minute und 15 Sekunden.
+        Der Vorab-Alarm gibt einen Ton ab, in der gewählten Zeit vor dem Haupt-Alarm. Möglicher Vorab-Alarm: "> 0 Sekunden".`;
     }
     languageArray = [];
     languageArray.push('german');
@@ -121,6 +128,11 @@ function translateSerbian() {
         document.getElementById('dateTodayTranslateId').innerHTML = `Фүгт хеутигес Датум еин`;
         document.getElementById('addLastWeightTranslateId').innerHTML = 'Инфо вом ворхериген Еинтраг ӱбернэхмэн';
         document.getElementById('downloadTranslateId').innerHTML = 'Фитнесс-Тагебуч алс Тэкстдатеи херунтерладен';
+        document.getElementById('timeExplainingTranslateId').innerHTML = `Будильник указывается следующим образом: "0.00".
+        Например, "1.25" означает 1 минуту и 15 секунд.
+        Предварительный сигнал звучит за выбранное время до основного сигнала. Возможный предварительный сигнал: "> 0
+        секунд".`;
+
     }
     languageArray = [];
     languageArray.push('serbian');
@@ -164,7 +176,10 @@ function translateMarokko() {
         document.getElementById('dateTodayTranslateId').innerHTML = `أدخل تاريخ اليوم`;
         document.getElementById('addLastWeightTranslateId').innerHTML = 'اعتماد معلومات من الإدخال السابق';
         document.getElementById('downloadTranslateId').innerHTML = 'تنزيل يوميات اللياقة كملف نصي';
-
+        document.getElementById('timeExplainingTranslateId').innerHTML = `الإنذار يظهر على النحو التالي: "0.00".
+على سبيل المثال، "1.25" تعني دقيقة و15 ثانية.
+التنبيه السابق يصدر صوتًا في الوقت المحدد قبل الإنذار الرئيسي. إنذار ممكن مسبقًا: "> 0
+ثانية".`;
     }
     languageArray = [];
     languageArray.push('marokko');
@@ -208,7 +223,10 @@ function translateChina() {
         document.getElementById('dateTodayTranslateId').innerHTML = `插入今天的日期`;
         document.getElementById('addLastWeightTranslateId').innerHTML = '采用上一条记录的信息';
         document.getElementById('downloadTranslateId').innerHTML = '下载健身日记为文本文件';
-
+        document.getElementById('timeExplainingTranslateId').innerHTML = `闹钟的显示方式如下: "0.00"。
+        例如，"1.25" 表示1分钟15秒。
+        预警会在主要警报前的选择时间发出提示音。可能的预警时间: "> 0
+        秒"。`;
     }
     languageArray = [];
     languageArray.push('china');
@@ -252,7 +270,10 @@ function translateSpain() {
         document.getElementById('dateTodayTranslateId').innerHTML = `Insertar la fecha de hoy`;
         document.getElementById('addLastWeightTranslateId').innerHTML = 'Adoptar información del registro anterior';
         document.getElementById('downloadTranslateId').innerHTML = 'Descargar diario de gimnasio como archivo de texto';
-
+        document.getElementById('timeExplainingTranslateId').innerHTML = `La alarma se indica de la siguiente manera: "0.00".
+        Por ejemplo, "1.25" son 1 minuto y 15 segundos.
+        La alarma previa emite un tono en el tiempo seleccionado antes de la alarma principal. Posible tiempo de alarma previa: "> 0
+        segundos".`;
     }
     languageArray = [];
     languageArray.push('spain');
@@ -297,7 +318,9 @@ function translateBavaria() {
         document.getElementById('dateTodayTranslateId').innerHTML = `Heid is:`;
         document.getElementById('addLastWeightTranslateId').innerHTML = 'Nimm de Infos vom vorigen Eintrag her';
         document.getElementById('downloadTranslateId').innerHTML = 'Lad des Gymnastikheft ois Textdatei oba';
-
+        document.getElementById('timeExplainingTranslateId').innerHTML = `Da Wecker zeigt sich wia folgt: "0.00".
+        Zum Beispui, "1.25" san 1 Minutn und 15 Sekundn.
+        Da Vorwecka gibt a Ton vo sich, in da ausgwähltn Zeit vorm Hoamwecka. Mögliche Vorweckzeit: "> 0 Sekundn".`;
     }
     languageArray = [];
     languageArray.push('bavaria');

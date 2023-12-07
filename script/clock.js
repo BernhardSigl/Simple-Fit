@@ -97,13 +97,13 @@ async function init() {
         firstPreIntervalTime = 50;
         document.getElementById('preFirstPreIntervalBtnId').innerHTML = '10';
     } else {
-        document.getElementById('preFirstPreIntervalBtnId').innerHTML = 60 - firstPreIntervalTime;
+        document.getElementById('preFirstPreIntervalBtnId').innerHTML = firstPreIntervalTime;
     }
     if (secondPreIntervalTime === null) {
         secondPreIntervalTime = 45;
         document.getElementById('preSecondIntervalBtnId').innerHTML = '15';
     } else {
-        document.getElementById('preSecondIntervalBtnId').innerHTML = 60 - secondPreIntervalTime;
+        document.getElementById('preSecondIntervalBtnId').innerHTML = secondPreIntervalTime;
     }
     if (intervalTime === 0) {
         setGoFirst();
@@ -263,10 +263,10 @@ async function loadIntervals() {
 async function saveIntervals() {
     intervalsArray = [];
     firstIntervalTime = Number(document.getElementById('firstIntervalBtnId').innerHTML);
-    secondIntervalTime = Number(document.getElementById('secondIntervalBtnId').innerHTML);
-    thirdIntervalTime = Number(document.getElementById('thirdIntervalBtnId').innerHTML);
-    firstPreIntervalTime = 60 - Number(document.getElementById('preFirstPreIntervalBtnId').innerHTML);
-    secondPreIntervalTime = 60 - Number(document.getElementById('preSecondIntervalBtnId').innerHTML);
+    secondIntervalTime = Number(document.getElementById('secondIntervalBtnId').innerHTML); // del
+    thirdIntervalTime = Number(document.getElementById('thirdIntervalBtnId').innerHTML); // del
+    firstPreIntervalTime = Number(document.getElementById('preFirstPreIntervalBtnId').innerHTML);
+    secondPreIntervalTime = Number(document.getElementById('preSecondIntervalBtnId').innerHTML);
     intervalsArray.push({
         'firstIntervalTime': firstIntervalTime,
         'secondIntervalTime': secondIntervalTime,
@@ -394,17 +394,6 @@ function updateTime() {
     setTimeout(updateTime, 1);
 }
 
-function updateDisplay() {
-    let h = Math.floor(resetTime / 3600000);
-    let m = Math.floor(resetTime / 60000) % 60;
-    let s = Math.floor(resetTime / 1000) % 60;
-    h = h < 10 ? "0" + h : h;
-    m = m < 10 ? "0" + m : m;
-    s = s < 10 ? "0" + s : s;
-    document.getElementById('timeId').innerHTML = h + ":" + m + ":" + s;
-    playSounds(m, s);
-}
-
 function setGoFirst() {
     setActiveIntervalBtn('firstIntervalBtnId');
     intervalTime = false;
@@ -414,7 +403,7 @@ function setGoFirst() {
 function setGoSecond() {
     setActiveIntervalBtn('secondIntervalBtnId');
     if (intervalsArray.length === 0) {
-        intervalTime = 4;
+        intervalTime = 1;
     } else {
         intervalTime = intervalsArray[0].secondIntervalTime;
     }
@@ -423,7 +412,7 @@ function setGoSecond() {
 function setGoThird() {
     setActiveIntervalBtn('thirdIntervalBtnId');
     if (intervalsArray.length === 0) {
-        intervalTime = 5;
+        intervalTime = 4;
     } else {
         intervalTime = intervalsArray[0].thirdIntervalTime;
     }
@@ -439,7 +428,7 @@ function setPreIntervalOff() {
 function setPreIntervalFirst() {
     setActivePreIntervalBtn('preFirstPreIntervalBtnId');
     if (intervalsArray.length === 0) {
-        preIntervalTime = 50;
+        preIntervalTime = 10;
         intervalTimeFalse();
     } else {
         preIntervalTime = intervalsArray[0].firstPreIntervalTime;
@@ -450,7 +439,7 @@ function setPreIntervalFirst() {
 function setPreIntervalSecond() {
     setActivePreIntervalBtn('preSecondIntervalBtnId');
     if (intervalsArray.length === 0) {
-        preIntervalTime = 45;
+        preIntervalTime = 15;
         intervalTimeFalse();
     } else {
         preIntervalTime = intervalsArray[0].secondPreIntervalTime;
@@ -469,14 +458,27 @@ function intervalTimeFalse() {
     }
 }
 
-function playSounds(m, s) {
-    if (m % intervalTime === 0 && s <= 0.5 && !audioGoPlayed && m >= 1) {
+function updateDisplay() {
+    let h = Math.floor(resetTime / 3600000);
+    let m = Math.floor(resetTime / 60000) % 60;
+    let s = Math.floor(resetTime / 1000) % 60;
+    let sAlt = Math.floor(resetTime / 1000);
+    h = h < 10 ? "0" + h : h;
+    m = m < 10 ? "0" + m : m;
+    s = s < 10 ? "0" + s : s;
+    document.getElementById('timeId').innerHTML = h + ":" + m + ":" + s;
+    playSounds(sAlt);
+}
+
+function playSounds(sAlt) {
+    if (sAlt % (intervalTime * 60) === 0 && !audioGoPlayed) {
         AUDIO_GO.play();
         audioGoPlayed = true;
     } else {
         audioGoPlayed = false;
     }
-    if ((m % intervalTime === intervalTime - 1) && !audioReadyPlayed && s === preIntervalTime && preIntervall === true && (intervalTime !== 1 ? m > 0 : true)) {
+
+    if ((sAlt + preIntervalTime) % (intervalTime * 60) === 0 && !audioReadyPlayed) {
         AUDIO_READY.play();
         audioReadyPlayed = true;
     } else {
@@ -512,7 +514,7 @@ function setActivePreIntervalBtn(buttonId) {
 function confirmFirstInterval(inputId, buttonId) {
     const newIntervalTime = document.getElementById(inputId).value;
     if (newIntervalTime.length !== 0) {
-        intervalTime = parseInt(newIntervalTime);
+        intervalTime = newIntervalTime;
         document.getElementById(buttonId).innerText = newIntervalTime;
         saveIntervals();
         document.getElementById(inputId).value = '';
@@ -522,7 +524,7 @@ function confirmFirstInterval(inputId, buttonId) {
 function confirmSecondInterval(inputId, buttonId) {
     const newIntervalTime = document.getElementById(inputId).value;
     if (newIntervalTime.length !== 0) {
-        intervalTime = parseInt(newIntervalTime);
+        intervalTime = newIntervalTime;
         document.getElementById(buttonId).innerText = newIntervalTime;
         saveIntervals();
         document.getElementById('intervalSecondNumberFieldId').style.background = 'green';
@@ -540,7 +542,7 @@ function confirmSecondInterval(inputId, buttonId) {
 function confirmThirdInterval(inputId, buttonId) {
     const newIntervalTime = document.getElementById(inputId).value;
     if (newIntervalTime.length !== 0) {
-        intervalTime = parseInt(newIntervalTime);
+        intervalTime = newIntervalTime;
         document.getElementById(buttonId).innerText = newIntervalTime;
         saveIntervals();
         document.getElementById('intervalThirdNumberFieldId').style.background = 'green';
@@ -558,7 +560,7 @@ function confirmThirdInterval(inputId, buttonId) {
 function confirmFirstPreInterval(inputId, buttonId) {
     const newIntervalTime = document.getElementById(inputId).value;
     if (newIntervalTime.length !== 0) {
-        preIntervalTime = 60 - parseInt(newIntervalTime);
+        preIntervalTime = parseInt(newIntervalTime); // del
         document.getElementById(buttonId).innerText = newIntervalTime;
         saveIntervals();
         document.getElementById('preIntervalFirstNumberFieldId').style.background = 'green';
@@ -576,7 +578,7 @@ function confirmFirstPreInterval(inputId, buttonId) {
 function confirmSecondPreInterval(inputId, buttonId) {
     const newIntervalTime = document.getElementById(inputId).value;
     if (newIntervalTime.length !== 0) {
-        preIntervalTime = 60 - parseInt(newIntervalTime);
+        preIntervalTime = parseInt(newIntervalTime); // del
         document.getElementById(buttonId).innerText = newIntervalTime;
         saveIntervals();
         document.getElementById('preIntervalSecondNumberFieldId').style.background = 'green';
@@ -852,6 +854,26 @@ function downloadDiary() {
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
+}
+
+function validateInputInterval(input) {
+    input.value = input.value.replace(',', '.');
+    let parsedValue = parseFloat(input.value);
+    if (isNaN(parsedValue) || parsedValue <= 0) {
+        input.value = '0.00';
+    } else {
+        input.value = parsedValue.toFixed(2);
+    }
+}
+
+function validatePreIntervalInput(input) {
+    let sanitizedValue = input.value.replace(/\D/g, '');
+    let numberValue = parseInt(sanitizedValue, 10);
+    if (isNaN(numberValue) || numberValue < 1) {
+        input.value = '> 0 !';
+    } else {
+        input.value = numberValue.toString();
+    }
 }
 
 updateTime();
