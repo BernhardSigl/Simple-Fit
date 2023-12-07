@@ -825,29 +825,39 @@ async function deleteAllUser() {
 }
 
 function downloadDiary() {
-    let textInhalt = '';
+    let textInDownload = '';
+    if (intervalsArray.length > 0) {
+        textInDownload += 'First interval time: ' + intervalsArray[0].secondIntervalTime + '\n';
+        textInDownload += 'Second interval time: ' + intervalsArray[0].thirdIntervalTime + '\n';
+        textInDownload += '_______________________________';
+        textInDownload += '\n';
+        textInDownload += '\n';
+        textInDownload += '\n';
+    }
     gymDiaryArray.forEach(function (entry) {
-        textInhalt += 'Bodypart: ' + entry.bodypart + '\n';
+        textInDownload += 'Exercise: ' + entry.bodypart + '\n';
         entry.diaryelements.reverse().forEach(function (diaryEntry) {
             if (diaryEntry.date) {
-                textInhalt += 'Date: ' + diaryEntry.date + '\n';
+                textInDownload += 'Date: ' + diaryEntry.date + '\n';
             }
             if (diaryEntry.weight) {
-                textInhalt += 'Weight: ' + diaryEntry.weight + '\n';
+                textInDownload += 'Weight/Info: "' + diaryEntry.weight + '"\n';
             }
             if (diaryEntry.reps && diaryEntry.reps.length > 0) {
                 let repsWithoutEmptyValues = diaryEntry.reps.filter(function (rep) {
                     return rep !== '';
                 });
                 if (repsWithoutEmptyValues.length > 0) {
-                    textInhalt += 'Reps: ' + repsWithoutEmptyValues.join(', ') + '\n';
+                    textInDownload += 'Reps: ' + repsWithoutEmptyValues.join(', ') + '\n';
                 }
             }
-            textInhalt += '\n';
+            textInDownload += '\n';
         });
-        textInhalt += '\n';
+        textInDownload += '-------------------------------\n';
+        textInDownload += '\n';
     });
-    let blob = new Blob([textInhalt], { type: 'text/plain' });
+    textInDownload += '\n';
+    let blob = new Blob([textInDownload], { type: 'text/plain' });
     let downloadLink = document.createElement('a');
     downloadLink.href = window.URL.createObjectURL(blob);
     downloadLink.download = 'gymDiary.txt';
