@@ -1,1 +1,1 @@
-Use on a mobile device for the best experience.
+Use a mobile device for the best experience.
